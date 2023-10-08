@@ -1,0 +1,47 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.product-Detailimg {  background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('../../../public/BG_PRODUCT.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 24rem;
+   
+}
+.product-Detailname {top: 40%;
+font-size: 1.5rem;
+font-weight: 700;
+background-color: rgba(255, 255, 255, 0.489);}
+
+.img-block {
+    border-left: 1px solid rgba(0, 0, 0, 0.27);
+    border-right: 1px solid rgba(0, 0, 0, 0.263);
+}
+
+.detail-name {
+    top: 40%;
+font-size: 1.5rem;
+font-weight: 700;
+background-color: rgba(255, 255, 255, 0.489);
+color: rgb(255, 125, 125) !important;
+transition-duration: 0.4s;
+font-family: 'Quicksand', sans-serif;
+}
+.detail-name:hover{
+    color: black !important;
+}
+.price{ font-size: 1.3rem;
+        font-weight:500;
+       font-family: 'Quicksand', sans-serif;}
+.text-custom {font-family: 'Quicksand', sans-serif;
+font-size: 1.15rem;
+}
+
+.text-custom-title {font-family: 'Quicksand', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    }
+

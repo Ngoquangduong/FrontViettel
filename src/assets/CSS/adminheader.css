@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+.text-primary{
+    color: #5a8dee!important;
+  }
+  .btn-primary {
+      border-color: #5a8dee !important;
+      background-color: #5a8dee !important;
+      color: #fff;
+  }
+  .shadow-md {
+      box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+  }
+  .navbar{
+    border-radius: 5px;
+  }
+  .sidebar{
+      width: 280px;
+      min-height: 100vh;
+      box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+      background-color: #fff;
+      position: fixed;
+      top: 0;
+      left: -100%;
+      z-index: 1;
+      transition: 0.5s;
+      font-family: 'Montserrat', sans-serif;
+  }
+  .sidebar.active{
+      left: 0;
+  }
+  .sd-header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+  }
+  .sidebar-overlay{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      transition: 0.5s;
+      opacity: 0;
+      visibility: hidden;
+  }
+  .sidebar-overlay.active{
+      opacity: 1;
+      visibility: visible;
+  }
+  .sd-body{
+      padding: 15px;
+      max-height: calc(100vh - 67px);
+      overflow-x: hidden;
+  }
+  .sd-body ul{
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 0;
+      padding: 0;
+  }
+  .sd-body ul li{
+      list-style: none;
+      margin-bottom: 8px;
+  }
+  .sd-body ul li .sd-link{
+      display: inline-block;
+      width: 100%;
+      padding: 10px 16px;
+      color: #475f7b;
+      background-color: #e5e8ec;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+  }
+  .logo{height: 66px;
+        width: 66px;}
+
+        .button-62 {
+            background: linear-gradient(to bottom right, #EF4765, #FF9A5A)!important;
+            border: 0 !important;
+            border-radius: 6px !important;
+            color: #FFFFFF !important;
+            cursor: pointer;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 2.5;
+            outline: transparent;
+            padding: 0 1rem;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .2s ease-in-out;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+          }
+          
+          .button-62:not([disabled]):focus {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+          }
+          
+          .button-62:not([disabled]):hover {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+          }
