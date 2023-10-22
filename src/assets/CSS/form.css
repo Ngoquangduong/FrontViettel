@@ -95,3 +95,21 @@ input         {
     .divider {background-color: #9999996e;
               height: 1px;
             width: 100%;}
+
+            .bg-Form {
+              background-image: url('../../../public/Formbg.jpg');
+              height: 100%;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              
+              top: 50%;
+          }
+          .bg-confirm {
+            background-color: #F2EBEC;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          }
+          .title-form {font-family: 'Montserrat', sans-serif;
+            font-size: 2rem !important;
+           color: #592730;}

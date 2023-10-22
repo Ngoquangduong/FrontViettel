@@ -1,4 +1,4 @@
-import{ createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 import App from "./App"
 import Login from "./login"
 import Header from "./header"
@@ -12,7 +12,7 @@ import Productmanagment from "./admin/productmanagment"
 import ProductList from "./productlist"
 import Filter from "./filter";
 
-const router =createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: '/app',
         element: <App />
@@ -34,33 +34,35 @@ const router =createBrowserRouter([
         element: <Detail />
     },
     {
-        path:'/Sidebar',
+        path: '/Sidebar',
         element: <Sidebar />
     },
-   {
-    path:'/Filter',
-    element: <Filter/>
-   },
     {
-path:'/Admin',
-element:<Adminhome/>
+        path: '/Filter',
+        element: <Filter />
     },
-    {path:'/Admin/Usermanagment',
-element:<Usermanagement/>},
+    {
+        path: '/Admin',
+        element: <Adminhome />
+    },
+    {
+        path: '/Admin/Usermanagment',
+        element: <Usermanagement />
+    },
 
-{
-    path:'/Admin/Ordermanagment',
-    element: <Ordermanagment/>
-},
-{
-    path:'/Admin/Productmanagment',
-    element: <Productmanagment/>
-},
+    {
+        path: '/Admin/Ordermanagment',
+        element: <Ordermanagment />
+    },
+    {
+        path: '/Admin/Productmanagment',
+        element: <Productmanagment />
+    },
 
-{
-    path:'/ProductList',
-    element: <ProductList/>
-},
+    {
+        path: '/ProductList',
+        element: <ProductList />
+    },
 
 ])
 export default router 
