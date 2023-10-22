@@ -10,7 +10,7 @@ import Usermanagement from "./admin/usermanage"
 import Ordermanagment from "./admin/ordermanagment"
 import Productmanagment from "./admin/productmanagment"
 import ProductList from "./productlist"
-import Filter from "./filter";
+import Filter from "./Filter";
 
 const router = createBrowserRouter([
     {
