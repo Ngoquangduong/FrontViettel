@@ -97,7 +97,7 @@ input         {
             width: 100%;}
 
             .bg-Form {
-              background-image: url('../../../public/Formbg.jpg');
+              background-image: url('/Formbg.jpg');
               height: 100%;
               background-repeat: no-repeat;
               background-size: cover;

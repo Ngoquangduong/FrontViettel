@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 .product-card-img {  background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
-    url('../../../public/BG_PRODUCT.jpg');
+    url('/BG_PRODUCT.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -10,7 +10,7 @@
     transition-duration: 0.4s;
 }
 
-/* .bg-productpage {background-image: url('../../../public/rm373-502.jpg');
+/* .bg-productpage {background-image: url('/rm373-502.jpg');
 background-position: center;
 background-repeat: no-repeat;
 background-size: contain;
@@ -60,7 +60,7 @@ background-color: rgba(255, 255, 255, 0.489);
    position: relative;
     
 }
-.bg-home-menu{background-image: url('../../../public//26843307_1197.jpg');
+.bg-home-menu{background-image: url('/26843307_1197.jpg');
               background-position: center;
             background-repeat: no-repeat;
         background-size: cover;}

@@ -2,10 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import "./assets/CSS/Customheader.css"
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import FormControl from 'react-bootstrap/FormControl';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/esm/Button';
 
 function Header() {
   return (
@@ -14,7 +10,7 @@ function Header() {
     <Navbar expand="lg" className="bg-nav">
       <Container>
         <Navbar.Brand href="#home">
-          <img src="../public/viettel-logo.png" height="60px" width="60px" alt="" />
+          <img src="/viettel-logo.png" height="60px" width="60px" alt="" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

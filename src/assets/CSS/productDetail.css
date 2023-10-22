@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 .product-Detailimg {  background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
-    url('../../../public/BG_PRODUCT.jpg');
+    url('/BG_PRODUCT.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -46,7 +46,7 @@ font-size: 1.15rem;
     }
 
 .bg-detail {
-    background-image: url('../../../public/rm209-ning-20.jpg');
+    background-image: url('/rm209-ning-20.jpg');
     height: 120vh;
     background-repeat: no-repeat;
     background-size: cover;
