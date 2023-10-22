@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Header from "./header";
 import { Form } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 
 export default function ProductList() {
   return (
@@ -13,7 +14,10 @@ export default function ProductList() {
       <Container fluid className="bg-Form">
 
         <Container>
+       
           <Row>
+
+            
             {/* Mobile-first design: Full width on small screens */}
             <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
               <Card className="product-card-img position-relative">
