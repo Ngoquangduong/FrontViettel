@@ -55,7 +55,7 @@ font-size: 1.15rem;
     top: 50%;
 }
 
-.detail1{background-image: url('../../../public/fix1.png');
+.detail1{background-image: url('/fix1.png');
          position: absolute;
         top: 50%;
         left: 65%;
