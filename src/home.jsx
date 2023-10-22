@@ -7,12 +7,13 @@ import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from 'react-bootstrap/Form';
+import "./assets/CSS/form.css"
 import "./assets/CSS/product.css";
 
 
 function Home() {
   return (
-    <div className="bg-red">
+    <div className="bg-productpage">
    <Header/>
    <Carousel className="">
   <Carousel.Item>
@@ -54,7 +55,8 @@ function Home() {
     </Carousel.Caption>
   </Carousel.Item>
 </Carousel>
-      <Container fluid="md p-4 ">
+      <Container fluid="md p-4 border-menu my-3 bg-home-menu">
+        <h2 className=" menu-title">Sản phẩm nổi bật/ hot</h2>
         <Row>
           {/* Mobile-first design: Full width on small screens */}
           <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">

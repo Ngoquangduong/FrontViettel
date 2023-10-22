@@ -9,6 +9,9 @@ import Adminhome from "./admin/admin"
 import Usermanagement from "./admin/usermanage"
 import Ordermanagment from "./admin/ordermanagment"
 import Productmanagment from "./admin/productmanagment"
+import ProductList from "./productlist"
+import Filter from "./filter";
+
 const router =createBrowserRouter([
     {
         path: '/app',
@@ -34,6 +37,10 @@ const router =createBrowserRouter([
         path:'/Sidebar',
         element: <Sidebar />
     },
+   {
+    path:'/Filter',
+    element: <Filter/>
+   },
     {
 path:'/Admin',
 element:<Adminhome/>
@@ -48,7 +55,12 @@ element:<Usermanagement/>},
 {
     path:'/Admin/Productmanagment',
     element: <Productmanagment/>
-}
+},
+
+{
+    path:'/ProductList',
+    element: <ProductList/>
+},
 
 ])
 export default router 

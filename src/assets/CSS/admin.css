@@ -24,3 +24,17 @@ font-family: 'Montserrat', sans-serif;}
                      }
 .total-product {color: #93433C !important;
 font-size: 1.35rem;}
+
+.bg-admin { background-image: url('../../../public/5612887.jpg');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+    .bg-admin-secondary { background-image: url('../../../public/rm209-ning-20.jpg');
+        height:100vh;
+        
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        }

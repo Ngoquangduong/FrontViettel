@@ -10,7 +10,7 @@ export default function Productmanagment(){
     return(
         <div>
             <Sidebar/>
-            <div className="container-fluid">
+            <div className="container-fluid bg-slate-100">
                 <Container>
                 <Row className="py-3">
             <Col md={12}>
@@ -31,6 +31,7 @@ export default function Productmanagment(){
                       <th className="table-custom-rose">Số ngày dùng</th>
                       <th className="table-custom-rose">Loại sản phẩm</th>
                       <th className="table-custom-rose">Dịch vụ đi kèm</th>
+                      <th className="table-custom-rose">Thao tác</th>
                      
                       
                     </tr>
@@ -47,6 +48,9 @@ export default function Productmanagment(){
                       <td className="table-custom-rose">1 ngày</td>
                       <td className="table-custom-rose">Gói cước điện thoại</td>
                       <td className="table-custom-rose">Đăng ký hộ</td>
+                      <td className="table-custom-rose d-flex "><a href=""><button className="button-62 mx-2">Xóa</button></a>
+                      <a href=""><button className="button-63">Chỉnh sửa</button></a>
+                      </td>
                    
                     </tr>
                     <tr >
@@ -59,6 +63,7 @@ export default function Productmanagment(){
                 
               </div>
               <button className="button-62">Xuất dữ liệu</button>
+              <button className="button-63 mx-3">Nhập dữ liệu</button>
             </Col>
           </Row>
 <div className="divider"></div>
@@ -115,21 +120,27 @@ export default function Productmanagment(){
         
         <Form.Control as="textarea" className="border-textarea" rows={3} placeholder="Mô tả"/>
       </Form.Group>  
-    </Form>
-     
-    
-        <Form.Select aria-label="Default select example" className="w-25 mb-4">
+
+
+      <Row>
+    <Form.Select aria-label="Default select example" className="w-25 mb-4">
       <option>Loại sản phẩm</option>
       <option value="1">One</option>
       <option value="2">Two</option>
       <option value="3">Three</option>
     </Form.Select> 
     <Col>
-                    <input type="text" className="w-100" placeholder="Tốc độ đường truyền" required/>
-                        <span className="highlight"></span>
-                        <span className="bar mb-4"></span>
+        <input type="text" className="w-100" placeholder="Tốc độ đường truyền" required/>
+        <span className="highlight"></span>
+        <span className="bar mb-4"></span>
                         
-                    </Col>
+    </Col>
+    </Row>
+    <div className=""><button className="bn632-hover bn28 mb-3" type="submit">Xác nhận</button></div>
+    </Form>
+     
+    
+       
                    
     
 

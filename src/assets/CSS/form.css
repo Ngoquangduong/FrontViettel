@@ -66,11 +66,11 @@ input         {
   }
   
   /* active state */
-  input:focus ~ .highlight {
+  /* input:focus ~ .highlight {
     -webkit-animation:inputHighlighter 0.3s ease;
     -moz-animation:inputHighlighter 0.3s ease;
     animation:inputHighlighter 0.3s ease;
-  }
+  } */
   
   /* ANIMATIONS ================ */
   @-webkit-keyframes inputHighlighter {

@@ -11,7 +11,7 @@ function Ordermanagment (){
     return(
         <div>
             <Sidebar/>
-            <div className="container-fluid">
+            <div className="container-fluid ">
                 <Container>
                 <Row className="py-3">
             <Col md={12}>
@@ -30,7 +30,7 @@ function Ordermanagment (){
                       <th className="table-custom-green">Thành phố</th>
                       <th className="table-custom-green">Quận</th>
                       <th className="table-custom-green">Ngày sinh</th>
-                      
+                      <th className="table-custom-green">Trạng thái đơn</th>
                     </tr>
                   </thead>
                   <tbody className="table-custom-green">
@@ -44,6 +44,7 @@ function Ordermanagment (){
                       <td className="table-custom-green">Hà Nội</td>
                       <td className="table-custom-green">Hoàng Mike</td>
                       <td className="table-custom-green">31/01/2003</td>
+                      <td className="table-custom-green">Đang chờ xác nhận</td>
                     </tr>
                     <tr >
                       <td className="table-custom-green ">Tổng doanh thu :</td>

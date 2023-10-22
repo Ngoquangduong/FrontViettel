@@ -19,7 +19,7 @@ const Sidebar = () => {
                             <img src="../../public/viettel-logo.png" alt="" className="logo" />
                             </a>
                             <div className="form-inline ml-auto">
-                                <div className="button-62 mx-3" onClick={ToggleSidebar} >
+                                <div className="button-62 " onClick={ToggleSidebar} >
                                    Quản lý
                                 </div>
                             </div>

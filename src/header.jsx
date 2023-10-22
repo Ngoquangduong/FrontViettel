@@ -19,8 +19,8 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            <Nav.Link href="#home" className='nav-text-red text-custom-header'>Trang chủ</Nav.Link>
-            <Nav.Link href="#link" className='nav-text-red text-custom-header'>Sản phẩm</Nav.Link>
+            <Nav.Link href="/" className='nav-text-red text-custom-header'>Trang chủ</Nav.Link>
+            <Nav.Link href="/Productlist" className='nav-text-red text-custom-header'>Sản phẩm</Nav.Link>
             <Nav.Link href="https://www.vietteltelecom.vn/sme" className='nav-text-red text-custom-header'>Dịch vụ doanh nghiệp</Nav.Link>
             <Nav.Link href="https://www.vietteltelecom.vn/ho-tro-khach-hang" className='nav-text-red text-custom-header'>Hỗ trợ</Nav.Link>
           </Nav>

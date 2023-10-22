@@ -17,8 +17,8 @@ font-weight: 700;
 background-color: rgba(255, 255, 255, 0.489);}
 
 .img-block {
-    border-left: 1px solid rgba(0, 0, 0, 0.27);
-    border-right: 1px solid rgba(0, 0, 0, 0.263);
+    background-color: rgba(255, 255, 255, 0.489);
+    border-radius: 4%;
 }
 
 .detail-name {
@@ -45,3 +45,21 @@ font-size: 1.15rem;
     font-weight: 600;
     }
 
+.bg-detail {
+    background-image: url('../../../public/rm209-ning-20.jpg');
+    height: 120vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    top: 50%;
+}
+
+.detail1{background-image: url('../../../public/fix1.png');
+         position: absolute;
+        top: 50%;
+        left: 65%;
+        background-size: cover;
+    background-position: center;
+height: 400px;
+width: 400px;}

@@ -10,7 +10,7 @@ function Adminhome() {
   return (
     <div>
       <Sidebar />
-      <div className="container-fluid d-flex py-2 ">
+      <div className="container-fluid d-flex py-2 bg-admin ">
         <Container>
           <Row className="py-3">
             <Col md={12}>

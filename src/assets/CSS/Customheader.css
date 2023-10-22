@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
-.bg-nav {background-color: #0D0D0D !important;}
-.nav-text-red {color:#f56d61!important;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');.bg-nav {background-color: #f5f5f5f0 !important;}
+.nav-text-red {color:#000000!important;
 transition-duration:  0.3s !important;}
-.nav-text-red:hover{color:rgb(255, 255, 255) !important}
+.nav-text-red:hover{color:rgb(255, 0, 0) !important}
 
-.text-custom-header {font-family: 'Quicksand', sans-serif;
+.text-custom-header {font-family: 'Montserrat', sans-serif;
     font-size: 1.15rem;
-    }
+}
 
 
