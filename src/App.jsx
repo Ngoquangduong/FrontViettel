@@ -14,7 +14,7 @@ function App() {
             <a  href="" className="group">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                 <img
-                  src="../public/34.jpg"
+		src="/34.jpg"
                  
                   className="h-full w-full object-cover object-center group-hover:opacity-75"
                 />

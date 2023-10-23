@@ -62,7 +62,12 @@ const router = createBrowserRouter([
     {
         path: '/ProductList',
         element: <ProductList />
-    },
+	},
+	{
+	path: '/*',
+	element: <h1>Lỗi rồi bạn ei 404 not found</h1>
+
+	}
 
 ])
 export default router 
