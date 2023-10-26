@@ -5,6 +5,9 @@ import Col from "react-bootstrap/Col";
 import Product from "./component/Product";
 import CarouselVietTel from "./component/CarouselVIetTel";
 import RegisterForm from "./component/RegisterForm";
+import Footer from './component/Footer';
+import ProductList from './component/ProductList';
+import PostList from "./component/PostList";
 import "./assets/CSS/form.css"
 import "./assets/CSS/product.css";
 
@@ -16,6 +19,7 @@ const data = [
 	{title:"title3", description:"description3"},
 	{title:"title4", description:"description4"},
 ]
+
 return (
     <div className="bg-productpage">
       <Header/>
@@ -38,6 +42,9 @@ return (
           </Row>
           <RegisterForm/>
   </Container>
+  	<PostList/>
+	<ProductList/>
+  <Footer/>
    </div>
   );
 }
