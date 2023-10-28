@@ -1,10 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');.bg-nav {background-color: #f5f5f5f0 !important;}
 .nav-text-red {color:#000000!important;
+    font-size: 18px;
+    padding: 12px 0px;
+	margin: 0px 12px;
+	display: block;
+	text-decoration: none;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 transition-duration:  0.3s !important;}
-.nav-text-red:hover{color:rgb(255, 0, 0) !important}
 
+
+.nav-text-red:before {
+	content: " ";
+	position: absolute;
+	left: 0%;
+	bottom: 10px;
+	height: 1px;
+	width: 0%;
+	background-color: #000000;
+	transition: width 0.3s ease-in-out;
+}
+.nav-text-red:after {
+	content: " ";
+	position: absolute;
+	right: 0%;
+	bottom: 10px;
+	height: 1px;
+	width: 0%;
+	background-color: #0a0808;
+	transition: width 0.3s ease-in-out;
+}
+
+.nav-text-red:hover:before,
+.nav-text-red:focus:before {
+	width: 50%;
+}
+
+.nav-text-red:hover:after,
+.nav-text-red:focus:after {
+	width: 50%;
+}
 .text-custom-header {font-family: 'Montserrat', sans-serif;
     font-size: 1.15rem;
 }
+.layout:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
 
+.layout {
+	display: inline-block;
+}
 

@@ -1,32 +1,89 @@
-.tabs {
-    li {
-      float:left;
-      width:20%;
-    }
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+.filter-text{
+    color:#1D2D62 ;
+    font-size: 1.25rem;
     
-  }
-  .a-link {
-    display:block;
-    text-align:center;
-    text-decoration:none;
-    text-transform:uppercase;
-    color:#888;
-    padding:20px 0;
-    border-bottom:2px solid #888;
-    background:#f7f7f7;
+    font-family: 'Montserrat', sans-serif;
+    transition-duration: 0.4s;
+}
+.filter-text:hover{color: #ffffff;}
+.filter-text:focus{color: #ffffff;}
+.bg-filter-bar{
+    border-radius: 4px;
+
+    background-image:linear-gradient(to  right,  #ed7f93, #e9b391);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.btn-filter {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    /* letter-spacing: 2.5px; */
+    font-weight: 600;
+    color: #fff;
+    background-color: #D9303E !important;
+    border: none;
     
-    &:hover, &.active {
-      background-color:#ddd;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
     }
+  
+  .btn-filter:hover {
+    background-color: #fff  !important;
+        box-shadow: 0px 15px 20px rgba(119, 29, 0, 0.73);
+        border: 1px solid rgba(0, 0, 0, 0.114) !important;
+    color:  #D9303E;
+    transform: translateY(-7px);
   }
-  .tabgroup {
-    div {
-      padding:30px;
-      box-shadow:0 3px 10px rgba(0,0,0,.3);
+
+  .btn-filter-2 {
+    
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #65A603!important;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
     }
+  
+  .btn-filter-2:hover {
+    background-color: #1B4001 !important;
+        box-shadow: 0px 15px 20px rgba(119, 29, 0, 0.73);
+    color: #fff;
+    transform: translateY(-5px);
   }
-  .clearfix:after {
-    content:"";
-    display:table;
-    clear:both;
+
+  .filter-content{
+  width: 100%;
+    background-color: #fff5f3;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
+
+  .filter-heading {color:#1D2D62 ;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;}
+  .underline-1 {width: 100%;
+    margin-top: 0.2rem;
+                background-color: rgba(128, 128, 128, 0.414);
+                height:1px}
+ 
+  .checkbox-title {font-family: 'Montserrat', sans-serif;
+    position: relative !important;
+                   color: #1D2D62;
+                   font-weight: 500;}
+  /* Base for label styling */
+	

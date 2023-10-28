@@ -22,8 +22,9 @@ function Header() {
           </Nav>
         </Navbar.Collapse>
       </Container>
+
     </Navbar>
- 
+    
    </div>
   );
 }
