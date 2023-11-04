@@ -5,17 +5,21 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Header from "./header";
 import { Form } from "react-bootstrap";
-
+import { Accordion } from "react-bootstrap";
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { Nav } from "react-bootstrap";
 import { useState, useEffect } from 'react';
 import Dropdown from "react-bootstrap/Dropdown";
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import "./assets/CSS/filter.css"
 
 export default function ProductList() {
   const [showNav, setShowNav] = useState(false);
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     function handleResize() {
       // Kiểm tra kích thước màn hình và đặt giá trị showNav dựa trên điều kiện
@@ -42,8 +46,7 @@ export default function ProductList() {
 
           <Row>
             {/* startfilter -----------------------------------------------------------------------------------*/}
-
-            <div className="responsive-nav-container">
+            <Row className="d-flex flex-column"><div className="responsive-nav-container mt-4">
               {showNav ? (
                 <Nav className="my-4 bg-filter-bar p-3" defaultActiveKey="/home" as="ul">
                   <Nav.Item as="li">
@@ -56,26 +59,53 @@ export default function ProductList() {
                     <Nav.Link eventKey="link-2" className="filter-text">Gói cố định</Nav.Link>
                   </Nav.Item>
                   <Nav.Item as="li" className="ms-auto">
-                    <Dropdown>
-                      <Dropdown.Toggle className="btn-filter-2 mx-3" id="dropdown-basic">
-                        Bộ lọc sản phẩm
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu className="mt-1 filter-content p-4">
-                        <Row>
-                          <Form>
-                            <h1 className="filter-heading">Sắp xếp</h1>
-                            <div className="underline-1"></div>
 
 
+                    <Button onClick={handleShow} className="btn-filter-2 mx-3">
+                      Bộ lọc sản phẩm
+                    </Button>
 
+                    <Offcanvas show={show} onHide={handleClose}>
+                      <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>Bộ lọc</Offcanvas.Title>
+                      </Offcanvas.Header>
+                      <Offcanvas.Body>
+                        <Form>
 
-                          </Form>
+                        <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Sắp xếp theo giá</Accordion.Header>
+        <Accordion.Body>
+        {[ 'radio'].map((type) => (
+        <div key={type} className="mb-3">
+          <Form.Check type={type} id={`check-api-${type}`}>
+            <Form.Check.Input type={type} isValid />
+            <Form.Check.Label>Từ cao xuống thấp</Form.Check.Label>
+            
+          </Form.Check>
+          <Form.Check type={type} id={`check-api-${type}`}>
+            <Form.Check.Input type={type} isValid />
+            <Form.Check.Label>Từ thấp đến cao</Form.Check.Label>
+            
+          </Form.Check>
+        </div>
+      ))}
+ 
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="1">
+        <Accordion.Header>Sắp xếp theo số ngày sử dụng</Accordion.Header>
+        <Accordion.Body>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+         
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+           
 
-
-                        </Row>
-                      </Dropdown.Menu>
-                    </Dropdown>
+                        </Form>
+                      </Offcanvas.Body>
+                    </Offcanvas>
                   </Nav.Item>
                   <Button onClick={() => setShowNav(false)} className="btn-filter">X</Button>
                 </Nav>
@@ -84,6 +114,9 @@ export default function ProductList() {
               )
               }
             </div>
+
+            </Row>
+
 
             {/* endfilter ----------------------------------------------------------------------------------------------------------------*/}
             {/* Mobile-first design: Full width on small screens */}
@@ -226,12 +259,6 @@ export default function ProductList() {
                 </Row>
                 <div className="text-center"><button className="bn632-hover bn28 mb-3" type="submit">Xác nhận</button></div>
               </Form>
-
-
-
-
-
-
             </Row>
           </Row>
         </Container>

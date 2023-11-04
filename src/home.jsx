@@ -35,7 +35,7 @@ return (
 		{data.map((item) => (
 		
             	<Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-		    <Product item={item}/>
+		  
 
 		</Col>
                 ))}
