@@ -66,43 +66,55 @@ export default function ProductList() {
                     </Button>
 
                     <Offcanvas show={show} onHide={handleClose}>
-                      <Offcanvas.Header closeButton>
-                        <Offcanvas.Title>Bộ lọc</Offcanvas.Title>
+                      <Offcanvas.Header>
+                        <Offcanvas.Title className="text-title">Bộ lọc</Offcanvas.Title>
                       </Offcanvas.Header>
                       <Offcanvas.Body>
                         <Form>
 
-                        <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Sắp xếp theo giá</Accordion.Header>
-        <Accordion.Body>
-        {[ 'radio'].map((type) => (
-        <div key={type} className="mb-3">
-          <Form.Check type={type} id={`check-api-${type}`}>
-            <Form.Check.Input type={type} isValid />
-            <Form.Check.Label>Từ cao xuống thấp</Form.Check.Label>
-            
-          </Form.Check>
-          <Form.Check type={type} id={`check-api-${type}`}>
-            <Form.Check.Input type={type} isValid />
-            <Form.Check.Label>Từ thấp đến cao</Form.Check.Label>
-            
-          </Form.Check>
-        </div>
-      ))}
- 
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Sắp xếp theo số ngày sử dụng</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
-         
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-           
+                          <Accordion defaultActiveKey="0">
+                            <Accordion.Item eventKey="0">
+                              <Accordion.Header className="form-normal-text">Sắp xếp theo giá</Accordion.Header>
+                              <Accordion.Body>
+                                {['radio'].map((type) => (
+                                  <div key={type} className="mb-3">
+                                    <Form.Check type={type} id={`check-api-${type}`}>
+                                      <Form.Check.Input type={type} isValid />
+                                      <Form.Check.Label className="form-normal-text"> Từ cao xuống thấp</Form.Check.Label>
 
+                                    </Form.Check>
+                                    <Form.Check type={type} id={`check-api-${type}`}>
+                                      <Form.Check.Input type={type} isValid />
+                                      <Form.Check.Label className="form-normal-text">Từ thấp đến cao</Form.Check.Label>
+
+                                    </Form.Check>
+                                  </div>
+                                ))}
+
+                              </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="1">
+                              <Accordion.Header className="form-normal-text" >Sắp xếp theo số ngày sử dụng</Accordion.Header>
+                              <Accordion.Body>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+                              </Accordion.Body>
+                            </Accordion.Item>
+                          </Accordion>
+
+                          <Row className="mt-3">
+                            <Col xs="auto">
+                              <Form.Control
+                                type="text"
+                                placeholder={"Tìm kiếm"}
+                                className=" mr-sm-2 search-1 "
+
+                              />
+                            </Col>
+                            <Col xs="auto">
+                              <Button type="submit" className="button-63">Tìm kiếm</Button>
+                            </Col>
+                          </Row>
                         </Form>
                       </Offcanvas.Body>
                     </Offcanvas>
