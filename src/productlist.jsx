@@ -237,7 +237,7 @@ export default function ProductList() {
 
                   </Col>
                   <Col>
-                    <Form.Select aria-label="Default select example" className="w-100 mb-4">
+                    <Form.Select aria-label="Default select example" className=" mb-4">
                       <option>Phương thức thanh toán</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
