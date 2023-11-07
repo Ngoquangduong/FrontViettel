@@ -3,15 +3,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-
+import "../assets/CSS/product.css"
 
 
 import "../assets/CSS/filter.css"
 export default function ProductList(){
+  
 return(
-<>
-<Container className="">
-<Row className="mx-auto align-item-center">
+<div>
+
+  <Container>
+  <Row className="mx-auto w-100">
               <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
                 <Card className="product-card-img position-relative">
                   {/* Card content */}
@@ -76,8 +78,10 @@ return(
                 </Card>
               </Col>
             </Row>
-</Container>
+  </Container>
 
-</>
+
+
+</div>
 )
 }

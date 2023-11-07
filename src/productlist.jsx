@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Pagination from 'react-bootstrap/Pagination';
 import Header from "./header";
 import { Form } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
@@ -13,6 +14,7 @@ import { useState, useEffect } from 'react';
 import Dropdown from "react-bootstrap/Dropdown";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import "./assets/CSS/filter.css"
+import Footer from "./component/Footer";
 
 export default function ProductList() {
   const [showNav, setShowNav] = useState(false);
@@ -37,8 +39,18 @@ export default function ProductList() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  let active = 2;
+let items = [];
+for (let number = 1; number <= 5; number++) {
+  items.push(
+    <Pagination.Item key={number} active={number === active}>
+      {number}
+    </Pagination.Item>,
+  );
+}
   return (
-    <div>
+    <div className="">
       <Header />
       <Container fluid className="bg-Form">
 
@@ -132,7 +144,7 @@ export default function ProductList() {
 
             {/* endfilter ----------------------------------------------------------------------------------------------------------------*/}
             {/* Mobile-first design: Full width on small screens */}
-            <Row className="mx-auto">
+            <Row className="mx-auto ">
               <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
                 <Card className="product-card-img position-relative">
                   {/* Card content */}
@@ -196,6 +208,7 @@ export default function ProductList() {
                   </Card.Body>
                 </Card>
               </Col>
+              <Pagination className="justify-center">{items}</Pagination>
             </Row>
 
 
@@ -206,8 +219,8 @@ export default function ProductList() {
 
 
             {/* ----------------------------------------------------------------FOrm------------------------------------------------------ */}
-            <Row className="bg-confirm my-3">
-              <h1 className="my-3 title-form ">Mua/đặt sản phẩm</h1>
+            <Row className="bg-home-menu border-menu my-3">
+              <h1 className="my-3 menu-title ">Mua/đặt sản phẩm</h1>
               <Form>
                 <Row>
                   <Col>
@@ -275,8 +288,8 @@ export default function ProductList() {
           </Row>
         </Container>
 
-
       </Container>
+      <Footer/>
     </div>
   );
 }

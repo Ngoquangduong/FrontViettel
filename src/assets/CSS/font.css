@@ -55,3 +55,79 @@ transition-duration:  0.3s !important;}
 	width: 50%;
 }
 .bg-pink {background-color: #FAFAFA;}
+
+.footer-text {color: #F2E2C4!important;
+    font-size: 1rem;
+    padding: 12px 0px;
+	margin: 0px 12px;
+	display: block;
+	text-decoration: none;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	transition-duration: 0.3s !important;
+}
+.footer-text:hover {
+	
+	color: #F27272!important;
+	
+}
+.footer-background {
+	background-color: #00060D;
+}
+
+.more-text-light {color:#fff6f6!important;
+    font-size: 18px;
+    padding: 12px 0px;
+	margin: 0px 12px;
+	display: block;
+	text-decoration: none;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+transition-duration:  0.3s !important;}
+
+
+.more-text-light:before {
+	content: " ";
+	position: absolute;
+	left: 0%;
+	bottom: 10px;
+	height: 1px;
+	width: 0%;
+	background-color: #fff6f6;
+	transition: width 0.3s ease-in-out;
+}
+.more-text-light:after {
+	content: " ";
+	position: absolute;
+	right: 0%;
+	bottom: 10px;
+	height: 1px;
+	width: 0%;
+	background-color: #fff6f6;
+	transition: width 0.3s ease-in-out;
+}
+
+.more-text-light:hover:before,
+.more-text-light:focus:before {
+	width: 50%;
+}
+
+.more-text-light:hover:after,
+.more-text-light:focus:after {
+	width: 50%;
+}
+
+.text-light-title {
+	display: block;
+	font-size: 1.5rem;
+	text-decoration: none;
+	position: relative;
+	text-align: center;
+	color: #000879 !important;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+}

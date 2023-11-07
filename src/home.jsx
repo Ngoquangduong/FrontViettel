@@ -21,14 +21,14 @@ const data = [
 ]
 
 return (
-    <div className="bg-productpage">
+    <div className="bg-all">
       <Header/>
       {/* <Container fluid="md p-4 border-menu my-3 bg-home-menu"> */}
 
 
      
       <CarouselVietTel/>
-        <Container fluid="md p-4 border-menu my-3 bg-home-menu">
+        <Container fluid="md p-4  my-3 bg-home-menu">
           <h2 className=" menu-title">Sản phẩm nổi bật/ hot</h2>
           <Row>
             {/* Mobile-first design: Full width on small screens */}

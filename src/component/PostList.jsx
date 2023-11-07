@@ -5,14 +5,14 @@ export default function PostList(){
 return(
 <>
 	
-<div   className=" pb-5 bg-pink">
+<div   className=" pb-5 ">
 	<Container className="pt-3">
-	<h1  className="text-center fs-3 menu-title-1">Cập nhật thông tin dịch vụ Viettel</h1>
-		<Row>
-			<Col><PostCard/></Col>
-			<Col><PostCard/></Col>
+	<h1  className="text-center fs-3 text-light-title">Cập nhật thông tin dịch vụ Viettel</h1>
+		<Row >
+			<Col  xs={12} sm={6} md={6} lg={6}><PostCard/></Col>
+			<Col  xs={12} sm={6} md={6} lg={6}><PostCard/></Col>
 		</Row>	
-	<a href="" className=" float-end link-text">Xem nhiều hơn</a>
+	<a href="" className=" float-end text-light more-text-light">Xem nhiều hơn</a>
 	</Container>
 </div>
 </>

@@ -16,13 +16,20 @@ return(
             <Row className="bg-confirm my-5">
                 <h1 className="my-3 title-form ">Mua/đặt sản phẩm</h1>
 		<Form action="/register" method="POST">
-
-                  <Col>
+<Row>
+<Col>
                     <input type="text" className="w-100" placeholder="Tên người mua" required />
                     <span className="highlight"></span>
                     <span className="bar mb-4"></span>
 
                   </Col>
+                  <Col>
+                    <input type="text" className="w-100" placeholder="Số điện thoại liên hệ" required />
+                    <span className="highlight"></span>
+                    <span className="bar mb-4"></span>
+
+                  </Col></Row>
+                  
                   <Row>
                     <Col>
                       <Form.Select aria-label="Default select example" className="w-100 mb-4">

@@ -14,18 +14,18 @@
 .product-Detailname {top: 40%;
 font-size: 1.5rem;
 font-weight: 700;
-background-color: rgba(255, 255, 255, 0.489);}
+background-color: rgba(255, 255, 255, 0.658);}
 
 .img-block {
-    background-color: rgba(255, 255, 255, 0.489);
-    border-radius: 4%;
+    background-color: rgba(255, 255, 255, 0.77);
+    width: 100%;
 }
 
 .detail-name {
     top: 40%;
 font-size: 1.5rem;
 font-weight: 700;
-background-color: rgba(255, 255, 255, 0.489);
+background-color: rgba(255, 255, 255, 0.789);
 color: rgb(255, 125, 125) !important;
 transition-duration: 0.4s;
 font-family: 'Quicksand', sans-serif;
@@ -47,7 +47,7 @@ font-size: 1.15rem;
 
 .bg-detail {
     background-image: url('/rm209-ning-20.jpg');
-    height: 120vh;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
