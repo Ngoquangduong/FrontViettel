@@ -29,7 +29,7 @@ return (
      
       <CarouselVietTel/>
         <Container fluid="md p-4  my-3 bg-home-menu">
-          <h2 className=" menu-title">Sản phẩm nổi bật/ hot</h2>
+          <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>
           <Row>
             {/* Mobile-first design: Full width on small screens */}
 		{data.map((item) => (

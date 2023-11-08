@@ -1,11 +1,13 @@
 import { Container,Row,Col } from "react-bootstrap";
 import PostList from "./PostList";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../assets/CSS/main.css"
 const  Footer = ()=>{
 return(
 <>
 <div style={{
 	
-	height:"218px",
+	height:"100%",
 }}  className="p-4 footer-background">
 	<Container className="h-100">
 		<Row className="h-100">
@@ -16,6 +18,13 @@ return(
 			</Col>
 			<Col md="3">
 				<p ><a href="" className="footer-text "> Sản phẩm dịch vụ</a></p>
+				
+				<Row className=" align-items-center justify-center">
+				<p className="footer-text ">Theo dõi chúng tôi trên </p>
+				<div className=" text-center ms-2 p-0 icon-logo"><a href="" className="icon-logo d-block"><img src="../../public/zalo-logo.png" className="icon-logo icon-animation" alt="" /></a></div>
+				<div className=" text-center ms-2 p-0 icon-logo"><a href="" className="icon-logo d-block"><img src="../../public/youtube2.png" className="icon-logo icon-animation" alt="" /></a></div>
+				<div className=" text-center ms-2 p-0 icon-logo"><a href="" className="icon-logo d-block"><img src="../../public/facebook-logo-icon-vector-27990381-e1592215786624.png" className="icon-logo icon-animation" alt="" /></a></div>
+				</Row>	
 			</Col>
 			<Col md="3">
 				<p ><a href="" className="footer-text "> Thông tin về dịch vụ trả sau</a></p>

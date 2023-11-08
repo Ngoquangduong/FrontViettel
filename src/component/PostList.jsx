@@ -12,7 +12,7 @@ return(
 			<Col  xs={12} sm={6} md={6} lg={6}><PostCard/></Col>
 			<Col  xs={12} sm={6} md={6} lg={6}><PostCard/></Col>
 		</Row>	
-	<a href="" className=" float-end text-light more-text-light">Xem nhiều hơn</a>
+	<a href="" className=" float-end link-text">Xem nhiều hơn</a>
 	</Container>
 </div>
 </>

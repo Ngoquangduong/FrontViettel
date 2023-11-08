@@ -41,14 +41,14 @@ export default function ProductList() {
   }, []);
 
   let active = 2;
-let items = [];
-for (let number = 1; number <= 5; number++) {
-  items.push(
-    <Pagination.Item key={number} active={number === active}>
-      {number}
-    </Pagination.Item>,
-  );
-}
+  let items = [];
+  for (let number = 1; number <= 5; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>,
+    );
+  }
   return (
     <div className="">
       <Header />
@@ -108,23 +108,42 @@ for (let number = 1; number <= 5; number++) {
                             <Accordion.Item eventKey="1">
                               <Accordion.Header className="form-normal-text" >Sắp xếp theo số ngày sử dụng</Accordion.Header>
                               <Accordion.Body>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+                                <Form.Check type="radio" label={<span className="normal-text">Từ thấp đến cao</span>} aria-label="radio 1" />
+                                <Form.Check type="radio" label={<span className="normal-text">Từ cao đến thấp</span>} aria-label="radio 2" />
 
                               </Accordion.Body>
                             </Accordion.Item>
-                          </Accordion>
 
-                          <Row className="mt-3">
+                            <Accordion.Item eventKey="2">
+                              <Accordion.Header className="form-normal-text" >Sắp xếp theo bảng chữ cái</Accordion.Header>
+                              <Accordion.Body>
+
+                                <Form.Check type="radio" label={<span className="normal-text">Từ A đến Z</span>} aria-label="radio 1" />
+                                <Form.Check type="radio" label={<span className="normal-text">Từ Z đến A</span>} aria-label="radio 2" />
+
+                              </Accordion.Body>
+                            </Accordion.Item>
+
+                          </Accordion>
+                          <Button type="submit" className="btn-filter-3 my-3">
+                            Xác Nhận
+                          </Button>
+
+                        </Form>
+
+
+                        <Form inline>
+                          <Row>
                             <Col xs="auto">
                               <Form.Control
                                 type="text"
-                                placeholder={"Tìm kiếm"}
-                                className=" mr-sm-2 search-1 "
-
+                                placeholder="Tìm kiếm theo tên"
+                                className=" mr-sm-2"
                               />
                             </Col>
                             <Col xs="auto">
-                              <Button type="submit" className="button-63">Tìm kiếm</Button>
+                              <Button type="submit" className="button-63">Tìm kiếm</Button>
                             </Col>
                           </Row>
                         </Form>
@@ -289,7 +308,7 @@ for (let number = 1; number <= 5; number++) {
         </Container>
 
       </Container>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

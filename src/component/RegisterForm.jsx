@@ -14,7 +14,7 @@ return(
   <>
   <Container>
             <Row className="bg-confirm my-5">
-                <h1 className="my-3 title-form ">Mua/đặt sản phẩm</h1>
+                <h1 className="my-3 text-title ">Mua/đặt sản phẩm</h1>
 		<Form action="/register" method="POST">
 <Row>
 <Col>
