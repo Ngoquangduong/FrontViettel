@@ -9,6 +9,7 @@ import "./assets/CSS/button.css";
 import { useState } from "react";
 import ProductList from "./component/ProductList";
 import Footer from "./component/Footer";
+import PostList from "./component/PostList";
 
 function Detail(props){
     const [detail,setDetail] = useState({
@@ -56,9 +57,10 @@ function Detail(props){
                 </div>
      
             </Col>
+
+
            </Row>
         
-           
            <div className="mt-3 img-block p-4">
             <Container className=" ">
                 <Row>
@@ -71,6 +73,10 @@ function Detail(props){
             </Container>
            
            </div>
+           
+           <Row>
+            <PostList/>
+           </Row>
     </Container>
     <Footer/>
         </div>

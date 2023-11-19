@@ -15,6 +15,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import "./assets/CSS/filter.css"
 import Footer from "./component/Footer";
+import PostList from "./component/PostList";
 
 export default function ProductList() {
   const [showNav, setShowNav] = useState(false);
@@ -77,7 +78,7 @@ export default function ProductList() {
                       Bộ lọc sản phẩm
                     </Button>
 
-                    <Offcanvas show={show} onHide={handleClose}>
+                    <Offcanvas show={show} onHide={handleClose} className="responsive-offcanvas col-s-3">
                       <Offcanvas.Header>
                         <Offcanvas.Title className="text-title">Bộ lọc</Offcanvas.Title>
                       </Offcanvas.Header>
@@ -234,9 +235,9 @@ export default function ProductList() {
 
 
 
-
-
-
+{/* 
+-----------------------------------------------------------------postlist------------------------------------------------------------------------ */}
+            <PostList/>
             {/* ----------------------------------------------------------------FOrm------------------------------------------------------ */}
             <Row className="bg-home-menu border-menu my-3">
               <h1 className="my-3 menu-title ">Mua/đặt sản phẩm</h1>
@@ -304,6 +305,9 @@ export default function ProductList() {
                 <div className="text-center"><button className="bn632-hover bn28 mb-3" type="submit">Xác nhận</button></div>
               </Form>
             </Row>
+
+
+            
           </Row>
         </Container>
 

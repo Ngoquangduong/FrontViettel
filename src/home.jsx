@@ -24,7 +24,11 @@ return (
     <div className="bg-all">
       <Header/>
       {/* <Container fluid="md p-4 border-menu my-3 bg-home-menu"> */}
-
+      {data.map(()=>{
+        <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
+          <Product/> 
+        </Col>
+      })}
 
      
       <CarouselVietTel/>
@@ -32,17 +36,11 @@ return (
           <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>
           <Row>
             {/* Mobile-first design: Full width on small screens */}
-		{data.map((item) => (
 		
-            	<Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-		  
-
-		</Col>
-                ))}
           </Row>
           <RegisterForm/>
   </Container>
-  	<PostList/>
+  <PostList/>
 	<ProductList/>
   <Footer/>
    </div>

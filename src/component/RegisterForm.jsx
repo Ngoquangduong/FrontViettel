@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from "react";
 import { Row,Col } from "react-bootstrap"
-import { Form } from "react-bootstrap"
+import { Form } from "react-bootstrap";
+import "../assets/CSS/main.css"
 import Container from "react-bootstrap/Container";
 export default function RegisterForm(){
   const city_data = [
@@ -13,7 +14,7 @@ export default function RegisterForm(){
 return(
   <>
   <Container>
-            <Row className="bg-confirm my-5">
+            <Row className="bg-confirm my-5 box-shadow-1">
                 <h1 className="my-3 text-title ">Mua/đặt sản phẩm</h1>
 		<Form action="/register" method="POST">
 <Row>

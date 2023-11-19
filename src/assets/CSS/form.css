@@ -89,3 +89,12 @@ input:focus ~ .highlight {
 	from { background:#5264AE; }
   to 	{ width:0; background:transparent; }
 }
+
+
+/* ================================================================================================================ */
+@media only screen and (max-width: 600px) {
+  /* For tablets: */
+  
+  .button-63 {margin-top: 1rem;}
+}
+.responsive-offcanvas{max-width: 86% !important;}
