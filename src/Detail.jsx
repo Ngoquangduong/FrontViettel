@@ -10,6 +10,7 @@ import { useState } from "react";
 import ProductList from "./component/ProductList";
 import Footer from "./component/Footer";
 import PostList from "./component/PostList";
+import RegisterForm from "./component/RegisterForm";
 
 function Detail(props){
     const [detail,setDetail] = useState({
@@ -75,6 +76,7 @@ function Detail(props){
            </div>
            
            <Row>
+            <RegisterForm/>
             <PostList/>
            </Row>
     </Container>
