@@ -26,7 +26,7 @@ return (
       {/* <Container fluid="md p-4 border-menu my-3 bg-home-menu"> */}
       {data.map(()=>{
         <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-          <Product/> 
+          <h1>12345</h1>
         </Col>
       })}
 
