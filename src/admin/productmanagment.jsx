@@ -6,9 +6,10 @@ import Form from "react-bootstrap/Form";
 import "../assets/CSS/admin.css"
 import "../assets/CSS/form.css"
 import Table from "react-bootstrap/esm/Table";
+
 export default function Productmanagment(){
     return(
-        <div>
+        <div className="">
             <Sidebar/>
             <div className="container-fluid bg-slate-100">
                 <Container>
@@ -49,7 +50,7 @@ export default function Productmanagment(){
                       <td className="table-custom-rose">Gói cước điện thoại</td>
                       <td className="table-custom-rose">Đăng ký hộ</td>
                       <td className="table-custom-rose d-flex "><a href=""><button className="button-62 mx-2">Xóa</button></a>
-                      <a href=""><button className="button-63">Chỉnh sửa</button></a>
+                      <a href="/admin/Productedit"><button className="button-63">Chỉnh sửa</button></a>
                       </td>
                    
                     </tr>
