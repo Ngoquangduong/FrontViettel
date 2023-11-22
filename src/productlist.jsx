@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Pagination from "react-bootstrap/Pagination";
-import Header from "./header";
+import Header from "./component/Header";
 import { Form } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
 import Tabs from "react-bootstrap/Tabs";

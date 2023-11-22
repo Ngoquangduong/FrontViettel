@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Login from "./login";
-import Header from "./header";
+import Header from "./component/Header";
 import Home from "./home";
 import Detail from "./Detail";
 import Sidebar from "./admin/adminheader";
@@ -11,7 +11,7 @@ import Ordermanagment from "./admin/ordermanagment";
 import Productmanagment from "./admin/productmanagment";
 import ProductList from "./productlist";
 import Filter from "./Filter";
-
+import { ProductProvider } from "./context/ProductContext";
 const router = createBrowserRouter([
   {
     path: "/app",
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Admin/Productmanagment",
-    element: <Productmanagment />,
+    element: <ProductProvider><Productmanagment /></ProductProvider> ,
   },
 
   {
