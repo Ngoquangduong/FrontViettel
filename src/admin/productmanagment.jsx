@@ -15,6 +15,7 @@ function Productmanagment() {
       <div className="container-fluid bg-slate-100">
         <Container>
           <Row className="py-3">
+
             <Col md={12}>
               <h1 className="my-3 title-table">Danh sách sản phẩm</h1>
               <div className="table-responsive br-6">
@@ -75,6 +76,7 @@ function Productmanagment() {
                     ))}
 
                     {/* <tr>
+
                       <td className="table-custom-rose">Tổng doanh thu :</td>
                       <td className="table-custom-rose total-product">1</td>
                     </tr> */}

@@ -12,11 +12,73 @@ function Adminhome() {
       <Sidebar />
       <div className="container-fluid d-flex py-2 bg-admin ">
         <Container>
+
+          <Row>
+            <h1 className="my-3 title-table">Thêm admin</h1>
+            <Form>
+              <Row>
+                <Col>
+                  <input type="text" className="w-100" placeholder="Tên" required />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+
+                </Col>
+                <Col>
+                  <input type="password" className="w-100" placeholder="Password" required />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+
+                </Col>
+
+              </Row>
+
+
+              <Row>
+                <Col>
+                  <input type="text" className="w-100" placeholder="Phonenumber" required />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+
+                </Col>
+                <Col>
+                  <input type="email" className="w-100" placeholder="Email" required />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+
+                </Col>
+                <Col>
+                  <Form.Select aria-label="Gender" className="mt-3">
+                    <option>Open this select menu</option>
+                    <option value="1">Nam</option>
+                    <option value="2">Nữ</option>
+
+                  </Form.Select>
+                </Col>
+
+              </Row>
+              <Row>
+                <Col>
+                <Form.Group controlId="formFile" className="mb-3">
+                  <Form.Label>Ảnh Avatar</Form.Label>
+                  <Form.Control type="file" />
+                </Form.Group>
+                </Col>
+                <Col>
+                <input type="text" className="w-100 mt-4" placeholder="Địa chỉ" required />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+                </Col>
+                
+              </Row>
+              <button className="button-63">Xác nhận</button>
+            </Form>
+          </Row>
+
           <Row className="py-3">
             <Col md={12}>
-            <h1 className="my-3 title-table">Danh sách tài khoản người dùng</h1>
+              <h1 className="my-3 title-table">Danh sách tài khoản người dùng</h1>
               <div className="table-responsive br-6">
-                
+
                 <Table striped bordered hover size="sm" className="table-custom ">
                   <thead className="table-custom ">
                     <tr className="table-custom">
@@ -28,7 +90,7 @@ function Adminhome() {
                       <th className="table-custom">Thành phố</th>
                       <th className="table-custom">Quận</th>
                       <th className="table-custom">Ngày sinh</th>
-                      
+
                     </tr>
                   </thead>
                   <tbody className="table-custom">
@@ -49,7 +111,7 @@ function Adminhome() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                
+
               </div>
               <button className="button-62">Xuất dữ liệu</button>
             </Col>
@@ -63,9 +125,9 @@ function Adminhome() {
 
           <Row className="py-3">
             <Col md={12}>
-            <h1 className="my-3 title-table">Danh sách đặt hàng</h1>
+              <h1 className="my-3 title-table">Danh sách đặt hàng</h1>
               <div className="table-responsive br-6">
-              
+
                 <Table striped bordered hover size="sm" className="table-custom-green">
                   <thead className="table-custom-green ">
                     <tr className="table-custom-green">
@@ -79,7 +141,7 @@ function Adminhome() {
                       <th className="table-custom-green">Quận</th>
                       <th className="table-custom-green">Ngày sinh</th>
                       <th className="table-custom-green">Status</th>
-                      
+
                     </tr>
                   </thead>
                   <tbody className="table-custom-green">
@@ -102,7 +164,7 @@ function Adminhome() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                
+
               </div>
               <button className="button-62">Xuất dữ liệu</button>
             </Col>
@@ -111,15 +173,15 @@ function Adminhome() {
 
           <Row className="py-3">
             <Col md={12}>
-            <h1 className="my-3 title-table">Danh sách sản phẩm</h1>
+              <h1 className="my-3 title-table">Danh sách sản phẩm</h1>
               <div className="table-responsive br-6">
-              
+
                 <Table striped bordered hover size="sm" className="table-custom-rose">
                   <thead className="table-custom-rose ">
                     <tr className="table-custom-rose">
                       <th className="table-custom-rose">ID</th>
                       <th className="table-custom-rose">Tên</th>
-                      
+
                       <th className="table-custom-rose">Giá trị gói cước/dịch vụ</th>
                       <th className="table-custom-rose"> Mô Tả</th>
                       <th className="table-custom-rose">Băng thông</th>
@@ -128,8 +190,8 @@ function Adminhome() {
                       <th className="table-custom-rose">Số ngày dùng</th>
                       <th className="table-custom-rose">Loại sản phẩm</th>
                       <th className="table-custom-rose">Dịch vụ đi kèm</th>
-                     
-                      
+
+
                     </tr>
                   </thead>
                   <tbody className="table-custom-rose">
@@ -144,7 +206,7 @@ function Adminhome() {
                       <td className="table-custom-rose">1 ngày</td>
                       <td className="table-custom-rose">Gói cước điện thoại</td>
                       <td className="table-custom-rose">Đăng ký hộ</td>
-                   
+
                     </tr>
                     <tr >
                       <td className="table-custom-rose">Tổng doanh thu :</td>
@@ -153,7 +215,7 @@ function Adminhome() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                
+
               </div>
               <button className="button-62">Xuất dữ liệu</button>
             </Col>

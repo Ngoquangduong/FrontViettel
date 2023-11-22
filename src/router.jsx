@@ -10,6 +10,7 @@ import Usermanagement from "./admin/usermanage";
 import Ordermanagment from "./admin/ordermanagment";
 import Productmanagment from "./admin/productmanagment";
 import ProductList from "./productlist";
+import Productedit from "./admin/productedit";
 import Filter from "./Filter";
 import { ProductProvider } from "./context/ProductContext";
 const router = createBrowserRouter([
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/Admin/Productmanagment",
     element: <ProductProvider><Productmanagment /></ProductProvider> ,
+  },
+  {
+    path: "/Admin/Productedit",
+    element: <Productedit/>,
   },
 
   {
