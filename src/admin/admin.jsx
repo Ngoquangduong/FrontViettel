@@ -5,10 +5,11 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import "../assets/CSS/admin.css"
+import "../assets/CSS/productDetail.css"
 
 function Adminhome() {
   return (
-    <div>
+    <div className="">
       <Sidebar />
       <div className="container-fluid d-flex py-2 bg-admin ">
         <Container>
@@ -48,7 +49,7 @@ function Adminhome() {
                 </Col>
                 <Col>
                   <Form.Select aria-label="Gender" className="mt-3">
-                    <option>Open this select menu</option>
+                    <option>Gender</option>
                     <option value="1">Nam</option>
                     <option value="2">Nữ</option>
 
@@ -57,12 +58,7 @@ function Adminhome() {
 
               </Row>
               <Row>
-                <Col>
-                <Form.Group controlId="formFile" className="mb-3">
-                  <Form.Label>Ảnh Avatar</Form.Label>
-                  <Form.Control type="file" />
-                </Form.Group>
-                </Col>
+              
                 <Col>
                 <input type="text" className="w-100 mt-4" placeholder="Địa chỉ" required />
                   <span className="highlight"></span>

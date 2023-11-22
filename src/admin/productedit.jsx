@@ -78,8 +78,20 @@ function Productedit() {
                                 <span className="bar mb-4"></span>
 
                             </Col>
+                            <Col>
+                                <input
+                                    type="text"
+                                    className="w-100"
+                                    placeholder="Dịch vụ đi kèm"
+                                    required
+                                />
+                                <span className="highlight"></span>
+                                <span className="bar mb-4"></span>
+                            </Col>
                         </Row>
-                        <div className=""><button className="bn632-hover bn28 mb-3" type="submit">Xác nhận</button></div>
+                        <div className=""><button className="bn632-hover bn28 mb-3" type="submit">Xác nhận</button>
+                            <button className="btn-filter-3 p-3">Quay về</button>
+                        </div>
                     </Form>
 
 

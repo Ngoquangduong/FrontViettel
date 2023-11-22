@@ -33,7 +33,7 @@ const Sidebar = () => {
                     </div>
                     <nav className=" ">
                         <ul className="">
-                            <li className="p-3 sidebar-items"><a href="/admin" className=" my-1 ">Quản lý thống kê</a></li>
+                            <li className="p-3 sidebar-items"><a href="/admin" className=" my-1 ">Quản lý tổng quát</a></li>
                             <li className="p-3 nav-link sidebar-items
                                 "><a href="/admin/usermanagment" className=" my-1 ">Quản lý người dùng</a></li>
                             <li className="p-3 sidebar-items"><a href="/admin/ordermanagment" className="my-1 ">Quản lý đơn hàng</a></li>
