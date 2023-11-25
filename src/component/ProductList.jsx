@@ -13,7 +13,7 @@ export default function ProductList() {
   return (
     <div>
       <Container>
-        <Row className="mx-auto w-100">
+        <Row className="mx-auto w-100 d-flex flex-wrap">
           <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
             {products.map((item) => (
               <Product item={item}></Product>

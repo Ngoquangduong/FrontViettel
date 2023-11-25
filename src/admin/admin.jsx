@@ -30,7 +30,12 @@ function Adminhome() {
                   <span className="bar mb-4"></span>
 
                 </Col>
+                <Col>
+                  <input type="password confirm" className="w-100" placeholder="Confirm Password" required />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
 
+                </Col>
               </Row>
 
 
