@@ -8,7 +8,7 @@ import "../assets/CSS/admin.css";
 import RegisterAdmin from "./RegisterAdmin";
 function Adminhome() {
   return (
-    <div>
+    <div className="">
       <Sidebar />
 
       <div className="container-fluid d-flex py-2 bg-admin ">

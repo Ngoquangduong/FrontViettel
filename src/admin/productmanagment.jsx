@@ -192,6 +192,16 @@ function Productmanagment() {
                   <span className="highlight"></span>
                   <span className="bar mb-4"></span>
                 </Col>
+                <Col>
+                  <input
+                    type="text"
+                    className="w-100"
+                    placeholder="Dịch vụ đi kèm"
+                    required
+                  />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+                </Col>
               </Row>
               <div className="">
                 <button className="bn632-hover bn28 mb-3" type="submit">
