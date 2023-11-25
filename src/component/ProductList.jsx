@@ -16,7 +16,7 @@ export default function ProductList() {
         <Row className="mx-auto w-100">
           <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
             {products.map((item) => (
-              <Product item={item}></Product>
+              <Product key={item.ProductID} item={item}></Product>
             ))}
           </Col>
         </Row>

@@ -16,6 +16,7 @@ export const ProductProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
+      
       const result = await axios.get("/product");
       setProducts(result.data.products);
     } catch (error) {
@@ -35,29 +36,29 @@ export const ProductProvider = ({ children }) => {
     await csrf();
     try {
       await axios.post("/product/insert", data);
-      getProducts();
+      await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
     }
   };
-  const updateProduct = async (id, { ...data}) => {
+  const updateProduct = async (id, { ...data }) => {
     await csrf();
     try {
       await axios.patch("/product/update" + id, data);
-      getProducts();
+      await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
     }
   };
-  const deleteProduct = async (id ) => {
+  const deleteProduct = async (id) => {
     await csrf();
     try {
       await axios.patch("/product/delete" + id);
-      getProducts();
+      await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
