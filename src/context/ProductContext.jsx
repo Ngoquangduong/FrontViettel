@@ -3,26 +3,29 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
+
+// ... (imports)
 
 const ProductContext = createContext({});
 
 export const ProductProvider = ({ children }) => {
-  const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const getProducts = async () => {
     try {
-      
       const result = await axios.get("/product");
       setProducts(result.data.products);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
   };
+
   const getProductDetail = async () => {
     try {
       const result = await axios.get("/product/" + id);
@@ -43,6 +46,7 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   const updateProduct = async (id, { ...data }) => {
     await csrf();
     try {
@@ -54,6 +58,7 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   const deleteProduct = async (id) => {
     await csrf();
     try {
@@ -65,12 +70,25 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   useEffect(() => {
-    getProducts();
-  }, []);
+    if (products.length === 0) {
+      getProducts();
+    }
+    getProductDetail();
+  }, [id]); // Make sure to include id in the dependency array to re-fetch data when id changes
 
   return (
-    <ProductContext.Provider value={{ products, product, getProductDetail }}>
+    <ProductContext.Provider
+      value={{
+        products,
+        product,
+        getProductDetail,
+        insertProduct,
+        updateProduct,
+        deleteProduct,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

@@ -13,12 +13,10 @@ export default function ProductList() {
   return (
     <div>
       <Container>
-        <Row className="mx-auto w-100 d-flex flex-wrap">
-          <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-            {products.map((item) => (
-              <Product key={item.ProductID} item={item}></Product>
-            ))}
-          </Col>
+        <Row className="mx-auto w-100 row-cols-4">
+          {products.map((item) => (
+            <Product key={item.ProductID} item={item} className="col"></Product>
+          ))}
         </Row>
       </Container>
     </div>

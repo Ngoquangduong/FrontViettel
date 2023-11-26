@@ -22,20 +22,14 @@ function Detail() {
       <Header />
       <Container fluid="md p-4">
         <ProductProvider>
-          <ProductDetail/>
+          <ProductDetail />
         </ProductProvider>
-        <Row>
-          <FormProvider>
-            <RegisterForm />
-          </FormProvider>     
-        </Row>
         <div className="mt-3 img-block p-4">
           <Container className=" ">
             <Row>
               <h1 className=" text-light-title">Các gói cước đề cử khác</h1>
-              <ProductProvider>
-                <ProductList />
-              </ProductProvider>
+
+              <ProductList />
 
               <p>
                 <a href="" className=" float-end link-text">
