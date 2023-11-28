@@ -7,18 +7,12 @@ import "../assets/CSS/productDetail.css";
 import "../assets/CSS/button.css";
 import useProductContext from "../context/ProductContext";
 const ProductDetail = () => {
-
-
-  
   const { product, getProductDetail } = useProductContext();
   useEffect(() => {
-    window.scrollTo(0, 0);
     getProductDetail();
+    window.scrollTo(0, 0);
   }, []);
 
-
-
-  
   return (
     <Row className="mx-auto my-3">
       <Col xs={12} sm={6} md={4} lg={3}>

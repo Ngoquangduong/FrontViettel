@@ -17,7 +17,7 @@ color:"#C90000"
 		</h1>
 		<Row className="p-2">
 			<Col md="5">
-				<img src="viettel-logo.png"  className="" style={{height:"100%"}}/>
+				<img src="../../public/viettel-logo.png"  className="" style={{height:"100%"}}/>
 			</Col>
 			<Col md="7">
 				<p className="normal-text">Từ ngày 20/11/2023  vịt teo cập nhật gói cước ST15k cung cấp  thêm các vụ về  xem phim java, miễn cước data trên các nền tảng facebook,
