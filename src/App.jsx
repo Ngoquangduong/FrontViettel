@@ -10,20 +10,20 @@ import Adminhome from "./admin/admin";
 import Usermanagement from "./admin/usermanage";
 import Ordermanagment from "./admin/ordermanagment";
 import Productmanagment from "./admin/productmanagment";
-import ProductList from "./productlist";
+import List from "./productlist";
 import Productedit from "./admin/productedit";
 import AuthAdminLayout from "./layouts/AuthAdminLayout";
 import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ProductProvider } from "./context/ProductContext";
-
+import { useNavigate, useLocation } from "react-router-dom";
 function App() {
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/product/:id" element={<Detail />} />
-      <Route path="/productList" element={<ProductList />} />
-
+      <Route path="/productList" element={<List />} />
       <Route element={<GuestAdminLayout />}>
         <Route path="/admin/login" element={<Login />} />
       </Route>

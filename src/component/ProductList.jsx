@@ -8,8 +8,12 @@ import Product from "./Product";
 import "../assets/CSS/filter.css";
 import { ProductProvider } from "../context/ProductContext";
 import useProductContext from "../context/ProductContext";
+
+
 export default function ProductList() {
   const { products } = useProductContext();
+
+  
   return (
     <div>
       <Container>

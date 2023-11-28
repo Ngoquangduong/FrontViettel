@@ -10,9 +10,13 @@ export default function Product(props) {
   //   navigate(`/product/${product.ProductID}`);
   // };
 
-  return (<Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3 row-cols-4">
-    <Link to={`/product/${product.ProductID}`}>
-      
+  const reload = () => {
+    window.scrollTo(0, 0);
+  };
+
+  return (
+    <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3 row-cols-4">
+      <Link to={`/product/${product.ProductID}`} onClick={reload}>
         <Card className="product-card-img position-relative">
           {/* Card content */}
           <Card.Title className="text-light text-center uppercase position-absolute product-name w-100 py-1">
@@ -32,7 +36,7 @@ export default function Product(props) {
             </Button>
           </Card.Body>
         </Card>
-      
-    </Link></Col>
+      </Link>
+    </Col>
   );
 }

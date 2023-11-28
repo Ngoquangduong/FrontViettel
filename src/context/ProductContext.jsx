@@ -11,16 +11,20 @@ const ProductContext = createContext({});
 
 export const ProductProvider = ({ children }) => {
   const csrf = () => axios.get("/sanctum/csrf-cookie");
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
   const [product, setProduct] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const getProducts = async () => {
+  const getProducts = async (page = 1) => {
     try {
-      const result = await axios.get("/product");
-      setProducts(result.data.products);
+      const result = await axios.get(`/product?page=${page}`);
+      setProducts(result.data.products.data);
+      setTotalProduct(result.data.products.total);
+      setTotalPages(result.data.products.last_page);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
@@ -34,7 +38,6 @@ export const ProductProvider = ({ children }) => {
       console.error("Error fetching product data:", error);
     }
   };
-
   const insertProduct = async ({ ...data }) => {
     await csrf();
     try {
@@ -75,14 +78,20 @@ export const ProductProvider = ({ children }) => {
     if (products.length === 0) {
       getProducts();
     }
-    getProductDetail();
-  }, [id]); // Make sure to include id in the dependency array to re-fetch data when id changes
-
+    if (id) {
+      getProductDetail();
+    }
+    
+  }, [id, products]); // Make sure to include id in the dependency array to re-fetch data when id changes
+ 
   return (
     <ProductContext.Provider
       value={{
         products,
         product,
+        totalPages,
+        totalProduct,
+        getProducts,
         getProductDetail,
         insertProduct,
         updateProduct,

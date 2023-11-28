@@ -35,9 +35,9 @@ function Home() {
         <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>
         <Row>{/* Mobile-first design: Full width on small screens */}</Row>
         <RegisterForm />
-      </Container>
+      </Container><ProductList />
       <PostList />
-      <ProductList />
+      
 
       <Footer />
     </div>
