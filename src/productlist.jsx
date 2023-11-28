@@ -5,20 +5,17 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Pagination from "react-bootstrap/Pagination";
 import Header from "./component/Header";
-import { Form } from "react-bootstrap";
-import { Accordion } from "react-bootstrap";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
 import { Nav } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import Offcanvas from "react-bootstrap/Offcanvas";
+
 import "./assets/CSS/filter.css";
+
 import Footer from "./component/Footer";
 import PostList from "./component/PostList";
 import RegisterForm from "./component/RegisterForm";
 import { FormProvider } from "./context/FormContext";
 import Filter from "./Filter";
+import "./assets/CSS/main.css";
 
 export default function ProductList() {
   const [showNav, setShowNav] = useState(false);
@@ -188,12 +185,32 @@ export default function ProductList() {
                   </Card.Body>
                 </Card>
               </Col>
-              <Pagination className="justify-center">{items}</Pagination>
-            </Row>
+              <Pagination >{items}</Pagination>
 
+
+              <Pagination className="justify-center pagination ">
+                <Pagination.First />
+                <Pagination.Prev />
+                <Pagination.Item>{1}</Pagination.Item>
+                <Pagination.Ellipsis />
+
+                <Pagination.Item>{10}</Pagination.Item>
+                <Pagination.Item>{11}</Pagination.Item>
+                <Pagination.Item >{12}</Pagination.Item>
+                <Pagination.Item>{13}</Pagination.Item>
+                <Pagination.Item >{14}</Pagination.Item>
+
+                <Pagination.Ellipsis />
+                <Pagination.Item>{20}</Pagination.Item>
+                <Pagination.Next />
+                <Pagination.Last />
+              </Pagination>
+            </Row>
+            <div className="divider"></div>
             {/* 
 -----------------------------------------------------------------postlist------------------------------------------------------------------------ */}
             <PostList />
+
             {/* ----------------------------------------------------------------FOrm------------------------------------------------------ */}
             <Container fluid="md p-4  my-3 bg-home-menu">
               <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>

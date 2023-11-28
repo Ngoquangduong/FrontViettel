@@ -82,35 +82,36 @@ const router = createBrowserRouter([
   {
     path:"/*",
     element:<Notfound/>
-  }
+  },
 
 
-const routes = createRoutesFromElements([
-  <Route path="/" element={<Home />} />,
-  <Route path="/product/:id" element={<Detail />} />,
-  <Route path="/productList" element={<ProductList />} />,
-  <AdminAuthProvider>
-    <Route element={<GuestAdminLayout />}>
-      <Route path="/admin/login" element={<Login />} />
-    </Route>
-    <Route element={<AuthAdminLayout />}>
-      <Route
-        path="/admin/productmanagment"
-        element={
-          <ProductProvider>
-            <Productmanagment />
-          </ProductProvider>
-        }
-      />
-      <Route path="/admin" element={<Adminhome />} />
-      <Route path="/admin/usermanagment" element={<Usermanagement />} />
-      <Route path="/admin/ordermanagment" element={<Ordermanagment />} />
-      <Route path="/admin/productedit" element={<Productedit />} />
-    </Route>
-  </AdminAuthProvider>,
-  <Route path="/*" element={<Notfound/>} />,
 
-]);
+// const routes = createRoutesFromElements([
+//   <Route path="/" element={<Home />} />,
+//   <Route path="/product/:id" element={<Detail />} />,
+//   <Route path="/productList" element={<ProductList />} />,
+//   <AdminAuthProvider>
+//     <Route element={<GuestAdminLayout />}>
+//       <Route path="/admin/login" element={<Login />} />
+//     </Route>
+//     <Route element={<AuthAdminLayout />}>
+//       <Route
+//         path="/admin/productmanagment"
+//         element={
+//           <ProductProvider>
+//             <Productmanagment />
+//           </ProductProvider>
+//         }
+//       />
+//       <Route path="/admin" element={<Adminhome />} />
+//       <Route path="/admin/usermanagment" element={<Usermanagement />} />
+//       <Route path="/admin/ordermanagment" element={<Ordermanagment />} />
+//       <Route path="/admin/productedit" element={<Productedit />} />
+//     </Route>
+//   </AdminAuthProvider>,
+//   <Route path="/*" element={<Notfound/>} />,
 
-const router = createBrowserRouter(routes);
-export default router;
+ ]);
+
+// const router = createBrowserRouter(routes);
+ export default router;

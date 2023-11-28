@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
 .button-62 {
     background: linear-gradient(to bottom right, #EF4765, #FF9A5A)!important;
     border: 0 !important;
@@ -35,7 +38,7 @@
     color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
-    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 500;
     line-height: 2.5;
@@ -70,6 +73,7 @@
     height: 46px;
     text-align:center;
     border: none;
+    font-family: 'Montserrat', sans-serif;
     background-size: 300% 100%;
     border-radius: 30px;
     moz-transition: all .4s ease-in-out;

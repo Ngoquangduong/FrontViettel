@@ -63,10 +63,13 @@ background-color: rgba(255, 255, 255, 0.489);
 .bg-home-menu{background-image: url('/26843307_1197.jpg');
               background-position: center;
             background-repeat: no-repeat;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         background-size: cover;}
+        
 .bg-all {background-image: url('/public/2nd.jpg');
     background-position: center;
   background-repeat: no-repeat;
+  
 background-size: cover;}
 
         

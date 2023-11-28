@@ -1,16 +1,39 @@
-.bg-auth {  bacdkground-image: linear-gradient(60deg, #FAEDDA, #AEE8CA);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    height: 120vh;
-   }
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
 }
+
+
+
+.bg-auth {   background-image: url('/rm209-ning-20.jpg');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 4rem;
+    top: 50%;
+   }
+
+.bg-login-form{background-image: url('/public/2nd.jpg');
+    background-position: center;
+  background-repeat: no-repeat;
+   width: 500px;
+height: 600px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background-size: cover;}
+
+@media only screen and (max-width: 600px) {
+    /* For tablets: */
+    
+    .bg-login-form{
+        width: 290px;
+        height: 90%;
+        padding: 20px;
+    }
+    .bg-auth{
+        padding-left: 0;
+        padding-right: 0;
+        height: 100vh;
+    }
+  }

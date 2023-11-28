@@ -14,6 +14,7 @@ import ProductList from "./productlist";
 import Productedit from "./admin/productedit";
 import AuthAdminLayout from "./layouts/AuthAdminLayout";
 import GuestAdminLayout from "./layouts/GuestAdminLayout";
+import Notfound from "./component/Notfound";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ProductProvider } from "./context/ProductContext";
 
@@ -35,7 +36,7 @@ function App() {
         <Route path="/admin/productedit" element={<Productedit />} />
       </Route>
 
-      <Route path="/*" element={<h1>Lỗi rồi bạn ei 404 not found</h1>} />
+      <Route path="/*" element={<Notfound/>} />
     </Routes>
   );
 }
