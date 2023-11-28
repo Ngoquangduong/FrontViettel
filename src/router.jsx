@@ -13,6 +13,7 @@ import ProductList from "./productlist";
 import Productedit from "./admin/productedit";
 import Filter from "./Filter";
 import { ProductProvider } from "./context/ProductContext";
+import Notfound from "./component/Notfound";
 const router = createBrowserRouter([
   {
     path: "/app",
@@ -68,9 +69,10 @@ const router = createBrowserRouter([
     path: "/ProductList",
     element: <ProductList />,
   },
+
   {
-    path: "/*",
-    element: <h1>Lỗi rồi bạn ei 404 not found</h1>,
-  },
+    path:"/*",
+    element:<Notfound/>
+  }
 ]);
 export default router;
