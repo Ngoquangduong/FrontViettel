@@ -8,15 +8,18 @@ import App from "./App.jsx";
 import { FormProvider } from "./context/FormContext.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 // import store from "./app/store";
+import { CategoryProvider } from "./context/CategoryContext.jsx";
 import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <AdminAuthProvider>
         <ProductProvider>
-          <FormProvider>
-            <App />
-          </FormProvider>
+          <CategoryProvider>
+            <FormProvider>
+              <App />
+            </FormProvider>
+          </CategoryProvider>
         </ProductProvider>
       </AdminAuthProvider>
     </BrowserRouter>

@@ -16,6 +16,7 @@ import axios from "./api/axios";
 import ProductDetail from "./component/ProductDetail";
 import Header from "./component/Header";
 import { ProductProvider } from "./context/ProductContext";
+
 function Detail() {
   const [productDetailLoaded, setProductDetailLoaded] = useState(false);
   useEffect(() => {

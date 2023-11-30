@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,8 +9,28 @@ import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import FormFilter from "./component/Filter/FormFilter";
+import SelectForm from "./component/SelectForm";
+import useCategoryContext from "./context/CategoryContext";
 
 function Filter({ show, handleClose }) {
+  const { categories } = useCategoryContext();
+  const [sort, setSort] = useState(null);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryChange = (selectedValue) => {
+    const numericValue = parseInt(selectedValue); // hoặc parseFloat(selectedValue) nếu là số thập phân
+    setSelectedCategory(numericValue);
+  };
+
+  useEffect(() => {
+    console.log(selectedCategory); // Giá trị mới của selectedCategory sẽ được hiển thị ở đây
+  }, [selectedCategory]);
+
+  const handleSort = (selectedValue) => {
+    setSort(selectedValue);
+  };
+  // console.log(categories);
   return (
     <Offcanvas
       show={show}
@@ -21,25 +42,35 @@ function Filter({ show, handleClose }) {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Form>
+          <SelectForm
+            item={categories}
+            onCategoryChange={handleCategoryChange}
+          />
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header className="form-normal-text">
                 Sắp xếp theo giá
               </Accordion.Header>
-              <FormFilter />
+              <FormFilter
+                name={"sort"}
+                item={[
+                  { name: "Từ A đén Z", value: "A_Z" },
+                  { name: "Từ Z đén A", value: "Z_A" },
+                ]}
+              />
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header className="form-normal-text">
                 Sắp xếp theo số ngày sử dụng
               </Accordion.Header>
-              <FormFilter />
+              {/* <FormFilter /> */}
             </Accordion.Item>
 
             <Accordion.Item eventKey="2">
               <Accordion.Header className="form-normal-text">
                 Sắp xếp theo bảng chữ cái
               </Accordion.Header>
-              <FormFilter />
+              {/* <FormFilter /> */}
             </Accordion.Item>
           </Accordion>
           <Button type="submit" className="btn-filter-3 my-3">

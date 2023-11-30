@@ -1,27 +1,32 @@
+import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
 
-const FormFilter = (props) => {
+const FormFilter = ({ name, item }) => {
+
+  const [categories, setCategory] = useState(item);
+
   return (
     <Accordion.Body>
-      {["radio"].map((type) => (
-        <div key={type} className="mb-3">
-          <Form.Check type={type} id={`check-api-${type}`}>
-            <Form.Check.Input type={type} isValid />
-            <Form.Check.Label className="form-normal-text">
-              {" "}
-              Từ cao xuống thấp
-            </Form.Check.Label>
-          </Form.Check>
-          <Form.Check type={type} id={`check-api-${type}`}>
-            <Form.Check.Input type={type} isValid />
-            <Form.Check.Label className="form-normal-text">
-              Từ thấp đến cao
-            </Form.Check.Label>
-          </Form.Check>
-        </div>
-      ))}
+      {categories.map((item) => {
+        return (
+          <div key={item.value} className="mb-3">
+            <Form.Check type="radio" id={`check-api-${item.value}-asc`}>
+              <Form.Check.Input
+                name={name} 
+                value={item.value}  
+                type="radio"
+                isValid
+              />
+              <Form.Check.Label className="form-normal-text">
+                {item.name}
+              </Form.Check.Label>
+            </Form.Check>
+          </div>
+        );
+      })}
     </Accordion.Body>
   );
 };
+
 export default FormFilter;

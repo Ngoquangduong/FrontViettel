@@ -22,6 +22,7 @@ export const ProductProvider = ({ children }) => {
   const getProducts = async (page = 1) => {
     try {
       const result = await axios.get(`/product?page=${page}`);
+      
       setProducts(result.data.products.data);
       setTotalProduct(result.data.products.total);
       setTotalPages(result.data.products.last_page);
@@ -65,7 +66,7 @@ export const ProductProvider = ({ children }) => {
   const deleteProduct = async (id) => {
     await csrf();
     try {
-      await axios.patch("/product/delete" + id);
+      await axios.delete("/product/delete" + id);
       await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
