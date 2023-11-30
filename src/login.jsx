@@ -17,8 +17,10 @@ function Login() {
   };
   return (
     <div className=" bg-auth">
-      <div>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-32 lg:px-8 ">
+      <div className="bg-login-form  mx-auto py-32 lg:px-8 ">
+      <form action="">
+      <div className="flex min-h-full flex-1 flex-col justify-center ">
+          
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               className="mx-auto h-10  w-16 h-16"
@@ -88,14 +90,11 @@ function Login() {
                 </div>
               </div>
 
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-pink-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Đăng Nhập
-                </button>
-              </div>
+              <div className="text-center">
+              <button className="bn632-hover bn28 mb-3" type="submit">
+                Xác nhận
+              </button>
+            </div>
             </form>
             {/* <div className="text-sm mt-3 items-center mx-auto">
               <a
@@ -107,6 +106,8 @@ function Login() {
             </div> */}
           </div>
         </div>
+      </form>
+    
       </div>
     </div>
   );

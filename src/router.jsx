@@ -22,31 +22,96 @@ import Filter from "./Filter";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ProductProvider } from "./context/ProductContext";
 
-const routes = createRoutesFromElements([
-  <Route path="/" element={<Home />} />,
-  <Route path="/product/:id" element={<Detail />} />,
-  <Route path="/productList" element={<ProductList />} />,
-  <AdminAuthProvider>
-    <Route element={<GuestAdminLayout />}>
-      <Route path="/admin/login" element={<Login />} />
-    </Route>
-    <Route element={<AuthAdminLayout />}>
-      <Route
-        path="/admin/productmanagment"
-        element={
-          <ProductProvider>
-            <Productmanagment />
-          </ProductProvider>
-        }
-      />
-      <Route path="/admin" element={<Adminhome />} />
-      <Route path="/admin/usermanagment" element={<Usermanagement />} />
-      <Route path="/admin/ordermanagment" element={<Ordermanagment />} />
-      <Route path="/admin/productedit" element={<Productedit />} />
-    </Route>
-  </AdminAuthProvider>,
-  <Route path="/*" element={<h1>Lỗi rồi bạn ei 404 not found</h1>} />,
-]);
+import Notfound from "./component/Notfound";
+const router = createBrowserRouter([
+  {
+    path: "/app",
+    element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/header",
+    element: <Header />,
+  },
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/product/:id",
+    element: <Detail />,
+  },
+  {
+    path: "/Sidebar",
+    element: <Sidebar />,
+  },
+  {
+    path: "/Filter",
+    element: <Filter />,
+  },
+  {
+    path: "/Admin",
+    element: <Adminhome />,
+  },
+  {
+    path: "/Admin/Usermanagment",
+    element: <Usermanagement />,
+  },
 
-const router = createBrowserRouter(routes);
-export default router;
+  {
+    path: "/Admin/Ordermanagment",
+    element: <Ordermanagment />,
+  },
+  {
+    path: "/Admin/Productmanagment",
+    element: <ProductProvider><Productmanagment /></ProductProvider> ,
+  },
+  {
+    path: "/Admin/Productedit",
+    element: <Productedit/>,
+  },
+
+  {
+    path: "/ProductList",
+    element: <ProductList />,
+  },
+
+  {
+    path:"/*",
+    element:<Notfound/>
+  },
+
+
+
+// const routes = createRoutesFromElements([
+//   <Route path="/" element={<Home />} />,
+//   <Route path="/product/:id" element={<Detail />} />,
+//   <Route path="/productList" element={<ProductList />} />,
+//   <AdminAuthProvider>
+//     <Route element={<GuestAdminLayout />}>
+//       <Route path="/admin/login" element={<Login />} />
+//     </Route>
+//     <Route element={<AuthAdminLayout />}>
+//       <Route
+//         path="/admin/productmanagment"
+//         element={
+//           <ProductProvider>
+//             <Productmanagment />
+//           </ProductProvider>
+//         }
+//       />
+//       <Route path="/admin" element={<Adminhome />} />
+//       <Route path="/admin/usermanagment" element={<Usermanagement />} />
+//       <Route path="/admin/ordermanagment" element={<Ordermanagment />} />
+//       <Route path="/admin/productedit" element={<Productedit />} />
+//     </Route>
+//   </AdminAuthProvider>,
+//   <Route path="/*" element={<Notfound/>} />,
+
+ ]);
+
+// const router = createBrowserRouter(routes);
+ export default router;
