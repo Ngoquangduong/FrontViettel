@@ -18,7 +18,7 @@ function Login() {
   return (
     <div className=" bg-auth">
       <div className="bg-login-form  mx-auto py-32 lg:px-8 ">
-      <form action="">
+      
       <div className="flex min-h-full flex-1 flex-col justify-center ">
           
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -33,6 +33,7 @@ function Login() {
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleAdminLogin}>
+              
               <div>
                 <label
                   htmlFor="email"
@@ -106,7 +107,7 @@ function Login() {
             </div> */}
           </div>
         </div>
-      </form>
+      
     
       </div>
     </div>
