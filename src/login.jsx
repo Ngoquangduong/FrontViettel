@@ -3,28 +3,29 @@ import "./assets/CSS/App.css";
 import "./assets/CSS/Auth.css";
 import "./assets/CSS/button.css";
 import useAdminAuthContext from "./context/AdminAuthContext";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { errors, login } = useAdminAuthContext();
 
-  const handleAdminLogin = async (event) => {
+  const handleAdminLogin = (event) => {
     event.preventDefault();
     login({
       email,
       password,
     });
   };
+
   return (
-    <div className=" bg-auth">
-      <div className="bg-login-form  mx-auto py-32 lg:px-8 ">
-      <form action="">
-      <div className="flex min-h-full flex-1 flex-col justify-center ">
-          
+    <div className="bg-auth">
+      <div className="bg-login-form mx-auto py-32 lg:px-8">
+        <div className="flex min-h-full flex-1 flex-col justify-center">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
-              className="mx-auto h-10  w-16 h-16"
+              className="mx-auto h-10 w-16 h-16"
               src="../public/viettel-logo.png"
+              alt="Viettel Logo"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-pink-600">
               ĐĂNG NHẬP
@@ -52,7 +53,7 @@ function Login() {
                     autoComplete="username"
                     autoFocus
                     required
-                    className="block w-full px-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-rose-500 sm:text-sm sm:leading-6"
+                    className="input-field"
                   />
                 </div>
               </div>
@@ -65,14 +66,6 @@ function Login() {
                   >
                     Password
                   </label>
-                  {/* <div className="text-sm">
-                    <a
-                      href="#"
-                      className="font-semibold text-rose-600 hover:text-zinc-950 "
-                    >
-                      Forgot password?
-                    </a>
-                  </div> */}
                 </div>
                 <div className="mt-2">
                   <input
@@ -85,31 +78,22 @@ function Login() {
                     }}
                     autoComplete="current-password"
                     required
-                    className="block px-4 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="input-field"
                   />
                 </div>
               </div>
 
               <div className="text-center">
-              <button className="bn632-hover bn28 mb-3" type="submit">
-                Xác nhận
-              </button>
-            </div>
+                <button className="bn632-hover bn28 mb-3" type="submit">
+                  Xác nhận
+                </button>
+              </div>
             </form>
-            {/* <div className="text-sm mt-3 items-center mx-auto">
-              <a
-                href="#"
-                className="font-semibold hover-trans text-rose-600 hover:text-zinc-950 "
-              >
-                Chưa có tài khoản ? Đăng ký ngay
-              </a>
-            </div> */}
           </div>
         </div>
-      </form>
-    
       </div>
     </div>
   );
 }
+
 export default Login;

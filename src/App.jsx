@@ -15,9 +15,7 @@ import Productedit from "./admin/productedit";
 import AuthAdminLayout from "./layouts/AuthAdminLayout";
 import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import Notfound from "./component/Notfound";
-import { AdminAuthProvider } from "./context/AdminAuthContext";
-import { ProductProvider } from "./context/ProductContext";
-import { useNavigate, useLocation } from "react-router-dom";
+
 function App() {
 
   return (
