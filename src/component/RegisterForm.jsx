@@ -16,7 +16,7 @@ export default function RegisterForm() {
   return (
     <>
       <Container>
-        <Row className="bg-confirm my-5 box-shadow-1">
+        <Row className="bg-confirm my-1 box-shadow-1">
           <h1 className="my-3 text-title ">Mua/đặt sản phẩm</h1>
           <Form action="/register" method="POST">
             <Row>
