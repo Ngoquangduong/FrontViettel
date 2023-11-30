@@ -30,20 +30,14 @@ function Home() {
           <h1>12345</h1>
         </Col>;
       })}
-
       <CarouselVietTel />
       <Container fluid="md p-4  my-3 bg-home-menu">
         <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>
         <Row>{/* Mobile-first design: Full width on small screens */}</Row>
-
-        <FormProvider>
-          <RegisterForm />
-        </FormProvider>
-      </Container>
+        <RegisterForm />
+      </Container><ProductList />
       <PostList />
-      <ProductProvider>
-        <ProductList />
-      </ProductProvider>
+      
 
       <Footer />
     </div>

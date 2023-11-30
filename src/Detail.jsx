@@ -16,36 +16,39 @@ import axios from "./api/axios";
 import ProductDetail from "./component/ProductDetail";
 import Header from "./component/Header";
 import { ProductProvider } from "./context/ProductContext";
+
 function Detail() {
+  const [productDetailLoaded, setProductDetailLoaded] = useState(false);
+  useEffect(() => {
+    setProductDetailLoaded(true);
+  }, []);
   return (
     <div className="bg-detail">
       <Header />
       <Container fluid="md p-4">
         <ProductProvider>
-          <ProductDetail/>
+          <ProductDetail />
         </ProductProvider>
-        <Row>
-          <FormProvider>
-            <RegisterForm />
-          </FormProvider>     
-        </Row>
-        <div className="mt-3 img-block p-4">
-          <Container className=" ">
-            <Row>
-              <h1 className=" text-light-title">Các gói cước đề cử khác</h1>
-              <ProductProvider>
-                <ProductList />
-              </ProductProvider>
+        {productDetailLoaded && (
+          <>
+            <div className="mt-3 img-block p-4">
+              <Container className=" ">
+                <Row>
+                  <h1 className=" text-light-title">Các gói cước đề cử khác</h1>
 
-              <p>
-                <a href="" className=" float-end link-text">
-                  Xem nhiều hơn
-                </a>
-              </p>
-            </Row>
-          </Container>
-        </div>
-        <PostList />
+                  <ProductList />
+
+                  <p>
+                    <a href="" className=" float-end link-text">
+                      Xem nhiều hơn
+                    </a>
+                  </p>
+                </Row>
+              </Container>
+            </div>
+            <PostList />
+          </>
+        )}
       </Container>
       <Footer />
     </div>
