@@ -20,7 +20,7 @@ export const ServiceProvider = ({ children }) => {
       const result = await axios.get("/service");
       setOrders(result.data.services);
     } catch (error) {
-      console.error("Error fetching city data:", error);
+      console.error("Error fetching service data:", error);
     }
   };
   const getServiceDetail = async () => {
