@@ -1,9 +1,10 @@
 import { Carousel } from "react-bootstrap"
+import "../assets/CSS/main.css"
 export default function CarouselVietTel(){
     return(
         <>
-        <Carousel className="">
-        <Carousel.Item>
+        <Carousel  >
+        <Carousel.Item className="responsive-carousel">
           <img
             className="d-block w-100 Carousel-home"
             src="/carousel1.jpg"
@@ -15,7 +16,7 @@ export default function CarouselVietTel(){
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
+        <Carousel.Item className="responsive-carousel">
           <img
             className="d-block w-100 Carousel-home"
             src="/carousel2.jpg"
@@ -28,7 +29,7 @@ export default function CarouselVietTel(){
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
+        <Carousel.Item className="responsive-carousel">
           <img
             className="d-block w-100 Carousel-home"
             src="/carousel3.jpg"

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,8 +8,29 @@ import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import FormFilter from "./component/Filter/FormFilter";
+import SelectForm from "./component/SelectForm";
+import useCategoryContext from "./context/CategoryContext";
 
 function Filter({ show, handleClose }) {
+  const { categories } = useCategoryContext();
+  const [sort, setSort] = useState(null);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryChange = (selectedValue) => {
+    const numericValue = parseInt(selectedValue); // hoặc parseFloat(selectedValue) nếu là số thập phân
+    setSelectedCategory(numericValue);
+  };
+
+  useEffect(() => {
+    console.log(selectedCategory); // Giá trị mới của selectedCategory sẽ được hiển thị ở đây
+  }, [selectedCategory]);
+
+  const handleSort = (selectedValue) => {
+    setSort(selectedValue);
+  };
+  // console.log(categories);
   return (
     <Offcanvas
       show={show}
@@ -20,65 +42,35 @@ function Filter({ show, handleClose }) {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Form>
+          <SelectForm
+            item={categories}
+            onCategoryChange={handleCategoryChange}
+          />
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header className="form-normal-text">
                 Sắp xếp theo giá
               </Accordion.Header>
-              <Accordion.Body>
-                {["radio"].map((type) => (
-                  <div key={type} className="mb-3">
-                    <Form.Check type={type} id={`check-api-${type}`}>
-                      <Form.Check.Input type={type} isValid />
-                      <Form.Check.Label className="form-normal-text">
-                        {" "}
-                        Từ cao xuống thấp
-                      </Form.Check.Label>
-                    </Form.Check>
-                    <Form.Check type={type} id={`check-api-${type}`}>
-                      <Form.Check.Input type={type} isValid />
-                      <Form.Check.Label className="form-normal-text">
-                        Từ thấp đến cao
-                      </Form.Check.Label>
-                    </Form.Check>
-                  </div>
-                ))}
-              </Accordion.Body>
+              <FormFilter
+                name={"sort"}
+                item={[
+                  { name: "Từ A đén Z", value: "A_Z" },
+                  { name: "Từ Z đén A", value: "Z_A" },
+                ]}
+              />
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header className="form-normal-text">
                 Sắp xếp theo số ngày sử dụng
               </Accordion.Header>
-              <Accordion.Body>
-                <Form.Check
-                  type="radio"
-                  label={<span className="normal-text">Từ thấp đến cao</span>}
-                  aria-label="radio 1"
-                />
-                <Form.Check
-                  type="radio"
-                  label={<span className="normal-text">Từ cao đến thấp</span>}
-                  aria-label="radio 2"
-                />
-              </Accordion.Body>
+              {/* <FormFilter /> */}
             </Accordion.Item>
 
             <Accordion.Item eventKey="2">
               <Accordion.Header className="form-normal-text">
                 Sắp xếp theo bảng chữ cái
               </Accordion.Header>
-              <Accordion.Body>
-                <Form.Check
-                  type="radio"
-                  label={<span className="normal-text">Từ A đến Z</span>}
-                  aria-label="radio 1"
-                />
-                <Form.Check
-                  type="radio"
-                  label={<span className="normal-text">Từ Z đến A</span>}
-                  aria-label="radio 2"
-                />
-              </Accordion.Body>
+              {/* <FormFilter /> */}
             </Accordion.Item>
           </Accordion>
           <Button type="submit" className="btn-filter-3 my-3">

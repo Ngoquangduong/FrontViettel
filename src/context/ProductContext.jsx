@@ -3,26 +3,34 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
+
+// ... (imports)
 
 const ProductContext = createContext({});
 
 export const ProductProvider = ({ children }) => {
-  const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const getProducts = async () => {
+  const getProducts = async (page = 1) => {
     try {
+      const result = await axios.get(`/product?page=${page}`);
       
-      const result = await axios.get("/product");
-      setProducts(result.data.products);
+      setProducts(result.data.products.data);
+      setTotalProduct(result.data.products.total);
+      setTotalPages(result.data.products.last_page);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
   };
+
   const getProductDetail = async () => {
     try {
       const result = await axios.get("/product/" + id);
@@ -31,7 +39,6 @@ export const ProductProvider = ({ children }) => {
       console.error("Error fetching product data:", error);
     }
   };
-
   const insertProduct = async ({ ...data }) => {
     await csrf();
     try {
@@ -43,6 +50,7 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   const updateProduct = async (id, { ...data }) => {
     await csrf();
     try {
@@ -54,10 +62,11 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   const deleteProduct = async (id) => {
     await csrf();
     try {
-      await axios.patch("/product/delete" + id);
+      await axios.delete("/product/delete" + id);
       await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
@@ -65,12 +74,31 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
-  useEffect(() => {
-    getProducts();
-  }, []);
 
+  useEffect(() => {
+    if (products.length === 0) {
+      getProducts();
+    }
+    if (id) {
+      getProductDetail();
+    }
+    
+  }, [id, products]); // Make sure to include id in the dependency array to re-fetch data when id changes
+ 
   return (
-    <ProductContext.Provider value={{ products, product, getProductDetail }}>
+    <ProductContext.Provider
+      value={{
+        products,
+        product,
+        totalPages,
+        totalProduct,
+        getProducts,
+        getProductDetail,
+        insertProduct,
+        updateProduct,
+        deleteProduct,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );
