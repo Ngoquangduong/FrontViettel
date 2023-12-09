@@ -22,7 +22,7 @@ export const ProductProvider = ({ children }) => {
   const getProducts = async (page = 1) => {
     try {
       const result = await axios.get(`/product?page=${page}`);
-      
+      console.log(result.data.products);
       setProducts(result.data.products.data);
       setTotalProduct(result.data.products.total);
       setTotalPages(result.data.products.last_page);
@@ -82,9 +82,8 @@ export const ProductProvider = ({ children }) => {
     if (id) {
       getProductDetail();
     }
-    
   }, [id, products]); // Make sure to include id in the dependency array to re-fetch data when id changes
- 
+
   return (
     <ProductContext.Provider
       value={{

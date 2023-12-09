@@ -15,12 +15,14 @@ function Login() {
       password,
     });
   };
+
+
   return (
     <div className=" bg-auth">
       <div className="bg-login-form  mx-auto py-32 lg:px-8 ">
-      
-      <div className="flex min-h-full flex-1 flex-col justify-center ">
-          
+
+        <div className="flex min-h-full flex-1 flex-col justify-center ">
+
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               className="mx-auto h-10  w-16 h-16"
@@ -33,7 +35,7 @@ function Login() {
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleAdminLogin}>
-              
+
               <div>
                 <label
                   htmlFor="email"
@@ -92,10 +94,10 @@ function Login() {
               </div>
 
               <div className="text-center">
-              <button className="bn632-hover bn28 mb-3" type="submit">
-                Xác nhận
-              </button>
-            </div>
+                <button className="bn632-hover bn28 mb-3" type="submit">
+                  Xác nhận
+                </button>
+              </div>
             </form>
             {/* <div className="text-sm mt-3 items-center mx-auto">
               <a
@@ -107,8 +109,8 @@ function Login() {
             </div> */}
           </div>
         </div>
-      
-    
+
+
       </div>
     </div>
   );

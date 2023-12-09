@@ -16,11 +16,13 @@ import Productmanagment from "./admin/productmanagment";
 import ProductList from "./productlist";
 import Productedit from "./admin/productedit";
 
+
 import AuthAdminLayout from "./layouts/AuthAdminLayout";
 import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import Filter from "./Filter";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ProductProvider } from "./context/ProductContext";
+import Category from "./admin/category";
 
 import Notfound from "./component/Notfound";
 const router = createBrowserRouter([
@@ -83,6 +85,7 @@ const router = createBrowserRouter([
     path:"/*",
     element:<Notfound/>
   },
+  
 
 
 
