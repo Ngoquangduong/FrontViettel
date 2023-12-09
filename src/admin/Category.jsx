@@ -10,26 +10,12 @@ import { useState } from "react";
 import useCategoryContext from "../context/CategoryContext";
 const Category = () => {
  
-    const [categories, setCategory] = useState("");
-      const {categories, getCategory, insertCategory, updateCategory, errors} = useCategoryContext();
-      
-      
-      const HandleinsertCategory = async (event) => {
-        event.preventDefault();
-        insertCategory({
-          categories,
-        });
-      }
+    
 
       
       
 
-      const HandleUpdateCategory = async (event) => {
-        event.preventDefault();
-        updateCategory({
-          categories,
-        });
-      }
+ 
   
   
 
