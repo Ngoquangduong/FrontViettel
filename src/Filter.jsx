@@ -13,14 +13,14 @@ import SelectForm from "./component/SelectForm";
 import useCategoryContext from "./context/CategoryContext";
 import useProductContext from "./context/ProductContext";
 import { all } from "axios";
-function Filter({ show, handleClose }) {
+function Filter({ show, handleClose, setFilterResult, filterResult }) {
   const { categories } = useCategoryContext();
   const [sort, setSort] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
 
-  const { filterResult, products, setFilterResult } = useProductContext();
+  const { products } = useProductContext();
 
   //Search-----------------------
   const [searchProduct, setSearchProduct] = useState("");
@@ -59,17 +59,23 @@ function Filter({ show, handleClose }) {
         });
       }
       if (sort === "A_Z") {
-        filterData = filterData.sort((a, b) => {
+        filterData.sort((a, b) => {
           const productIDA = a.ProductID.toUpperCase();
           const productIDB = b.ProductID.toUpperCase();
           return productIDA.localeCompare(productIDB);
         });
+        filterData = filterData.filter((item) => {
+          return item;
+        });
       }
       if (sort === "Z_A") {
-        filterData = filterData.sort((a, b) => {
+        filterData.sort((a, b) => {
           const productIDA = a.ProductID.toUpperCase();
           const productIDB = b.ProductID.toUpperCase();
           return productIDB.localeCompare(productIDA);
+        });
+        filterData = filterData.filter((item) => {
+          return item;
         });
       }
       if (minPrice !== null) {
@@ -82,11 +88,16 @@ function Filter({ show, handleClose }) {
           return parseInt(item.Price) <= maxPrice;
         });
       }
-      
       setFilterResult(filterData);
+      console.log(filterResult);
     } else {
       setFilterResult([]);
     }
+    setMaxPrice(null);
+    setMinPrice(null);
+    setSelectedCategory(null);
+    setSort(null);
+    handleClose();
   };
   // old
   const HandleCloseItem = () => {
@@ -102,12 +113,9 @@ function Filter({ show, handleClose }) {
   };
 
   // useEffect(() => {
-  //   console.log(selectedCategory);
-  //   console.log(sort);
-  //   // Giá trị mới của selectedCategory sẽ được hiển thị ở đây
-  // }, [selectedCategory, sort]);
-
-  // console.log(categories);
+  //   // This will run after the state is updated
+  //   handleFilter({ preventDefault: () => {} }); // You can pass a dummy event
+  // }, [selectedCategory, sort, minPrice, maxPrice]);
 
   return (
     <Offcanvas

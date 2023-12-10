@@ -19,7 +19,6 @@ export const ProductProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(0);
 
   //-------------Filter--------------
-  const [filterResult, setFilterResult] = useState([]);
   // set Variable
 
   const [products, setProducts] = useState([]);
@@ -126,8 +125,6 @@ export const ProductProvider = ({ children }) => {
         totalProduct,
         productPerPage,
         currentPage,
-        filterResult,
-        setFilterResult,
         paginate,
         getProducts,
         getProductDetail,

@@ -30,8 +30,8 @@ export default function List() {
     productPerPage,
     paginate,
     currentPage,
-    filterResult,
   } = useProductContext();
+  const [filterResult, setFilterResult] = useState([]);
   const [showNav, setShowNav] = useState(false);
   const [show, setShow] = useState(false);
   const [indexOfLastProduct, setIndexOfLastProduct] = useState(
@@ -52,34 +52,27 @@ export default function List() {
     setIndexOfLastProduct(newIndexOfLastProduct);
     setIndexOfFirstProduct(newIndexOfFirstProduct);
 
-    // Update currentProduct based on the new indices
-    setCurrentProduct(
-      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
-    );
-
-    // If filterResult has items, update currentProduct using its values
     if (filterResult.length > 0) {
       setCurrentProduct(
-        filterResult.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+        filterResult.slice(indexOfFirstProduct, indexOfLastProduct)
+      );
+    } else {
+      setCurrentProduct(
+        products.slice(indexOfFirstProduct, indexOfLastProduct)
       );
     }
+
     function handleResize() {
-      // Kiểm tra kích thước màn hình và đặt giá trị showNav dựa trên điều kiện
-      setShowNav(window.innerWidth >= 768); // 768px là một ví dụ về kích thước điện thoại
+      setShowNav(window.innerWidth >= 768);
     }
 
-    // Gọi handleResize khi màn hình thay đổi kích thước
     window.addEventListener("resize", handleResize);
 
-    // Gọi handleResize lần đầu khi nạp trang
     handleResize();
-    console.log(filterResult);
-    // Loại bỏ sự kiện lắng nghe khi component bị unmount
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-
-    // Update indexOfFirstProduct and indexOfLastProduct based on currentPage and productPerPage
   }, [currentPage, productPerPage, products, filterResult]);
 
   return (
@@ -123,7 +116,12 @@ export default function List() {
                       >
                         Bộ lọc sản phẩm
                       </Button>
-                      <Filter show={show} handleClose={handleClose}></Filter>
+                      <Filter
+                        show={show}
+                        handleClose={handleClose}
+                        setFilterResult={setFilterResult}
+                        filterResult={filterResult}
+                      ></Filter>
                     </Nav.Item>
                     <Button
                       onClick={() => setShowNav(false)}
