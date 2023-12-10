@@ -11,6 +11,12 @@ const Sidebar = () => {
   const ToggleSidebar = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className="">
       <div className="container-fluid px-0">
@@ -50,7 +56,7 @@ const Sidebar = () => {
                     };
                   }}
                 >
-                  Quản lý thống kê
+                  Quản lý tổng thể
                 </NavLink>
               </li>
               <li
@@ -82,6 +88,20 @@ const Sidebar = () => {
                   }}
                 >
                   Quản lý đơn hàng
+                </NavLink>
+              </li>
+              <li className=" sidebar-items">
+                <NavLink
+                  to="/admin/category"
+                  className="d-block p-3 "
+                  style={({ isActive }) => {
+                    return {
+                      background: isActive ? "#5cb85c" : "",
+                      color: isActive ? "white" : "",
+                    };
+                  }}
+                >
+                  Quản lý loại sản phẩm
                 </NavLink>
               </li>
               <li className=" sidebar-items">

@@ -108,7 +108,7 @@ const RegisterAdmin = () => {
           <Col>
             <Form.Select
               aria-label="Gender"
-              className="mt-3"
+              className="mt-4"
               value={Gender}
               onChange={(e) => setGender(e.target.value)}
             >
@@ -120,7 +120,7 @@ const RegisterAdmin = () => {
           <Col>
             <input
               type="text"
-              className="w-100 mt-4"
+              className="w-100 mt-3"
               placeholder="Địa chỉ"
               autoComplete="on"
               required

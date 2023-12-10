@@ -38,7 +38,7 @@ export const CategoryProvider = ({ children }) => {
     await csrf();
     try {
       await axios.patch("/category/update" + id, data);
-      await getCategorys();
+      await getCategory();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
