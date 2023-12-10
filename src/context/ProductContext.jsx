@@ -4,26 +4,42 @@ import { useParams } from "react-router-dom";
 import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
+
+// ... (imports)
 
 const ProductContext = createContext({});
 
 export const ProductProvider = ({ children }) => {
-  const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
+  // getProduct
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(8);
+  const [totalPages, setTotalPages] = useState(0);
+
+  //-------------Filter--------------
+  const [filterResult, setFilterResult] = useState([]);
+  // set Variable
+
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
+  // const { id } = useParams();
+  const navigate = useNavigate();
 
   const getProducts = async () => {
     try {
-      
-      const result = await axios.get("/api/hello");
+
+      const result = await axios.get(`/product`);
+
       setProducts(result.data.products);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
   };
-  const getProductDetail = async () => {
+  // getProductDetail-------------------------
+  const getProductDetail = async (id) => {
     try {
       const result = await axios.get("/product/" + id);
       setProduct(result.data.product[0]);
@@ -31,6 +47,26 @@ export const ProductProvider = ({ children }) => {
       console.error("Error fetching product data:", error);
     }
   };
+  // getFilter ---------------------------
+  // const getFilter = async () => {
+  //   try {
+  //     // Ensure these are defined
+  //     const data = {
+  //       CategoryID: selectedCategory,
+  //       sort: sort,
+  //       min_Price: minPrice,
+  //       max_Price: maxPrice,
+  //     };
+
+  //     const result = await axios.post("/product/filter", data);
+  //     console.log(result.data.products);
+  //     setProducts(result.data.products);
+  //   } catch (error) {
+  //     console.error("Error fetching city data:", error);
+  //   }
+  // };
+
+  //------------- Search---------------------
 
   const insertProduct = async ({ ...data }) => {
     await csrf();
@@ -43,6 +79,7 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   const updateProduct = async (id, { ...data }) => {
     await csrf();
     try {
@@ -54,10 +91,11 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
   const deleteProduct = async (id) => {
     await csrf();
     try {
-      await axios.patch("/product/delete" + id);
+      await axios.delete("/product/delete" + id);
       await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
@@ -65,12 +103,39 @@ export const ProductProvider = ({ children }) => {
       }
     }
   };
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   useEffect(() => {
-    getProducts();
-  }, []);
+    if (products.length === 0) {
+      getProducts();
+    }
+    // if (id) {
+    //   getProductDetail();
+    // }
+    // console.log(product);
+  }, [products]); // Make sure to include id in the dependency array to re-fetch data when id changes
 
   return (
-    <ProductContext.Provider value={{ products, product, getProductDetail }}>
+    <ProductContext.Provider
+      value={{
+        products,
+        product,
+        totalPages,
+        totalProduct,
+        productPerPage,
+        currentPage,
+        filterResult,
+        setFilterResult,
+        paginate,
+        getProducts,
+        getProductDetail,
+        insertProduct,
+        updateProduct,
+        deleteProduct,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

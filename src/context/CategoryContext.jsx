@@ -1,34 +1,27 @@
 import { createContext, useContext, useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import axios from "../api/axios.jsx";
+
 import { useNavigate } from "react-router-dom";
-import { data } from "autoprefixer";
+import axios from "../api/axios";
+
 
 const CategoryContext = createContext({});
 
 export const CategoryProvider = ({ children }) => {
-  const { id } = useParams();
-  const csrf = () => axios.get("/sanctum/csrf-cookie");
-  const [categories, setCategories] = useState([]);
-  const [errors, setErrors] = useState([]);
-  const [category, setCategory] = useState([]);
 
-  const getCategories = async () => {
+  const [categories, setCategory] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const csrf = () => axios.get("/sanctum/csrf-cookie");
+  const navigate = useNavigate();
+  const getCategory = async () => {
     try {
-      
-      const result = await axios.get("/category");
-      setCategories(result.data.categories);
+      await csrf(); // Xác thực trước
+      const result  = await axios.get("/category");
+      setCategory(result.data.categories);
     } catch (error) {
-      console.error("Error fetching category data:", error);
-    }
-  };
-  const getCategoryDetail = async () => {
-    try {
-      const result = await axios.get("/category/" + id);
-      setCategory(result.data.category[0]);
-    } catch (error) {
-      console.error("Error fetching category data:", error);
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        navigate("/login");
+      }
     }
   };
 
@@ -36,7 +29,10 @@ export const CategoryProvider = ({ children }) => {
     await csrf();
     try {
       await axios.post("/category/insert", data);
-      await getCategories();
+
+      getCategory();
+      //   navigate("/");
+
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -47,18 +43,21 @@ export const CategoryProvider = ({ children }) => {
     await csrf();
     try {
       await axios.patch("/category/update" + id, data);
-      await getCategories();
+
+      await getCategory();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
     }
   };
-  const deletecategory = async (id) => {
+
+  const deleteCategory = async (id) => {
     await csrf();
     try {
-      await axios.patch("/category/delete" + id);
-      await getCategories();
+      await axios.delete("/category/delete" + id);
+      await getCategory();
+
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -66,12 +65,24 @@ export const CategoryProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getCategries();
-  }, []);
 
+    if (categories.length === 0) {
+      getCategory();
+    }
+  }, [categories]);
   return (
-    <CategoryContext.Provider value={{ categories, category getCategoryDetail }}>
-      {children}
+    <CategoryContext.Provider
+      value={{
+        categories,
+        errors,
+        getCategory,
+        insertCategory,
+        updateCategory,
+        deleteCategory,
+      }}
+    >
+      {" "}
+      {children}{" "}
     </CategoryContext.Provider>
   );
 };

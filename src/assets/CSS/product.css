@@ -45,7 +45,7 @@ background-color: rgba(255, 255, 255, 0.489);
         }
     }
 
-.Carousel-home {height: 640px;
+.Carousel-home {height: 100%;
     
     width:100%;}
 .menu-title {font-size: 2rem;
@@ -60,7 +60,7 @@ background-color: rgba(255, 255, 255, 0.489);
    position: relative;
     
 }
-.bg-home-menu{background-image: url('/26843307_1197.jpg');
+.bg-home-menu{background-image: url('/public/hehe.jpg');
               background-position: center;
             background-repeat: no-repeat;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import "../assets/CSS/font.css";
@@ -6,12 +6,10 @@ import Card from "react-bootstrap/Card";
 import "../assets/CSS/productDetail.css";
 import "../assets/CSS/button.css";
 import useProductContext from "../context/ProductContext";
-const ProductDetail = () => {
-  const { product, getProductDetail } = useProductContext();
-  useEffect(() => {
-    getProductDetail();
-    window.scrollTo(0, 0);
-  }, []);
+import FormPopUp from "./FormPopUp";
+const ProductDetail = ({product}) => {
+  const [modalShow, setModalShow] = useState(false);
+  // const { product } = useProductContext();
 
   return (
     <Row className="mx-auto my-3">
@@ -26,7 +24,7 @@ const ProductDetail = () => {
           </Card>
         </div>
       </Col>
-      <Col xs={12} sm={6} md={8} lg={9} className="normal-text">
+      <Col xs={12} sm={6} md={8} lg={9} className="normal-text ">
         <div className="p-4 my-3  img-block postition-relative ">
           <p className=" uppercase text-custom-title">
             <a href="" className="text-decoration-none text-custom-title">
@@ -54,9 +52,14 @@ const ProductDetail = () => {
             {product.Description}
           </p>
           <div className="my-3">
-            <a href="/">
-              <button className="bn632-hover bn28">Đăng ký</button>
-            </a>
+            <button
+              className="bn632-hover bn28"
+              onClick={() => setModalShow(true)}
+            >
+              Đăng ký
+            </button>
+
+            <FormPopUp show={modalShow} onHide={() => setModalShow(false)} />
           </div>
         </div>
       </Col>

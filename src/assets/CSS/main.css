@@ -1,25 +1,37 @@
-.icon-logo {height: 60px;
-           
-            width: 60px !important;}
+.icon-logo {
+    height: 60px;
 
-.icon-animation {transition-duration: 0.3s;
-                 }
-.icon-animation:hover{transform: scale(1.2);}
+    width: 60px !important;
+}
 
-.box-shadow-1 {box-shadow:"0px 4px 4px 0px rgba(0, 0, 0, 0.25)",}
+.icon-animation {
+    transition-duration: 0.3s;
+}
+
+.icon-animation:hover {
+    transform: scale(1.2);
+}
+
+.box-shadow-1 {
+    box-shadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+}
 
 .notfound-text {
     font-size: 5rem;
-   transition-duration: 0.3s;
+    transition-duration: 0.3s;
     left: 50%;
-    text-align:center;
+    text-align: center;
     font-family: 'Montserrat', sans-serif;
-    margin-top:25%;
-    }
-.notfound-text:hover{
+    margin-top: 25%;
+}
+
+.notfound-text:hover {
     transform: scale(1.1);
 }
-*{font-family: 'Montserrat', sans-serif;}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
 
 
 
@@ -27,11 +39,11 @@
  */
 
 
- .pagination {
+.pagination {
     height: 36px;
     margin: 18px 0;
     color: #850000;
-    
+
 }
 
 .pagination ul {
@@ -41,7 +53,7 @@
     *zoom: 1;
     margin-left: 0;
     color: #ffffff;
-    
+
     margin-bottom: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -53,7 +65,7 @@
 
 .pagination li {
     display: inline;
-   
+
     color: #850000;
 }
 
@@ -75,7 +87,7 @@
 }
 
 .pagination a:focus {
-    background-color: #850000!important;
+    background-color: #850000 !important;
     color: #ffffff !important;
 }
 
@@ -172,6 +184,21 @@
 /* end */
 
 
-.divider {height: 1px ;
-          width: 100%;
-           background-color: #9999997f;}
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: #9999997f;
+}
+
+
+.responsive-carousel {
+    height: 620px;
+}
+
+@media only screen and (max-width: 600px) {
+    /* For tablets: */
+
+    .responsive-carousel {
+        height: 360px;
+    }
+}

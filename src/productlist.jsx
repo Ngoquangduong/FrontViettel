@@ -3,27 +3,66 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Pagination from "react-bootstrap/Pagination";
 import Header from "./component/Header";
+import { Form } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 import { Nav } from "react-bootstrap";
 import { useState, useEffect } from "react";
-
+import Dropdown from "react-bootstrap/Dropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import "./assets/CSS/filter.css";
-
 import Footer from "./component/Footer";
 import PostList from "./component/PostList";
 import RegisterForm from "./component/RegisterForm";
 import { FormProvider } from "./context/FormContext";
+import ProductList from "./component/ProductList";
+import useProductContext from "./context/ProductContext";
 import Filter from "./Filter";
-import "./assets/CSS/main.css";
+import Paginate from "./component/Pagination";
 
-export default function ProductList() {
+export default function List() {
+  const {
+    totalPages,
+    getProducts,
+    products,
+    productPerPage,
+    paginate,
+    currentPage,
+    filterResult,
+  } = useProductContext();
   const [showNav, setShowNav] = useState(false);
   const [show, setShow] = useState(false);
+  const [indexOfLastProduct, setIndexOfLastProduct] = useState(
+    currentPage * productPerPage
+  );
+  const [indexOfFirstProduct, setIndexOfFirstProduct] = useState(
+    indexOfLastProduct - productPerPage
+  );
+  const [currentProduct, setCurrentProduct] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   useEffect(() => {
+    const newIndexOfLastProduct = currentPage * productPerPage;
+    const newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+
+    setIndexOfLastProduct(newIndexOfLastProduct);
+    setIndexOfFirstProduct(newIndexOfFirstProduct);
+
+    // Update currentProduct based on the new indices
+    setCurrentProduct(
+      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+
+    // If filterResult has items, update currentProduct using its values
+    if (filterResult.length > 0) {
+      setCurrentProduct(
+        filterResult.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+      );
+    }
     function handleResize() {
       // Kiểm tra kích thước màn hình và đặt giá trị showNav dựa trên điều kiện
       setShowNav(window.innerWidth >= 768); // 768px là một ví dụ về kích thước điện thoại
@@ -39,17 +78,10 @@ export default function ProductList() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
 
-  let active = 2;
-  let items = [];
-  for (let number = 1; number <= 5; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>
-    );
-  }
+    // Update indexOfFirstProduct and indexOfLastProduct based on currentPage and productPerPage
+  }, [currentPage, productPerPage, products, filterResult]);
+
   return (
     <div className="">
       <Header />
@@ -113,104 +145,31 @@ export default function ProductList() {
 
             {/* endfilter ----------------------------------------------------------------------------------------------------------------*/}
             {/* Mobile-first design: Full width on small screens */}
-            <Row className="mx-auto ">
-              <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-                <Card className="product-card-img position-relative">
-                  {/* Card content */}
-                  <Card.Title className="text-light text-center uppercase position-absolute product-name w-100 py-1">
-                    Card Title
-                  </Card.Title>
-                  <Card.Body className="justify-content-center align-items-center d-flex flex-column">
-                    <Card.Text className="text-light text-center">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                    <Button className="mx-auto text-dark button-62 mt-2 ">
-                      Chi tiết
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-                <Card className="product-card-img position-relative">
-                  {/* Card content */}
-                  <Card.Title className="text-light text-center uppercase position-absolute product-name w-100 py-1">
-                    Card Title
-                  </Card.Title>
-                  <Card.Body className="justify-content-center align-items-center d-flex flex-column">
-                    <Card.Text className="text-light text-center">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                    <Button className="mx-auto text-dark button-62 mt-2 ">
-                      Chi tiết
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-                <Card className="product-card-img position-relative">
-                  {/* Card content */}
-                  <Card.Title className="text-dark text-center uppercase position-absolute product-name w-100 py-1">
-                    Card Title
-                  </Card.Title>
-                  <Card.Body className="justify-content-center align-items-center d-flex flex-column">
-                    <Card.Text className="text-light text-center">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                    <Button className="mx-auto text-dark button-62 mt-2 ">
-                      Chi tiết
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-                <Card className="product-card-img position-relative">
-                  {/* Card content */}
-                  <Card.Title className="text-light text-center uppercase position-absolute product-name w-100 py-1">
-                    Card Title
-                  </Card.Title>
-                  <Card.Body className="justify-content-center align-items-center d-flex flex-column">
-                    <Card.Text className="text-light text-center">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                    <Button className="mx-auto text-dark button-62 mt-2 ">
-                      Chi tiết
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Pagination >{items}</Pagination>
-
-
-              <Pagination className="justify-center pagination ">
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item>{1}</Pagination.Item>
-                <Pagination.Ellipsis />
-
-                <Pagination.Item>{10}</Pagination.Item>
-                <Pagination.Item>{11}</Pagination.Item>
-                <Pagination.Item >{12}</Pagination.Item>
-                <Pagination.Item>{13}</Pagination.Item>
-                <Pagination.Item >{14}</Pagination.Item>
-
-                <Pagination.Ellipsis />
-                <Pagination.Item>{20}</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
-              </Pagination>
+            <Row className="mx-auto">
+              {filterResult.length > 0 ? (
+                <>
+                  <ProductList products={currentProduct}></ProductList>
+                  <Paginate
+                    dataPerPage={productPerPage}
+                    totalData={filterResult.length}
+                    paginate={paginate}
+                  ></Paginate>
+                </>
+              ) : (
+                <>
+                  <ProductList products={currentProduct}></ProductList>
+                  <Paginate
+                    dataPerPage={productPerPage}
+                    totalData={products.length}
+                    paginate={paginate}
+                  ></Paginate>
+                </>
+              )}
             </Row>
-            <div className="divider"></div>
+
             {/* 
 -----------------------------------------------------------------postlist------------------------------------------------------------------------ */}
             <PostList />
-
             {/* ----------------------------------------------------------------FOrm------------------------------------------------------ */}
             <Container fluid="md p-4  my-3 bg-home-menu">
               <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>
