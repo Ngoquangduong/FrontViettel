@@ -5,60 +5,60 @@ import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
 
-const ProductContext = createContext({});
+const UserContext = createContext({});
 
-export const ProductProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
-  const [products, setProducts] = useState([]);
+  const [users, setUsers] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [user, setUser] = useState([]);
 
-  const getProducts = async () => {
+  const getUsers = async () => {
     try {
       
       const result = await axios.get("/api/hello");
-      setProducts(result.data.products);
+      setUsers(result.data.users);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
   };
-  const getProductDetail = async () => {
+  const getUserDetail = async () => {
     try {
-      const result = await axios.get("/product/" + id);
-      setProduct(result.data.product[0]);
+      const result = await axios.get("/user/" + id);
+      setUser(result.data.user[0]);
     } catch (error) {
-      console.error("Error fetching product data:", error);
+      console.error("Error fetching user data:", error);
     }
   };
 
-  const insertProduct = async ({ ...data }) => {
+  const insertUser = async ({ ...data }) => {
     await csrf();
     try {
-      await axios.post("/product/insert", data);
-      await getProducts();
+      await axios.post("/user/insert", data);
+      await getUsers();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
     }
   };
-  const updateProduct = async (id, { ...data }) => {
+  const updateUser = async (id, { ...data }) => {
     await csrf();
     try {
-      await axios.patch("/product/update" + id, data);
-      await getProducts();
+      await axios.patch("/user/update" + id, data);
+      await getUsers();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
     }
   };
-  const deleteProduct = async (id) => {
+  const deleteUser = async (id) => {
     await csrf();
     try {
-      await axios.patch("/product/delete" + id);
-      await getProducts();
+      await axios.patch("/user/delete" + id);
+      await getUsers();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -66,15 +66,15 @@ export const ProductProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getProducts();
+    getUsers();
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products, product, getProductDetail }}>
+    <UserContext.Provider value={{ users, user, getUserDetail }}>
       {children}
-    </ProductContext.Provider>
+    </UserContext.Provider>
   );
 };
-export default function useProductContext() {
-  return useContext(ProductContext);
+export default function useUserContext() {
+  return useContext(UserContext);
 }

@@ -17,7 +17,7 @@ import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import Notfound from "./component/Notfound";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ProductProvider } from "./context/ProductContext";
-
+import DemoProduct from "./DemoProduct";
 function App() {
   return (
     <Routes>
@@ -37,6 +37,7 @@ function App() {
       </Route>
 
       <Route path="/*" element={<Notfound/>} />
+      <Route path="/hello" element={<DemoProduct/>} />
     </Routes>
   );
 }
