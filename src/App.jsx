@@ -19,8 +19,8 @@ import Notfound from "./component/Notfound";
 import Category from "./admin/category";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ProductProvider } from "./context/ProductContext";
-import { useNavigate, useLocation } from "react-router-dom";
 
+import { useNavigate, useLocation } from "react-router-dom";
 
 function App() {
 
@@ -44,6 +44,7 @@ function App() {
       </Route>
 
       <Route path="/*" element={<Notfound/>} />
+      <Route path="/hello" element={<DemoProduct/>} />
     </Routes>
   );
 }

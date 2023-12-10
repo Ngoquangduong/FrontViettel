@@ -30,7 +30,9 @@ export const ProductProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
+
       const result = await axios.get(`/product`);
+
       setProducts(result.data.products);
     } catch (error) {
       console.error("Error fetching city data:", error);

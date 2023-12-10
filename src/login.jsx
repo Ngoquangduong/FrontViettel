@@ -10,10 +10,17 @@ function Login() {
 
   const handleAdminLogin = async (event) => {
     event.preventDefault();
-    login({
+    try{
+          login({
       email,
       password,
     });
+    }catch(e){
+      if(e.response.status === 422){
+        setErrors(e.response.data.errors);
+      }
+    }
+
   };
 
 
@@ -21,7 +28,9 @@ function Login() {
     <div className=" bg-auth">
       <div className="bg-login-form  mx-auto py-32 lg:px-8 ">
 
-        <div className="flex min-h-full flex-1 flex-col justify-center ">
+      
+      <div className="flex min-h-full flex-1 flex-col justify-center ">
+          
 
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -54,9 +63,13 @@ function Login() {
                     }}
                     autoComplete="username"
                     autoFocus
-                    required
+            
                     className="block w-full px-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-rose-500 sm:text-sm sm:leading-6"
                   />
+                  {errors.email &&(
+                        <span className="text-red-400 text-sm m-2 p-2">{errors.email[0]}</span>
+                  )}
+                
                 </div>
               </div>
 
@@ -87,9 +100,13 @@ function Login() {
                       setPassword(e.target.value);
                     }}
                     autoComplete="current-password"
-                    required
+
                     className="block px-4 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                   {errors.password &&(
+                        <span className="text-red-400 text-sm m-2 p-2">{errors.password[0]}</span>
+                  )}
+                  
                 </div>
               </div>
 
@@ -109,7 +126,6 @@ function Login() {
             </div> */}
           </div>
         </div>
-
 
       </div>
     </div>
