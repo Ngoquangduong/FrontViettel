@@ -3,7 +3,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Pagination from "react-bootstrap/Pagination";
 import Header from "./component/Header";
 import { Form } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
@@ -19,28 +18,51 @@ import PostList from "./component/PostList";
 import RegisterForm from "./component/RegisterForm";
 import { FormProvider } from "./context/FormContext";
 import ProductList from "./component/ProductList";
-import ReactPaginate from "react-paginate";
 import useProductContext from "./context/ProductContext";
 import Filter from "./Filter";
-
+import Paginate from "./component/Pagination";
 
 export default function List() {
-  const { totalPages, getProducts } = useProductContext();
+  const {
+    totalPages,
+    getProducts,
+    products,
+    productPerPage,
+    paginate,
+    currentPage,
+    filterResult,
+  } = useProductContext();
   const [showNav, setShowNav] = useState(false);
   const [show, setShow] = useState(false);
+  const [indexOfLastProduct, setIndexOfLastProduct] = useState(
+    currentPage * productPerPage
+  );
+  const [indexOfFirstProduct, setIndexOfFirstProduct] = useState(
+    indexOfLastProduct - productPerPage
+  );
+  const [currentProduct, setCurrentProduct] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handlePageClick = (event) => {
-    // console.log(event);
-    // console.log(+event.selected + 1);
-    const selectedPage = +event.selected + 1;
-    getProducts(selectedPage);
-    navigate(`/productList/product?page=${selectedPage}`);
-  };
-
   useEffect(() => {
+    const newIndexOfLastProduct = currentPage * productPerPage;
+    const newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+
+    setIndexOfLastProduct(newIndexOfLastProduct);
+    setIndexOfFirstProduct(newIndexOfFirstProduct);
+
+    // Update currentProduct based on the new indices
+    setCurrentProduct(
+      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+
+    // If filterResult has items, update currentProduct using its values
+    if (filterResult.length > 0) {
+      setCurrentProduct(
+        filterResult.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+      );
+    }
     function handleResize() {
       // Kiểm tra kích thước màn hình và đặt giá trị showNav dựa trên điều kiện
       setShowNav(window.innerWidth >= 768); // 768px là một ví dụ về kích thước điện thoại
@@ -56,7 +78,9 @@ export default function List() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+
+    // Update indexOfFirstProduct and indexOfLastProduct based on currentPage and productPerPage
+  }, [currentPage, productPerPage, products, filterResult]);
 
   return (
     <div className="">
@@ -122,28 +146,25 @@ export default function List() {
             {/* endfilter ----------------------------------------------------------------------------------------------------------------*/}
             {/* Mobile-first design: Full width on small screens */}
             <Row className="mx-auto">
-              <ProductList></ProductList>
-              <ReactPaginate
-                className="justify-content-center d-flex flex-row pagination"
-                nextLabel="next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={totalPages}
-                previousLabel="< previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-              />
+              {filterResult.length > 0 ? (
+                <>
+                  <ProductList products={currentProduct}></ProductList>
+                  <Paginate
+                    dataPerPage={productPerPage}
+                    totalData={filterResult.length}
+                    paginate={paginate}
+                  ></Paginate>
+                </>
+              ) : (
+                <>
+                  <ProductList products={currentProduct}></ProductList>
+                  <Paginate
+                    dataPerPage={productPerPage}
+                    totalData={products.length}
+                    paginate={paginate}
+                  ></Paginate>
+                </>
+              )}
             </Row>
 
             {/* 

@@ -7,13 +7,9 @@ import "../assets/CSS/productDetail.css";
 import "../assets/CSS/button.css";
 import useProductContext from "../context/ProductContext";
 import FormPopUp from "./FormPopUp";
-const ProductDetail = () => {
-  const { product, getProductDetail } = useProductContext();
+const ProductDetail = ({product}) => {
   const [modalShow, setModalShow] = useState(false);
-  useEffect(() => {
-    getProductDetail();
-    window.scrollTo(0, 0);
-  }, []);
+  // const { product } = useProductContext();
 
   return (
     <Row className="mx-auto my-3">
@@ -29,10 +25,7 @@ const ProductDetail = () => {
         </div>
       </Col>
       <Col xs={12} sm={6} md={8} lg={9} className="normal-text ">
-        <div
-          className="p-4 my-3  img-block postition-relative "
-         
-        >
+        <div className="p-4 my-3  img-block postition-relative ">
           <p className=" uppercase text-custom-title">
             <a href="" className="text-decoration-none text-custom-title">
               {product.ProductID}

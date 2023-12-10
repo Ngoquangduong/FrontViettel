@@ -26,6 +26,10 @@ const RegisterAdmin = () => {
       password_confirmation,
     });
   };
+
+
+
+  
   return (
     <Row>
       <h1 className="my-3 title-table">Thêm admin</h1>

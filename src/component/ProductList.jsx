@@ -10,9 +10,10 @@ import { ProductProvider } from "../context/ProductContext";
 import useProductContext from "../context/ProductContext";
 
 
-export default function ProductList() {
-  const { products } = useProductContext();
+export default function ProductList({products}) {
+  // const { products } = useProductContext();
 
+  
   
   return (
     <div>

@@ -24,6 +24,7 @@ export const AdminAuthProvider = ({ children }) => {
   const login = async ({ ...data }) => {
     await csrf();
     try {
+      
       await axios.post("/admin/login", data);
       await getAdmin();
       navigate("/admin");
@@ -36,6 +37,7 @@ export const AdminAuthProvider = ({ children }) => {
   const register = async ({ ...data }) => {
     await csrf();
     try {
+      // console.log(data);
       await axios.post("/admin/register", data);
     } catch (e) {
       if (e.response.status === 422) {
