@@ -44,7 +44,6 @@ function App() {
       </Route>
 
       <Route path="/*" element={<Notfound/>} />
-      <Route path="/hello" element={<DemoProduct/>} />
     </Routes>
   );
 }

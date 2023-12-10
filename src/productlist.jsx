@@ -73,7 +73,7 @@ export default function List() {
 
     // Gọi handleResize lần đầu khi nạp trang
     handleResize();
-
+    console.log(filterResult);
     // Loại bỏ sự kiện lắng nghe khi component bị unmount
     return () => {
       window.removeEventListener("resize", handleResize);

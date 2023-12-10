@@ -82,7 +82,7 @@ function Filter({ show, handleClose }) {
           return parseInt(item.Price) <= maxPrice;
         });
       }
-      console.log(filterData);
+      
       setFilterResult(filterData);
     } else {
       setFilterResult([]);

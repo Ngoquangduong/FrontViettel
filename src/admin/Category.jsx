@@ -9,17 +9,8 @@ import Sidebar from "./adminheader";
 import { useState } from "react";
 import useCategoryContext from "../context/CategoryContext";
 const Category = () => {
- 
-    
+  const HandleinsertCategory = () => {};
 
-      
-      
-
- 
-  
-  
-
-  
   return (
     <div>
       <Sidebar />
@@ -72,21 +63,22 @@ const Category = () => {
                     type="text"
                     className="w-100"
                     placeholder="Tên loại sản phẩm"
-                    value={categories}
-                    onChange={(e) => setCategory(e.target.value)}
+                    // value={categories}
+                    // onChange={(e) => setCategory(e.target.value)}
                     required
                   />
                   <span className="highlight"></span>
                   <span className="bar mb-4"></span>
                 </Col>
-                <button type="submit" className="button-63">Xác nhận</button>
+                <button type="submit" className="button-63">
+                  Xác nhận
+                </button>
               </Row>
-              
             </Form>
           </Row>
         </Container>
       </Container>
     </div>
   );
-}
+};
 export default Category;

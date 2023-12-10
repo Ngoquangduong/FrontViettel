@@ -25,11 +25,15 @@ const RegisterAdmin = () => {
       password,
       password_confirmation,
     });
+    setName("");
+    setEmail("");
+    setPhone("");
+    setGender("m");
+    Address("");
+    setPassword("");
+    setPasswordConfirmation("");
   };
 
-
-
-  
   return (
     <Row>
       <h1 className="my-3 title-table">Thêm admin</h1>
