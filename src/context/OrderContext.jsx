@@ -16,8 +16,7 @@ export const OrderProvider = ({ children }) => {
 
   const getOrders = async () => {
     try {
-      
-      const result = await axios.get("/order");
+      const result = await axios.get("/orders");
       setOrders(result.data.orders);
     } catch (error) {
       console.error("Error fetching city data:", error);
@@ -43,6 +42,22 @@ export const OrderProvider = ({ children }) => {
       }
     }
   };
+  const Accept = async (id) => {
+    try {
+      await axios.get(`/Order/accept/` + id);
+      await getOrders();
+    } catch (error) {
+      console.error("Error fetching order data:", error);
+    }
+  };
+  const UnAccept = async (id) => {
+    try {
+      await axios.get(`/Order/unaccept/` + id);
+      await getOrders();
+    } catch (error) {
+      console.error("Error fetching order data:", error);
+    }
+  };
   const updateOrder = async (id, { ...data }) => {
     await csrf();
     try {
@@ -54,6 +69,7 @@ export const OrderProvider = ({ children }) => {
       }
     }
   };
+
   const deleteOrder = async (id) => {
     await csrf();
     try {
@@ -70,7 +86,9 @@ export const OrderProvider = ({ children }) => {
   }, []);
 
   return (
-    <OrderContext.Provider value={{ orders, order, getOrderDetail }}>
+    <OrderContext.Provider
+      value={{ orders, order, getOrderDetail, insertOrder, Accept, UnAccept }}
+    >
       {children}
     </OrderContext.Provider>
   );

@@ -23,58 +23,67 @@ import Filter from "./Filter";
 import Paginate from "./component/Pagination";
 
 export default function List() {
-  const {
-    totalPages,
-    getProducts,
-    products,
-    productPerPage,
-    paginate,
-    currentPage,
-  } = useProductContext();
+  const { getProducts, products } = useProductContext();
   const [filterResult, setFilterResult] = useState([]);
   const [showNav, setShowNav] = useState(false);
   const [show, setShow] = useState(false);
-  const [indexOfLastProduct, setIndexOfLastProduct] = useState(
-    currentPage * productPerPage
-  );
-  const [indexOfFirstProduct, setIndexOfFirstProduct] = useState(
-    indexOfLastProduct - productPerPage
-  );
-  const [currentProduct, setCurrentProduct] = useState([]);
 
+  const [currentProduct, setCurrentProduct] = useState([]);
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(8);
+  const [totalPages, setTotalPages] = useState(0);
+  // const [indexOfLastProduct, setIndexOfLastProduct] = useState(
+  //   currentPage * productPerPage
+  // );
+  // const [indexOfFirstProduct, setIndexOfFirstProduct] = useState(
+  //   indexOfLastProduct - productPerPage
+  // );
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    const newIndexOfLastProduct = currentPage * productPerPage;
-    const newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setShowNav(window.innerWidth >= 768);
+  //   }
 
-    setIndexOfLastProduct(newIndexOfLastProduct);
-    setIndexOfFirstProduct(newIndexOfFirstProduct);
+  //   window.addEventListener("resize", handleResize);
+
+  //   handleResize();
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+  useEffect(() => {
+    let newIndexOfLastProduct = currentPage * productPerPage;
+    let newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+
+    // setIndexOfLastProduct(newIndexOfLastProduct);
+    // setIndexOfFirstProduct(newIndexOfFirstProduct);
 
     if (filterResult.length > 0) {
       setCurrentProduct(
-        filterResult.slice(indexOfFirstProduct, indexOfLastProduct)
+        filterResult.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
       );
     } else {
       setCurrentProduct(
-        products.slice(indexOfFirstProduct, indexOfLastProduct)
+        products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
       );
     }
+  }, [filterResult, currentPage]);
 
-    function handleResize() {
-      setShowNav(window.innerWidth >= 768);
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [currentPage, productPerPage, products, filterResult]);
-
+  useEffect(() => {
+    let newIndexOfLastProduct = currentPage * productPerPage;
+    let newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+    // console.log(newIndexOfFirstProduct);
+    setCurrentProduct(
+      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+  }, [products.length === 0]);
   return (
     <div className="">
       <Header />

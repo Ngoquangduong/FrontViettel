@@ -8,9 +8,14 @@ import "../assets/CSS/admin.css";
 import Sidebar from "./adminheader";
 import { useState } from "react";
 import useCategoryContext from "../context/CategoryContext";
+import DeletePopUp from "../component/DeletePopUp";
 const Category = () => {
   const HandleinsertCategory = () => {};
+  const { categories, deleteCategory } = useCategoryContext();
 
+  const handleDelete = (ID) => {
+    deleteCategory(ID);
+  };
   return (
     <div>
       <Sidebar />
@@ -37,14 +42,19 @@ const Category = () => {
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-                    <tr className="table-custom">
-                      <td className="table-custom">1</td>
-                      <td className="table-custom">Ngô Quang Dương</td>
-                      <th className="table-custom d-flex justify-center">
-                        <button className="button-63  ms-2">Chỉnh sửa</button>
-                        <button className="button-62  ms-2">Xóa</button>
-                      </th>
-                    </tr>
+                    {categories.map((item) => (
+                      <tr className="table-custom" key={item.CategoryID}>
+                        <td className="table-custom">{item.CategoryID}</td>
+                        <td className="table-custom"> {item.CategoryName}</td>
+                        <th className="table-custom d-flex justify-center">
+                          <button className="button-63  ms-2">Chỉnh sửa</button>
+                          <DeletePopUp
+                            name={item.CategoryID}
+                            handle={handleDelete}
+                          ></DeletePopUp>
+                        </th>
+                      </tr>
+                    ))}
 
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>

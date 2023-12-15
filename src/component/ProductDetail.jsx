@@ -7,9 +7,10 @@ import "../assets/CSS/productDetail.css";
 import "../assets/CSS/button.css";
 import useProductContext from "../context/ProductContext";
 import FormPopUp from "./FormPopUp";
-const ProductDetail = ({product}) => {
+const ProductDetail = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
   // const { product } = useProductContext();
+
 
   return (
     <Row className="mx-auto my-3">

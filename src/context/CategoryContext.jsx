@@ -3,11 +3,9 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
-
 const CategoryContext = createContext({});
 
 export const CategoryProvider = ({ children }) => {
-
   const [categories, setCategory] = useState([]);
   const [errors, setErrors] = useState([]);
   const csrf = () => axios.get("/sanctum/csrf-cookie");
@@ -15,7 +13,7 @@ export const CategoryProvider = ({ children }) => {
   const getCategory = async () => {
     try {
       await csrf(); // Xác thực trước
-      const result  = await axios.get("/category");
+      const result = await axios.get("/category");
       setCategory(result.data.categories);
     } catch (error) {
       console.log(error);
@@ -27,12 +25,12 @@ export const CategoryProvider = ({ children }) => {
 
   const insertCategory = async ({ ...data }) => {
     await csrf();
+    setErrors([]);
     try {
       await axios.post("/category/insert", data);
 
-      getCategory();
+      await getCategory();
       //   navigate("/");
-
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -41,6 +39,7 @@ export const CategoryProvider = ({ children }) => {
   };
   const updateCategory = async (id, { ...data }) => {
     await csrf();
+    setErrors([]);
     try {
       await axios.patch("/category/update" + id, data);
 
@@ -54,10 +53,10 @@ export const CategoryProvider = ({ children }) => {
 
   const deleteCategory = async (id) => {
     await csrf();
+    setErrors([]);
     try {
-      await axios.delete("/category/delete" + id);
+      await axios.delete("/category/destroy/" + id);
       await getCategory();
-
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -65,7 +64,6 @@ export const CategoryProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-
     if (categories.length === 0) {
       getCategory();
     }

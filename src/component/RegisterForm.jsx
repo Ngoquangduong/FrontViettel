@@ -4,12 +4,20 @@ import { Form } from "react-bootstrap";
 import "../assets/CSS/main.css";
 import Container from "react-bootstrap/Container";
 import useFormContext from "../context/FormContext";
+import useCityContext from "../context/CityContext";
+import useDistrictContext from "../context/DistrictContext";
+import usePaymentContext from "../context/PaymentContext";
+import useProductContext from "../context/ProductContext";
 
 export default function RegisterForm() {
-  const { cities, districts, payments } = useFormContext();
+  const { cities } = useCityContext();
+  const { districts } = useDistrictContext();
+  const { payments } = usePaymentContext();
+  const { products } = useProductContext();
 
   const [selectedCity, setSelectedCity] = useState();
   const [selectedDistrict, setSelectedDistrict] = useState();
+
   // const filteredDistricts = districts.filter(
   //   (districts) => districts.CityID === selectedCity
   // );
@@ -18,7 +26,7 @@ export default function RegisterForm() {
       <Container>
         <Row className="bg-confirm my-1 box-shadow-1">
           <h1 className="my-3 text-title ">Mua/đặt sản phẩm</h1>
-          <Form action="/register" method="POST">
+          <Form>
             <Row>
               <Col>
                 <input
@@ -49,9 +57,11 @@ export default function RegisterForm() {
                   className="w-100 mb-4"
                 >
                   <option>Sản phẩm</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  {products.map((item) => (
+                    <option key={item.ProductID} value={item.ProductID}>
+                      {item.ProductID}
+                    </option>
+                  ))}
                 </Form.Select>
               </Col>
               <Col>

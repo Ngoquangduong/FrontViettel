@@ -10,22 +10,21 @@ const ServiceContext = createContext({});
 export const ServiceProvider = ({ children }) => {
   const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
-  const [services, setOrders] = useState([]);
+  const [services, setServices] = useState([]);
   const [errors, setErrors] = useState([]);
   const [service, setService] = useState([]);
 
   const getServices = async () => {
     try {
-      
       const result = await axios.get("/service");
-      setOrders(result.data.services);
+      setServices(result.data.services);
     } catch (error) {
       console.error("Error fetching service data:", error);
     }
   };
   const getServiceDetail = async () => {
     try {
-      const result = await axios.get("/services/" + id);
+      const result = await axios.get("/service/" + id);
       setService(result.data.service[0]);
     } catch (error) {
       console.error("Error fetching service data:", error);
@@ -66,7 +65,9 @@ export const ServiceProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getServices();
+    if (services.length === 0) {
+      getServices();
+    }
   }, []);
 
   return (
