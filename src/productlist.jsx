@@ -23,65 +23,67 @@ import Filter from "./Filter";
 import Paginate from "./component/Pagination";
 
 export default function List() {
-  const {
-    totalPages,
-    getProducts,
-    products,
-    productPerPage,
-    paginate,
-    currentPage,
-    filterResult,
-  } = useProductContext();
+  const { getProducts, products } = useProductContext();
+  const [filterResult, setFilterResult] = useState([]);
   const [showNav, setShowNav] = useState(false);
   const [show, setShow] = useState(false);
-  const [indexOfLastProduct, setIndexOfLastProduct] = useState(
-    currentPage * productPerPage
-  );
-  const [indexOfFirstProduct, setIndexOfFirstProduct] = useState(
-    indexOfLastProduct - productPerPage
-  );
-  const [currentProduct, setCurrentProduct] = useState([]);
 
+  const [currentProduct, setCurrentProduct] = useState([]);
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(8);
+  const [totalPages, setTotalPages] = useState(0);
+  // const [indexOfLastProduct, setIndexOfLastProduct] = useState(
+  //   currentPage * productPerPage
+  // );
+  // const [indexOfFirstProduct, setIndexOfFirstProduct] = useState(
+  //   indexOfLastProduct - productPerPage
+  // );
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setShowNav(window.innerWidth >= 768);
+  //   }
+
+  //   window.addEventListener("resize", handleResize);
+
+  //   handleResize();
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
   useEffect(() => {
-    const newIndexOfLastProduct = currentPage * productPerPage;
-    const newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+    let newIndexOfLastProduct = currentPage * productPerPage;
+    let newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
 
-    setIndexOfLastProduct(newIndexOfLastProduct);
-    setIndexOfFirstProduct(newIndexOfFirstProduct);
+    // setIndexOfLastProduct(newIndexOfLastProduct);
+    // setIndexOfFirstProduct(newIndexOfFirstProduct);
 
-    // Update currentProduct based on the new indices
-    setCurrentProduct(
-      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
-    );
-
-    // If filterResult has items, update currentProduct using its values
     if (filterResult.length > 0) {
       setCurrentProduct(
         filterResult.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
       );
+    } else {
+      setCurrentProduct(
+        products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+      );
     }
-    function handleResize() {
-      // Kiểm tra kích thước màn hình và đặt giá trị showNav dựa trên điều kiện
-      setShowNav(window.innerWidth >= 768); // 768px là một ví dụ về kích thước điện thoại
-    }
+  }, [filterResult, currentPage]);
 
-    // Gọi handleResize khi màn hình thay đổi kích thước
-    window.addEventListener("resize", handleResize);
-
-    // Gọi handleResize lần đầu khi nạp trang
-    handleResize();
-
-    // Loại bỏ sự kiện lắng nghe khi component bị unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-
-    // Update indexOfFirstProduct and indexOfLastProduct based on currentPage and productPerPage
-  }, [currentPage, productPerPage, products, filterResult]);
-
+  useEffect(() => {
+    let newIndexOfLastProduct = currentPage * productPerPage;
+    let newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+    // console.log(newIndexOfFirstProduct);
+    setCurrentProduct(
+      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+  }, [products.length === 0]);
   return (
     <div className="">
       <Header />
@@ -123,7 +125,12 @@ export default function List() {
                       >
                         Bộ lọc sản phẩm
                       </Button>
-                      <Filter show={show} handleClose={handleClose}></Filter>
+                      <Filter
+                        show={show}
+                        handleClose={handleClose}
+                        setFilterResult={setFilterResult}
+                        filterResult={filterResult}
+                      ></Filter>
                     </Nav.Item>
                     <Button
                       onClick={() => setShowNav(false)}

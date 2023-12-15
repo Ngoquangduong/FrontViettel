@@ -19,20 +19,19 @@ export const ProductProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(0);
 
   //-------------Filter--------------
-  const [filterResult, setFilterResult] = useState([]);
   // set Variable
 
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
   const [product, setProduct] = useState({});
+
   // const { id } = useParams();
   const navigate = useNavigate();
 
   const getProducts = async () => {
     try {
-
+      await csrf();
       const result = await axios.get(`/product`);
-
       setProducts(result.data.products);
     } catch (error) {
       console.error("Error fetching city data:", error);
@@ -41,6 +40,7 @@ export const ProductProvider = ({ children }) => {
   // getProductDetail-------------------------
   const getProductDetail = async (id) => {
     try {
+      // await csrf();
       const result = await axios.get("/product/" + id);
       setProduct(result.data.product[0]);
     } catch (error) {
@@ -70,8 +70,9 @@ export const ProductProvider = ({ children }) => {
 
   const insertProduct = async ({ ...data }) => {
     await csrf();
+    setErrors([]);
     try {
-      await axios.post("/product/insert", data);
+      await axios.post("/Product/create", data);
       await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
@@ -82,6 +83,7 @@ export const ProductProvider = ({ children }) => {
 
   const updateProduct = async (id, { ...data }) => {
     await csrf();
+    setErrors([]);
     try {
       await axios.patch("/product/update" + id, data);
       await getProducts();
@@ -94,6 +96,7 @@ export const ProductProvider = ({ children }) => {
 
   const deleteProduct = async (id) => {
     await csrf();
+    setErrors([]);
     try {
       await axios.delete("/product/delete" + id);
       await getProducts();
@@ -108,26 +111,22 @@ export const ProductProvider = ({ children }) => {
     setCurrentPage(pageNumber);
   };
   useEffect(() => {
+    // console.log("hello");
     if (products.length === 0) {
       getProducts();
     }
-    // if (id) {
-    //   getProductDetail();
-    // }
-    // console.log(product);
   }, [products]); // Make sure to include id in the dependency array to re-fetch data when id changes
 
   return (
     <ProductContext.Provider
       value={{
         products,
+        errors,
         product,
         totalPages,
         totalProduct,
         productPerPage,
         currentPage,
-        filterResult,
-        setFilterResult,
         paginate,
         getProducts,
         getProductDetail,

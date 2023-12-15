@@ -12,26 +12,7 @@ const RegisterAdmin = () => {
   const [Address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
-  const { admin, errors, register } = useAdminAuthContext();
-
-
-
-  // const handleAdminLogin = async (event) => {
-  //   event.preventDefault();
-  //   try{
-  //         login({
-  //     email,
-  //     password,
-  //   });
-  //   }catch(e){
-  //     if(e.response.status === 422){
-  //       setErrors(e.response.data.errors);
-  //     }
-  //   }
-
-  // };
-
-
+  const { admin, errors, register, setErrors } = useAdminAuthContext();
 
 
   const handleAdminRegister = async (event) => {
@@ -46,6 +27,13 @@ const RegisterAdmin = () => {
         password,
         password_confirmation,
       });
+      setName("");
+    setEmail("");
+    setPhone("");
+    setGender("m");
+    Address("");
+    setPassword("");
+    setPasswordConfirmation("");
     }catch(e){
       if(e.response.status === 422){
         setErrors(e.response.data.errors);
@@ -53,6 +41,7 @@ const RegisterAdmin = () => {
     }
   
   };
+
 
 
 
