@@ -70,10 +70,11 @@ const Category = () => {
                   <span className="highlight"></span>
                   <span className="bar mb-4"></span>
                 </Col>
-                <button type="submit" className="button-63">
+               
+              </Row>
+              <button type="submit" className="button-63">
                   Xác nhận
                 </button>
-              </Row>
             </Form>
           </Row>
         </Container>
