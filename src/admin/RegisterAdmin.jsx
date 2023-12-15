@@ -60,7 +60,7 @@ const RegisterAdmin = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <span className="text-red-400 text-sm m-2 p-2">abc</span>
+            {/* <span className="text-red-400 text-sm m-2 p-2">abc</span> */}
                 {errors.name &&(
                         <span className="text-red-400 text-sm m-2 p-2">{errors.name[0]}</span>
                   )}

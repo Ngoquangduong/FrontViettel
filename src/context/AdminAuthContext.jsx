@@ -9,15 +9,20 @@ const AdminAuthContext = createContext({});
 
 export const AdminAuthProvider = ({ children }) => {
   const [admin, setAdmin] = useState(null);
+  const [admins, setAdmins] = useState([]);
   const [errors, setErrors] = useState([]);
   const csrf = () => axios.get("/sanctum/csrf-cookie");
   const navigate = useNavigate();
 
   const getAdmin = async () => {
-    const { data } = await axios.get("/api/admin");
-    // Only update the admin state if the data is different
-    if (JSON.stringify(data) !== JSON.stringify(admin)) {
-      setAdmin(data);
+    try {
+      const { data } = await axios.get("/api/admin");
+      // Only update the admin state if the data is different
+      if (JSON.stringify(data) !== JSON.stringify(admin)) {
+        setAdmin(data);
+      }
+    } catch (e) {
+      return;
     }
   };
 
@@ -46,6 +51,18 @@ export const AdminAuthProvider = ({ children }) => {
       }
     }
   };
+  const getAdmins = async () => {
+    await csrf();
+    setErrors([]);
+    try {
+      const result = await axios.get("/admins");
+      setAdmins(result.data.admins);
+    } catch (e) {
+      if (e.response.status === 422) {
+        setErrors(e.response.data.errors);
+      }
+    }
+  };
 
   const logout = () => {
     axios.post("/admin/logout").then(() => {
@@ -60,7 +77,16 @@ export const AdminAuthProvider = ({ children }) => {
   }, [admin, getAdmin]);
   return (
     <AdminAuthContext.Provider
-      value={{ admin, errors, login, register, logout, getAdmin }}
+      value={{
+        admin,
+        admins,
+        errors,
+        login,
+        register,
+        logout,
+        getAdmin,
+        getAdmins,
+      }}
     >
       {" "}
       {children}{" "}

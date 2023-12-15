@@ -14,6 +14,7 @@ import useCategoryContext from "../context/CategoryContext";
 import SelectForm from "../component/SelectForm";
 import useServiceContext from "../context/ServiceContext";
 import DeletePopUp from "../component/DeletePopUp";
+import Paginate from "../component/Pagination";
 function Productmanagment() {
   const { products, errors, insertProduct, deleteProduct } =
     useProductContext();
@@ -54,6 +55,28 @@ function Productmanagment() {
   const [Description, setDescription] = useState("");
   const [IPStatic, setIPStatic] = useState("");
 
+  // ---------------Paginate--------------------------
+
+  const [currentProduct, setCurrentProduct] = useState([]);
+  // const [totalOrder, setTotalOrder] = useState(0);
+  const [currentProductPage, setCurrentProductPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(12);
+  // const [totalPages, setTotalPages] = useState(0);
+
+  const paginate = (pageNumber) => {
+    setCurrentProductPage(pageNumber);
+  };
+
+  useEffect(() => {
+    let newIndexOfLastProduct = currentProductPage * productPerPage;
+    let newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
+
+    setCurrentProduct(
+      products.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+  }, [products, currentProductPage]);
+  //---------------------------------------------------------
+
   const handleCategoryChange = (selectedValue) => {
     setSelectedCategory(parseInt(selectedValue));
   };
@@ -84,7 +107,7 @@ function Productmanagment() {
   useEffect(() => {
     handleCategoryData(categories);
     handleServiceData(services);
-  }, [categories]);
+  }, [categories, services]);
   // console.log(categories);
   return (
     <div>
@@ -119,7 +142,7 @@ function Productmanagment() {
                     </tr>
                   </thead>
                   <tbody className="table-custom-rose">
-                    {products.map((item) => (
+                    {currentProduct.map((item) => (
                       <tr className="table-custom-rose" key={item.ProductID}>
                         <td className="table-custom-rose">{item.ProductID}</td>
                         <td className="table-custom-rose">
@@ -160,6 +183,11 @@ function Productmanagment() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
+                <Paginate
+                  dataPerPage={productPerPage}
+                  totalData={products.length}
+                  paginate={paginate}
+                ></Paginate>
               </div>
               <button className="button-62">Xuất dữ liệu</button>
               <button className="button-63 mx-3">Nhập dữ liệu</button>

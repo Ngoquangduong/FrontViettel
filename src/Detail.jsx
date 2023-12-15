@@ -20,45 +20,33 @@ import useProductContext from "./context/ProductContext";
 // import { useParams } from "react-router-dom";
 
 function Detail() {
-  const [productDetailLoaded, setProductDetailLoaded] = useState(false);
   const [recommnet, setRecomment] = useState([]);
   const [categoryID, setCategoryID] = useState(null);
   const { id } = useParams();
 
   const { products, product, getProductDetail } = useProductContext();
 
-  const handleRecomment = async () => {
-    if (product && product.CategoryID && products) {
-      // console.log("ádadadas");
-      let filterData = products.filter(
-        (item) => item.CategoryID === product.CategoryID
-      );
-      setRecomment(filterData);
-      console.log(recommnet);
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
-      console.log(id);
       // setRecomment([]);
       await getProductDetail(id);
-      setProductDetailLoaded(true);
+
       // getProductDetail is completed at this point
-      await handleRecomment();
     };
 
     fetchData();
     // console.log(product);
-  }, [id]);
+  }, [id, product == {}]);
 
   useEffect(() => {
     // Execute handleRecomment only if getProductDetail is completed
-    if (productDetailLoaded) {
-      handleRecomment();
-    }
-    setProductDetailLoaded(false);
-  }, [productDetailLoaded, product]);
+    let filterData = products.filter(
+      (item) =>
+        item.CategoryID === product.CategoryID &&
+        item.ProductID !== product.ProductID
+    );
+    setRecomment(filterData);
+  }, [product, recommnet == [], products]);
 
   return (
     <div className="bg-detail">

@@ -22,26 +22,28 @@ import { PaymentProvider } from "./context/PaymentContext.jsx";
 import { CityProvider } from "./context/CityContext.jsx";
 import { DistrictProvider } from "./context/DistrictContext.jsx";
 import { OrderProvider } from "./context/OrderContext.jsx";
+import AdminRouter from "./AdminRouter.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AdminAuthProvider>
-        <ProductProvider>
-          <ServiceProvider>
-            <CategoryProvider>
-              <CityProvider>
-                <DistrictProvider>
-                  <PaymentProvider>
-                    <OrderProvider>
-                      <App />
-                    </OrderProvider>
-                  </PaymentProvider>
-                </DistrictProvider>
-              </CityProvider>
-            </CategoryProvider>
-          </ServiceProvider>
-        </ProductProvider>
-      </AdminAuthProvider>
+      <ProductProvider>
+        <ServiceProvider>
+          <CategoryProvider>
+            <CityProvider>
+              <DistrictProvider>
+                <PaymentProvider>
+                  <OrderProvider>
+                    <App />
+                    <AdminAuthProvider>
+                      <AdminRouter />
+                    </AdminAuthProvider>
+                  </OrderProvider>
+                </PaymentProvider>
+              </DistrictProvider>
+            </CityProvider>
+          </CategoryProvider>
+        </ServiceProvider>
+      </ProductProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

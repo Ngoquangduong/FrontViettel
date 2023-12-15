@@ -9,9 +9,10 @@ import UnAcceptPopUp from "../component/UnAcceptPopUp";
 import AcceptPopUp from "../component/AcceptPopUp";
 import { useEffect, useState } from "react";
 import Paginate from "../component/Pagination";
+import DeletePopUp from "../component/DeletePopUp";
 
 function Ordermanagment() {
-  const { orders, Accept, UnAccept } = useOrderContext();
+  const { orders, Accept, UnAccept, deleteOrder } = useOrderContext();
   const [orderAccept, setOrderAccept] = useState([]);
   const [orderUnAccept, setOrderUnAccept] = useState([]);
 
@@ -35,6 +36,7 @@ function Ordermanagment() {
     filterData = filterData.filter((item) => {
       return item.Accept == 1;
     });
+    filterData.sort((a, b) => parseInt(b.OrderID) - parseInt(a.OrderID));
     setOrderAccept(filterData);
   };
   const getOrderUnAccpet = () => {
@@ -51,6 +53,10 @@ function Ordermanagment() {
   const handleUnAccept = (id) => {
     UnAccept(id);
   };
+  const handleDelete = (ID) => {
+    deleteOrder(ID);
+  };
+
   useEffect(() => {
     getOrderAccpet();
     getOrderUnAccpet();
@@ -144,9 +150,10 @@ function Ordermanagment() {
                           ></AcceptPopUp>
                         </td>
                         <td className="table-custom-green d-flex ">
-                          <a href="#">
-                            <button className="button-63">Xóa</button>
-                          </a>
+                          <DeletePopUp
+                            name={item.OrderID}
+                            handle={handleDelete}
+                          ></DeletePopUp>
                           <a href="#">
                             <button className="button-63">Chỉnh sửa</button>
                           </a>
@@ -154,12 +161,12 @@ function Ordermanagment() {
                       </tr>
                     ))}
 
-                    <tr>
+                    {/* <tr>
                       <td className="table-custom-green ">Tổng doanh thu :</td>
                       <td className="table-custom-green text-total-money">
                         5000
                       </td>
-                    </tr>
+                    </tr> */}
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
@@ -233,23 +240,29 @@ function Ordermanagment() {
                         <td className="table-custom-green">
                           {item.service.ServiceName}
                         </td>
-                        <td className="table-custom-green">{item.Accept}</td>
+                        <td className="table-custom-green">
+                          <UnAcceptPopUp
+                            name={item.OrderID}
+                            handle={handleUnAccept}
+                          ></UnAcceptPopUp>
+                        </td>
                         <td className="table-custom-green d-flex ">
-                          <a href="#">
-                            <button className="button-63">Xóa</button>
-                          </a>
+                          <DeletePopUp
+                            name={item.OrderID}
+                            handle={handleDelete}
+                          ></DeletePopUp>
                           <a href="#">
                             <button className="button-63">Chỉnh sửa</button>
                           </a>
                         </td>
                       </tr>
                     ))}
-                    <tr>
+                    {/* <tr>
                       <td className="table-custom-green ">Tổng doanh thu :</td>
                       <td className="table-custom-green text-total-money">
                         5000
                       </td>
-                    </tr>
+                    </tr> */}
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>

@@ -61,7 +61,7 @@ export const OrderProvider = ({ children }) => {
   const updateOrder = async (id, { ...data }) => {
     await csrf();
     try {
-      await axios.patch("/order/update" + id, data);
+      await axios.patch(`/order/update` + id, data);
       await getOrders();
     } catch (e) {
       if (e.response.status === 422) {
@@ -73,7 +73,7 @@ export const OrderProvider = ({ children }) => {
   const deleteOrder = async (id) => {
     await csrf();
     try {
-      await axios.patch("/order/delete" + id);
+      await axios.delete(`/Order/destroy/` + id);
       await getOrders();
     } catch (e) {
       if (e.response.status === 422) {
@@ -87,7 +87,15 @@ export const OrderProvider = ({ children }) => {
 
   return (
     <OrderContext.Provider
-      value={{ orders, order, getOrderDetail, insertOrder, Accept, UnAccept }}
+      value={{
+        orders,
+        order,
+        getOrderDetail,
+        insertOrder,
+        Accept,
+        UnAccept,
+        deleteOrder,
+      }}
     >
       {children}
     </OrderContext.Provider>

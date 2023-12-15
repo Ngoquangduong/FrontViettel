@@ -2,61 +2,110 @@ import Sidebar from "./adminheader";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
-import "../assets/CSS/admin.css"
+import "../assets/CSS/admin.css";
 import Table from "react-bootstrap/esm/Table";
+import useAdminAuthContext from "../context/AdminAuthContext";
+import DeletePopUp from "../component/DeletePopUp";
+import { useEffect, useState } from "react";
+import RegisterAdmin from "./RegisterAdmin";
+import Paginate from "../component/Pagination";
 
-function Usermanagement (){
+function Usermanagement() {
+  const { admins, getAdmins } = useAdminAuthContext();
+  const [currentAdmins, setCurrentAdmins] = useState([]);
+  // const [totalOrder, setTotalOrder] = useState(0);
+  const [currentAdminPage, setCurrentAdminPage] = useState(1);
+  const [adminPerPage, setAdminPerPage] = useState(12);
+  // const [totalPages, setTotalPages] = useState(0);
 
-    return(
-        <div>
-            <Sidebar/>
-            <div className="container-fluid">
-              <Container>
-              <Row className="py-3">
+  const paginate = (pageNumber) => {
+    setCurrentAdminPage(pageNumber);
+  };
+
+  useEffect(() => {
+    let newIndexOfLastProduct = currentAdminPage * adminPerPage;
+    let newIndexOfFirstProduct = newIndexOfLastProduct - adminPerPage;
+
+    setCurrentAdmins(
+      admins.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+  }, [admins, currentAdminPage]);
+
+  const handleDelete = (ID) => {
+    deleteOrder(ID);
+    getAdmins();
+  };
+  useEffect(() => {
+    getAdmins();
+  }, []);
+  return (
+    <div>
+      <Sidebar />
+      <div className="container-fluid">
+        <Container>
+          <RegisterAdmin></RegisterAdmin>
+          <Row className="py-3">
             <Col md={12}>
-            <h1 className="my-3 title-table">Danh sách tài khoản người dùng</h1>
+              <h1 className="my-3 title-table">
+                Danh sách tài khoản người dùng
+              </h1>
               <div className="table-responsive br-6">
-                
-                <Table striped bordered hover size="sm" className="table-custom ">
+                <Table
+                  striped
+                  bordered
+                  hover
+                  size="sm"
+                  className="table-custom "
+                >
                   <thead className="table-custom ">
                     <tr className="table-custom">
                       <th className="table-custom">ID</th>
                       <th className="table-custom">Tên</th>
-                      <th className="table-custom">Password</th>
                       <th className="table-custom">Số điện thoại</th>
+                      <th className="table-custom">Email</th>
+                      <th className="table-custom">Giới tính</th>
                       <th className="table-custom">Địa chỉ</th>
-                      <th className="table-custom">Thành phố</th>
-                      <th className="table-custom">Quận</th>
-                      <th className="table-custom">Ngày sinh</th>
-                      
+                      <th className="table-custom">Tùy Chỉnh</th>
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-                    <tr className="table-custom">
-                      <td className="table-custom">1</td>
-                      <td className="table-custom">Ngô Quang Dương</td>
-                      <td className="table-custom">Otto</td>
-                      <td className="table-custom">0868284726</td>
-                      <td className="table-custom">Chỗ nào đó rất đẹp và biu ti phun ở Hà Nội</td>
-                      <td className="table-custom">Hà Nội</td>
-                      <td className="table-custom">Hoàng Mike</td>
-                      <td className="table-custom">31/01/2003</td>
-                    </tr>
-                    <tr >
-                      <td className="table-custom ">Tổng số các tài khoản :</td>
-                      <td className="table-custom text-total">100</td>
-                    </tr>
+                    {currentAdmins.map((item) => (
+                      <tr className="table-custom">
+                        <td className="table-custom">{item.id}</td>
+                        <td className="table-custom">{item.name}</td>
+                        <td className="table-custom">{item.Phone}</td>
+                        <td className="table-custom">{item.email}</td>
+                        <td className="table-custom">
+                          {item.Gender == "m" ? "Nam" : "Nữ"}
+                        </td>
+                        <td className="table-custom">{item.Address}</td>
+                        <td className="table-custom">
+                          <DeletePopUp
+                            name={item.id}
+                            handle={handleDelete}
+                          ></DeletePopUp>
+                          <a href="#">
+                            <button className="button-63">Chỉnh sửa</button>
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                
+                <Paginate
+                  dataPerPage={adminPerPage}
+                  totalData={admins.length}
+                  paginate={paginate}
+                ></Paginate>
               </div>
               <button className="button-62">Xuất dữ liệu</button>
             </Col>
           </Row>
-              </Container>
-            </div>
-        </div>
-    );
+        </Container>
+      </div>
+    </div>
+  );
 }
-export default Usermanagement
+export default Usermanagement;

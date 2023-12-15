@@ -1,20 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./adminheader";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import "../assets/CSS/admin.css";
-import RegisterAdmin from "./RegisterAdmin";
+import useProductContext from "../context/ProductContext";
+import useCategoryContext from "../context/CategoryContext";
+import useAdminAuthContext from "../context/AdminAuthContext";
+import useOrderContext from "../context/OrderContext";
+
 function Adminhome() {
+  const { admins, getAdmins } = useAdminAuthContext();
+  const { products } = useProductContext();
+  const { categories } = useCategoryContext();
+  const { orders } = useOrderContext();
+  const [orderAccept, setOrderAccept] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState([]);
+  const [currentAcceptOrder, setCurrentAcceptOrder] = useState([]);
+  const [currentAdmins, setCurrentAdmins] = useState([]);
+  // const [totalOrder, setTotalOrder] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [PerPage, setPerPage] = useState(12);
+  // const [totalPages, setTotalPages] = useState(0);
+
+  const getOrderAccpet = () => {
+    let filterData = orders;
+    filterData = filterData.filter((item) => {
+      return item.Accept == 1;
+    });
+    filterData.sort((a, b) => parseInt(b.OrderID) - parseInt(a.OrderID));
+    setOrderAccept(filterData);
+  };
+
+  useEffect(() => {
+    getOrderAccpet();
+
+    let newIndexOfLast = currentPage * PerPage;
+    let newIndexOfFirst = newIndexOfLast - PerPage;
+
+    setCurrentProduct(products.slice(newIndexOfFirst, newIndexOfLast));
+    setCurrentAcceptOrder(orderAccept.slice(newIndexOfFirst, newIndexOfLast));
+    setCurrentAdmins(admins.slice(newIndexOfFirst, newIndexOfLast));
+  }, [products, admins, orders]);
+  useEffect(() => {
+    getAdmins();
+  }, []);
   return (
     <div className="">
       <Sidebar />
 
       <div className="container-fluid d-flex py-2 bg-admin ">
         <Container>
-          <RegisterAdmin></RegisterAdmin>
-
           <Row className="py-3">
             <Col md={12}>
               <h1 className="my-3 title-table">
@@ -32,31 +69,26 @@ function Adminhome() {
                     <tr className="table-custom">
                       <th className="table-custom">ID</th>
                       <th className="table-custom">Tên</th>
-                      <th className="table-custom">Password</th>
                       <th className="table-custom">Số điện thoại</th>
+                      <th className="table-custom">Email</th>
+                      <th className="table-custom">Giới tính</th>
                       <th className="table-custom">Địa chỉ</th>
-                      <th className="table-custom">Thành phố</th>
-                      <th className="table-custom">Quận</th>
-                      <th className="table-custom">Ngày sinh</th>
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-                    <tr className="table-custom">
-                      <td className="table-custom">1</td>
-                      <td className="table-custom">Ngô Quang Dương</td>
-                      <td className="table-custom">Otto</td>
-                      <td className="table-custom">0868284726</td>
-                      <td className="table-custom">
-                        Chỗ nào đó rất đẹp và biu ti phun ở Hà Nội
-                      </td>
-                      <td className="table-custom">Hà Nội</td>
-                      <td className="table-custom">Hoàng Mike</td>
-                      <td className="table-custom">31/01/2003</td>
-                    </tr>
-                    <tr>
-                      <td className="table-custom ">Tổng số các tài khoản :</td>
-                      <td className="table-custom text-total">100</td>
-                    </tr>
+                    {currentAdmins.map((item) => (
+                      <tr className="table-custom">
+                        <td className="table-custom">{item.id}</td>
+                        <td className="table-custom">{item.name}</td>
+                        <td className="table-custom">{item.Phone}</td>
+                        <td className="table-custom">{item.email}</td>
+                        <td className="table-custom">
+                          {item.Gender == "m" ? "Nam" : "Nữ"}
+                        </td>
+                        <td className="table-custom">{item.Address}</td>
+                      </tr>
+                    ))}
+
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
@@ -85,6 +117,7 @@ function Adminhome() {
                     <tr className="table-custom-green">
                       <th className="table-custom-green">ID</th>
                       <th className="table-custom-green">Tên</th>
+                      <th className="table-custom-green">Ngày Đăng Ký</th>
                       <th className="table-custom-green ">
                         Gói cước/dịch vụ đặt
                       </th>
@@ -95,31 +128,47 @@ function Adminhome() {
                       <th className="table-custom-green">Địa chỉ</th>
                       <th className="table-custom-green">Thành phố</th>
                       <th className="table-custom-green">Quận</th>
-                      <th className="table-custom-green">Ngày sinh</th>
-                      <th className="table-custom-green">Status</th>
+                      <th className="table-custom-green">
+                        Phương Thức Thanh Toán
+                      </th>
+
+                      <th className="table-custom-green">Dịch Vụ Đi Kèm</th>
+                      <th className="table-custom-green">Trạng thái đơn</th>
                     </tr>
                   </thead>
                   <tbody className="table-custom-green">
-                    <tr className="table-custom-green">
-                      <td className="table-custom-green">1</td>
-                      <td className="table-custom-green">Ngô Quang Dương</td>
-                      <td className="table-custom-green">ST5K</td>
-                      <td className="table-custom-green">5000</td>
-                      <td className="table-custom-green">0868284726</td>
-                      <td className="table-custom-green">
-                        Chỗ nào đó rất đẹp và biu ti phun ở Hà Nội
-                      </td>
-                      <td className="table-custom-green">Hà Nội</td>
-                      <td className="table-custom-green">Hoàng Mike</td>
-                      <td className="table-custom-green">31/01/2003</td>
-                      <th className="table-custom-green">Đã xác nhận</th>
-                    </tr>
-                    <tr>
+                    {currentAcceptOrder.map((item) => (
+                      <tr className="table-custom-green" key={item.OrderID}>
+                        <td className="table-custom-green">{item.OrderID}</td>
+                        <td className="table-custom-green">{item.name}</td>
+                        <td className="table-custom-green">{item.DateStart}</td>
+                        <td className="table-custom-green">{item.ProductID}</td>
+                        <td className="table-custom-green">
+                          {item.product.Price}
+                        </td>
+                        <td className="table-custom-green">{item.Phone}</td>
+                        <td className="table-custom-green">{item.Address}</td>
+                        <td className="table-custom-green">
+                          {item.city.CityName}
+                        </td>
+                        <td className="table-custom-green">
+                          {item.district.DistrictName}
+                        </td>
+                        <td className="table-custom-green">
+                          {item.payment.PaymentName}
+                        </td>
+                        <td className="table-custom-green">
+                          {item.service.ServiceName}
+                        </td>
+                        <td className="table-custom-green">Đã Xác Nhận</td>
+                      </tr>
+                    ))}
+                    {/* <tr>
                       <td className="table-custom-green ">Tổng doanh thu :</td>
                       <td className="table-custom-green text-total-money">
                         5000
                       </td>
-                    </tr>
+                    </tr> */}
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
@@ -142,8 +191,6 @@ function Adminhome() {
                   <thead className="table-custom-rose ">
                     <tr className="table-custom-rose">
                       <th className="table-custom-rose">ID</th>
-                      <th className="table-custom-rose">Tên</th>
-
                       <th className="table-custom-rose">
                         Giá trị gói cước/dịch vụ
                       </th>
@@ -157,24 +204,35 @@ function Adminhome() {
                     </tr>
                   </thead>
                   <tbody className="table-custom-rose">
-                    <tr className="table-custom-rose">
-                      <td className="table-custom-rose">1</td>
-                      <td className="table-custom-rose">ST5K</td>
-                      <td className="table-custom-rose">5000</td>
-                      <td className="table-custom-rose">Dùng tạm được</td>
-                      <td className="table-custom-rose">
-                        không dùng băng thông
-                      </td>
-                      <td className="table-custom-rose">flash</td>
-                      <td className="table-custom-rose">ờmmmmmm</td>
-                      <td className="table-custom-rose">1 ngày</td>
-                      <td className="table-custom-rose">Gói cước điện thoại</td>
-                      <td className="table-custom-rose">Đăng ký hộ</td>
-                    </tr>
-                    <tr>
+                    {currentProduct.map((item) => (
+                      <tr className="table-custom-rose" key={item.ProductID}>
+                        <td className="table-custom-rose">{item.ProductID}</td>
+                        <td className="table-custom-rose">
+                          {parseInt(item.Price)}
+                        </td>
+                        <td className="table-custom-rose">
+                          {item.Description}
+                        </td>
+                        <td className="table-custom-rose">{item.Bandwidth}</td>
+                        <td className="table-custom-rose">{item.Speed}</td>
+                        <td className="table-custom-rose">{item.IPstatic}</td>
+                        <td className="table-custom-rose">
+                          {item.UseDay} ngày
+                        </td>
+                        <td className="table-custom-rose">
+                          {item.category.CategoryName}
+                        </td>
+                        <td className="table-custom-rose">
+                          {item.service.ServiceName}
+                        </td>
+                      </tr>
+                    ))}
+
+                    {/* <tr>
+
                       <td className="table-custom-rose">Tổng doanh thu :</td>
                       <td className="table-custom-rose total-product">1</td>
-                    </tr>
+                    </tr> */}
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>

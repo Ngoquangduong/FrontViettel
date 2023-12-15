@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Table, Col, Row, Form } from "react-bootstrap";
 import "../assets/CSS/form.css";
 import "../assets/CSS/admin.css";
 import Sidebar from "./adminheader";
 import useCategoryContext from "../context/CategoryContext";
 import DeletePopUp from "../component/DeletePopUp";
+import Paginate from "../component/Pagination";
+
 const Category = () => {
   const {
     categories,
@@ -54,6 +56,24 @@ const Category = () => {
     deleteCategory(ID);
   };
 
+  const [currentCategory, setCurrentCategory] = useState([]);
+  // const [totalOrder, setTotalOrder] = useState(0);
+  const [currentCategoryPage, setCurrentCategoryPage] = useState(1);
+  const [categoryPerPage, setCategoryPerPage] = useState(12);
+  // const [totalPages, setTotalPages] = useState(0);
+
+  const paginate = (pageNumber) => {
+    setCurrentCategoryPage(pageNumber);
+  };
+
+  useEffect(() => {
+    let newIndexOfLastCategory = currentCategoryPage * categoryPerPage;
+    let newIndexOfFirstCategory = newIndexOfLastCategory - categoryPerPage;
+
+    setCurrentCategory(
+      categories.slice(newIndexOfFirstCategory, newIndexOfLastCategory)
+    );
+  }, [categories, currentCategoryPage]);
   return (
     <div>
       <Sidebar />
@@ -80,7 +100,7 @@ const Category = () => {
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-                    {categories.map((category) => (
+                    {currentCategory.map((category) => (
                       <tr key={category.CategoryID} className="table-custom">
                         <td className="table-custom">{category.CategoryID}</td>
                         <td className="table-custom">
@@ -139,6 +159,11 @@ const Category = () => {
                     ))}
                   </tbody>
                 </Table>
+                <Paginate
+                  dataPerPage={categoryPerPage}
+                  totalData={categories.length}
+                  paginate={paginate}
+                ></Paginate>
               </div>
               <button className="button-62">Xuất dữ liệu</button>
             </Col>

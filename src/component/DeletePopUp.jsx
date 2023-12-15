@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function DeletePopUp({ name, handleDelete }) {
+function DeletePopUp({ name, handle }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -10,7 +10,7 @@ function DeletePopUp({ name, handleDelete }) {
   const handleSubmit = () => {
     handleClose();
     console.log(name);
-    handleDelete(name);
+    handle(name);
   };
   return (
     <>
