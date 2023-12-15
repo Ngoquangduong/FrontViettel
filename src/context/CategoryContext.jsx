@@ -20,7 +20,7 @@ export const CategoryProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 401) {
-        navigate("/login");
+        navigate("/admin/category");
       }
     }
   };

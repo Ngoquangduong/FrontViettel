@@ -121,7 +121,7 @@ const Category = () => {
     deleteCategory,
   } = useCategoryContext();
   const [categoryName, setCategoryName] = useState("");
-
+    const [editingCategory, setEditingCategory] = useState(null);
   const handleInsertCategory = async (event) => {
     event.preventDefault();
     try {
@@ -134,6 +134,27 @@ const Category = () => {
         console.error("Validation error:", e.response.data.errors);
       }
     }
+  };
+  const handleUpdateCategory = async (id) => {
+    try {
+      await updateCategory(id, {
+        categoryName: editingCategory,
+      });
+      setEditingCategory(null); // Clear editing state after successful update
+      getCategory(); // Refresh the category list
+    } catch (e) {
+      if (e.response && e.response.status === 422) {
+        console.error("Validation error:", e.response.data.errors);
+      }
+    }
+  };
+
+  const handleEditCategory = (id, name) => {
+    setEditingCategory(name); // Set the category name in the editing state
+  };
+
+  const handleCancelEdit = () => {
+    setEditingCategory(null); // Clear editing state if canceling edit
   };
 
   return (
@@ -156,23 +177,56 @@ const Category = () => {
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-                    {/* Render your category data here */}
-                    {categories.map((category) => (
-                  <tr key={category.id} className="table-custom">
-                    <td className="table-custom">{category.id}</td>
-                    <td className="table-custom">{category.name}</td>
-                    <th className="table-custom d-flex justify-center">
-                      <button className="button-63 ms-2">Chỉnh sửa</button>
-                      <button
-                        className="button-62 ms-2"
-                        onClick={() => deleteCategory(category.id)}
-                      >
-                        Xóa
-                      </button>
-                    </th>
-                  </tr>
-                ))}
-                  </tbody>
+          {categories.map((category) => (
+            <tr key={category.id} className="table-custom">
+              <td className="table-custom">{category.id}</td>
+              <td className="table-custom">
+                {editingCategory === category.name ? (
+                  <input
+                    type="text"
+                    value={editingCategory}
+                    onChange={(e) => setEditingCategory(e.target.value)}
+                  />
+                ) : (
+                  category.name
+                )}
+              </td>
+              <th className="table-custom d-flex justify-center">
+                {editingCategory === category.name ? (
+                  <>
+                    <button
+                      className="button-63 ms-2"
+                      onClick={() => handleUpdateCategory(category.id)}
+                    >
+                      Lưu
+                    </button>
+                    <button
+                      className="button-62 ms-2"
+                      onClick={handleCancelEdit}
+                    >
+                      Hủy
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="button-63 ms-2"
+                      onClick={() => handleEditCategory(category.id, category.name)}
+                    >
+                      Chỉnh sửa
+                    </button>
+                    <button
+                      className="button-62 ms-2"
+                      onClick={() => deleteCategory(category.id)}
+                    >
+                      Xóa
+                    </button>
+                  </>
+                )}
+              </th>
+            </tr>
+          ))}
+        </tbody>
                 </Table>
               </div>
               <button className="button-62">Xuất dữ liệu</button>
