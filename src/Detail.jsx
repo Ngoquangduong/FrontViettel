@@ -26,26 +26,30 @@ function Detail() {
   const { id } = useParams();
 
   const { products, product, getProductDetail } = useProductContext();
-  const handleRecomment = () => {
+
+  const handleRecomment = async () => {
     if (product && product.CategoryID && products) {
-      console.log(product.CategoryID);
+      // console.log("ádadadas");
       let filterData = products.filter(
         (item) => item.CategoryID === product.CategoryID
       );
       setRecomment(filterData);
+      console.log(recommnet);
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      setRecomment([]);
+      console.log(id);
+      // setRecomment([]);
       await getProductDetail(id);
-      setProductDetailLoaded(true); // set a flag to indicate that getProductDetail is completed
-      window.scrollTo(0, 0);
-      // console.log(product);
+      setProductDetailLoaded(true);
+      // getProductDetail is completed at this point
+      await handleRecomment();
     };
 
     fetchData();
+    // console.log(product);
   }, [id]);
 
   useEffect(() => {
@@ -53,6 +57,7 @@ function Detail() {
     if (productDetailLoaded) {
       handleRecomment();
     }
+    setProductDetailLoaded(false);
   }, [productDetailLoaded, product]);
 
   return (

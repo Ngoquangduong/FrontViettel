@@ -10,15 +10,14 @@ const DistrictContext = createContext({});
 export const DistrictProvider = ({ children }) => {
   const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
-  const [Districts, setDistricts] = useState([]);
+  const [districts, setDistricts] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [District, setDistrict] = useState([]);
+  const [district, setDistrict] = useState([]);
 
   const getDistricts = async () => {
     try {
-      
-      const result = await axios.get("/District");
-      setDistricts(result.data.Districts);
+      const result = await axios.get("/district");
+      setDistricts(result.data.districts);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
@@ -66,11 +65,15 @@ export const DistrictProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getDistricts();
-  }, []);
+    if (districts.length === 0) {
+      getDistricts();
+    }
+  }, [districts]);
 
   return (
-    <DistrictContext.Provider value={{ Districts, District, getDistrictDetail }}>
+    <DistrictContext.Provider
+      value={{ districts, district, getDistrictDetail }}
+    >
       {children}
     </DistrictContext.Provider>
   );

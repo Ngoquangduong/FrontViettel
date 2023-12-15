@@ -4,13 +4,47 @@ import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import useProductContext from "../context/ProductContext";
-import useFormContext from "../context/FormContext";
+import useCityContext from "../context/CityContext";
+import useDistrictContext from "../context/DistrictContext";
+import usePaymentContext from "../context/PaymentContext";
+import useOrderContext from "../context/OrderContext";
+
 function FormPopUp(props) {
   const { product } = useProductContext();
-  const { cities, districts, payments } = useFormContext();
+  const { cities } = useCityContext();
+  const { districts } = useDistrictContext();
+  const { payments } = usePaymentContext();
 
-  const [selectedCity, setSelectedCity] = useState();
-  const [selectedDistrict, setSelectedDistrict] = useState();
+  const { insertOrder } = useOrderContext();
+
+  const [selectedCity, setSelectedCity] = useState(undefined);
+  const [selectedDistrict, setSelectedDistrict] = useState(undefined);
+  const [selectedProduct, setSelectedProduct] = useState(
+    product.ProductID || ""
+  );
+  const [Phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [Address, setAddress] = useState("");
+
+  const [payment, setPayment] = useState(undefined);
+
+  const handleOrder = async (event) => {
+    event.preventDefault();
+    setSelectedProduct(product.ProductID);
+
+    insertOrder({
+      ProductID: selectedProduct,
+      Phone: Phone,
+      name: name,
+      Address: Address,
+      CityID: selectedCity,
+      DistrictID: selectedDistrict,
+      PaymentID: payment,
+    });
+
+    // login({ email, password });
+    
+  };
   return (
     <Modal
       {...props}
@@ -24,7 +58,7 @@ function FormPopUp(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form action="/register" method="POST">
+        <Form onSubmit={handleOrder}>
           <Row>
             <Col>
               <Modal.Title
@@ -44,12 +78,20 @@ function FormPopUp(props) {
                 className="w-100 "
                 placeholder="Tên người mua"
                 required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <span className="highlight"></span>
               <span className="bar mb-4"></span>
             </Col>
             <Col className="w-50 ">
-              <Form.Select aria-label="Default select example" className="">
+              <Form.Select
+                aria-label="Default select example"
+                className=""
+                onChange={(e) => {
+                  setPayment(parseInt(e.target.value));
+                }}
+              >
                 <option>Phương thức thanh toán</option>
                 {payments.map((item) => (
                   <option key={item.PaymentID} value={item.PaymentID}>
@@ -67,6 +109,8 @@ function FormPopUp(props) {
                 className="w-100"
                 placeholder="Số điện thoại liên hệ"
                 required
+                value={Phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
               <span className="highlight"></span>
               <span className="bar mb-4"></span>
@@ -76,7 +120,7 @@ function FormPopUp(props) {
                 aria-label="Default select example"
                 // className="w-25"
                 onChange={(e) => {
-                  setSelectedCity(e.target.value);
+                  setSelectedCity(parseInt(e.target.value));
                   // setDistricts(e.target.value === "" ? [] : cities);
                 }}
                 // onChange={(e) => {
@@ -96,7 +140,7 @@ function FormPopUp(props) {
               <Form.Select
                 aria-label="Default select example"
                 onChange={(e) => {
-                  setSelectedDistrict(e.target.value);
+                  setSelectedDistrict(parseInt(e.target.value));
                   // setDistricts(e.target.value === "" ? [] : cities);
                 }}
               >
@@ -119,6 +163,8 @@ function FormPopUp(props) {
                 className="w-100"
                 placeholder="Địa chỉ"
                 required
+                value={Address}
+                onChange={(e) => setAddress(e.target.value)}
               />
               <span className="highlight"></span>
               <span className="bar mb-4"></span>

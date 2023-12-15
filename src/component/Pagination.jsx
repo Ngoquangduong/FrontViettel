@@ -22,10 +22,10 @@ const Paginate = ({ dataPerPage, totalData, paginate }) => {
   }
   return (
     <Pagination>
-      <Pagination.Prev />
+      {/* <Pagination.Prev /> */}
       {/* <Pagination.Item>{1}</Pagination.Item>; */}
       {pageNumber}
-      <Pagination.Next />
+      {/* <Pagination.Next /> */}
     </Pagination>
   );
 };

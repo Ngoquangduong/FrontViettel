@@ -10,15 +10,15 @@ const PaymentContext = createContext({});
 export const PaymentProvider = ({ children }) => {
   const { id } = useParams();
   const csrf = () => axios.get("/sanctum/csrf-cookie");
-  const [Payments, setPayments] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [errors, setErrors] = useState([]);
   const [Payment, setPayment] = useState([]);
 
   const getPayments = async () => {
     try {
       
-      const result = await axios.get("/Payment");
-      setPayments(result.data.Payments);
+      const result = await axios.get("/payment");
+      setPayments(result.data.payments);
     } catch (error) {
       console.error("Error fetching city data:", error);
     }
@@ -70,7 +70,7 @@ export const PaymentProvider = ({ children }) => {
   }, []);
 
   return (
-    <PaymentContext.Provider value={{ Payments, Payment, getPaymentDetail }}>
+    <PaymentContext.Provider value={{ payments, Payment, getPaymentDetail }}>
       {children}
     </PaymentContext.Provider>
   );

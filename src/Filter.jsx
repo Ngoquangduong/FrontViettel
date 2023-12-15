@@ -12,13 +12,14 @@ import FormFilter from "./component/Filter/FormFilter";
 import SelectForm from "./component/SelectForm";
 import useCategoryContext from "./context/CategoryContext";
 import useProductContext from "./context/ProductContext";
-import { all } from "axios";
+// import { all } from "axios";
 function Filter({ show, handleClose, setFilterResult, filterResult }) {
   const { categories } = useCategoryContext();
   const [sort, setSort] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
+  const [minPrice, setMinPrice] = useState(undefined);
+  const [maxPrice, setMaxPrice] = useState(undefined);
+  const [categoryData, setCategoryData] = useState([]);
 
   const { products } = useProductContext();
 
@@ -40,14 +41,22 @@ function Filter({ show, handleClose, setFilterResult, filterResult }) {
     }
     handleClose();
   };
+  const handleCategoryData = (data) => {
+    let temp = data.map((item) => ({
+      ID: item.CategoryID,
+      Name: item.CategoryName,
+    }));
+    // console.log(temp);
+    setCategoryData(temp);
+  };
   //---------------Filter-----------------------
   const handleFilter = (event) => {
     event.preventDefault();
     if (
       selectedCategory !== null ||
       sort !== null ||
-      minPrice !== null ||
-      maxPrice !== null
+      minPrice !== undefined ||
+      maxPrice !== undefined
     ) {
       let filterData = products; // Change const to let
 
@@ -78,23 +87,22 @@ function Filter({ show, handleClose, setFilterResult, filterResult }) {
           return item;
         });
       }
-      if (minPrice !== null) {
+      if (minPrice !== undefined) {
         filterData = filterData.filter((item) => {
           return parseInt(item.Price) >= minPrice;
         });
       }
-      if (maxPrice !== null) {
+      if (maxPrice !== undefined) {
         filterData = filterData.filter((item) => {
           return parseInt(item.Price) <= maxPrice;
         });
       }
       setFilterResult(filterData);
-      console.log(filterResult);
     } else {
       setFilterResult([]);
     }
-    setMaxPrice(null);
-    setMinPrice(null);
+    setMaxPrice(undefined);
+    setMinPrice(undefined);
     setSelectedCategory(null);
     setSort(null);
     handleClose();
@@ -112,10 +120,11 @@ function Filter({ show, handleClose, setFilterResult, filterResult }) {
     setSort(selectedValue);
   };
 
-  // useEffect(() => {
-  //   // This will run after the state is updated
-  //   handleFilter({ preventDefault: () => {} }); // You can pass a dummy event
-  // }, [selectedCategory, sort, minPrice, maxPrice]);
+  useEffect(() => {
+    // This will run after the state is updated
+    handleCategoryData(categories);
+    // console.log(categoryData);
+  }, [categories]);
 
   return (
     <Offcanvas
@@ -130,7 +139,8 @@ function Filter({ show, handleClose, setFilterResult, filterResult }) {
         <Form onSubmit={(e) => handleFilter(e)}>
           <b>Loại Sản Phẩm</b>
           <SelectForm
-            item={categories}
+            name={"Loại Sản Phẩm"}
+            item={categoryData}
             onCategoryChange={handleCategoryChange}
           />
           <br></br>
