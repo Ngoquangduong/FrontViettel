@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Container, Table, Col, Row, Form } from "react-bootstrap";
 import "../assets/CSS/form.css";
@@ -16,7 +15,7 @@ const Category = () => {
     deleteCategory,
   } = useCategoryContext();
   const [categoryName, setCategoryName] = useState("");
-    const [editingCategory, setEditingCategory] = useState(null);
+  const [editingCategory, setEditingCategory] = useState(null);
   const handleInsertCategory = async (event) => {
     event.preventDefault();
     try {
@@ -51,9 +50,9 @@ const Category = () => {
   const handleCancelEdit = () => {
     setEditingCategory(null); // Clear editing state if canceling edit
   };
-   const handleDelete = (ID) => {
-      deleteCategory(ID);
-    };
+  const handleDelete = (ID) => {
+    deleteCategory(ID);
+  };
 
   return (
     <div>
@@ -64,7 +63,13 @@ const Category = () => {
             <Col md={12}>
               <h1 className="my-3 title-table">Danh sách loại sản phẩm</h1>
               <div className="table-responsive br-6">
-                <Table striped bordered hover size="sm" className="table-custom">
+                <Table
+                  striped
+                  bordered
+                  hover
+                  size="sm"
+                  className="table-custom"
+                >
                   <thead className="table-custom">
                     <tr className="table-custom">
                       <th className="table-custom">ID</th>
@@ -75,55 +80,64 @@ const Category = () => {
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-          {categories.map((category) => (
-            <tr key={category.id} className="table-custom">
-              <td className="table-custom">{category.id}</td>
-              <td className="table-custom">
-                {editingCategory === category.name ? (
-                  <input
-                    type="text"
-                    value={editingCategory}
-                    onChange={(e) => setEditingCategory(e.target.value)}
-                  />
-                ) : (
-                  category.name
-                )}
-              </td>
-              <th className="table-custom d-flex justify-center">
-                {editingCategory === category.name ? (
-                  <>
-                    <button
-                      className="button-63 ms-2"
-                      onClick={() => handleUpdateCategory(category.id)}
-                    >
-                      Lưu
-                    </button>
-                    <button
-                      className="button-62 ms-2"
-                      onClick={handleCancelEdit}
-                    >
-                      Hủy
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="button-63 ms-2"
-                      onClick={() => handleEditCategory(category.id, category.name)}
-                    >
-                      Chỉnh sửa
-                    </button>
-                    <DeletePopUp
-                            name={item.CategoryID}
-                            handle={handleDelete}
-                    ></DeletePopUp>
-                  </>
-                )}
-              </th>
-            </tr>
-          ))}
-        </tbody>
-
+                    {categories.map((category) => (
+                      <tr key={category.CategoryID} className="table-custom">
+                        <td className="table-custom">{category.CategoryID}</td>
+                        <td className="table-custom">
+                          {editingCategory === category.CategoryName ? (
+                            <input
+                              type="text"
+                              value={editingCategory}
+                              style={{ color: "#000" }}
+                              onChange={(e) =>
+                                setEditingCategory(e.target.value)
+                              }
+                            />
+                          ) : (
+                            category.CategoryName
+                          )}
+                        </td>
+                        <th className="table-custom d-flex justify-center">
+                          {editingCategory === category.CategoryName ? (
+                            <>
+                              <button
+                                className="button-63 ms-2"
+                                onClick={() =>
+                                  handleUpdateCategory(category.CategoryName)
+                                }
+                              >
+                                Lưu
+                              </button>
+                              <button
+                                className="button-62 ms-2"
+                                onClick={handleCancelEdit}
+                              >
+                                Hủy
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <button
+                                className="button-63 ms-2"
+                                onClick={() =>
+                                  handleEditCategory(
+                                    category.CategoryID,
+                                    category.CategoryName
+                                  )
+                                }
+                              >
+                                Chỉnh sửa
+                              </button>
+                              <DeletePopUp
+                                name={category.CategoryID}
+                                handle={handleDelete}
+                              ></DeletePopUp>
+                            </>
+                          )}
+                        </th>
+                      </tr>
+                    ))}
+                  </tbody>
                 </Table>
               </div>
               <button className="button-62">Xuất dữ liệu</button>
@@ -141,7 +155,6 @@ const Category = () => {
                     placeholder="Tên loại sản phẩm"
                     value={categoryName}
                     onChange={(e) => setCategoryName(e.target.value)}
-
                     required
                   />
                   <span className="highlight"></span>
