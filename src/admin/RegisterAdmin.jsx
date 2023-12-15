@@ -14,22 +14,48 @@ const RegisterAdmin = () => {
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const { admin, errors, register } = useAdminAuthContext();
 
+
+
+  // const handleAdminLogin = async (event) => {
+  //   event.preventDefault();
+  //   try{
+  //         login({
+  //     email,
+  //     password,
+  //   });
+  //   }catch(e){
+  //     if(e.response.status === 422){
+  //       setErrors(e.response.data.errors);
+  //     }
+  //   }
+
+  // };
+
+
+
+
   const handleAdminRegister = async (event) => {
     event.preventDefault();
-    register({
-      name,
-      email,
-      Phone,
-      Gender,
-      Address,
-      password,
-      password_confirmation,
-    });
+    try{
+      register({
+        name,
+        email,
+        Phone,
+        Gender,
+        Address,
+        password,
+        password_confirmation,
+      });
+    }catch(e){
+      if(e.response.status === 422){
+        setErrors(e.response.data.errors);
+      }
+    }
+  
   };
 
 
 
-  
   return (
     <Row>
       <h1 className="my-3 title-table">Thêm admin</h1>
@@ -40,11 +66,15 @@ const RegisterAdmin = () => {
               type="text"
               className="w-100"
               placeholder="Tên"
-              required
+             
               autoComplete="on"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            <span className="text-red-400 text-sm m-2 p-2">abc</span>
+                {errors.name &&(
+                        <span className="text-red-400 text-sm m-2 p-2">{errors.name[0]}</span>
+                  )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -83,10 +113,12 @@ const RegisterAdmin = () => {
               className="w-100"
               placeholder="Password"
               autoComplete="on"
-              required
+              
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
+              
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -108,7 +140,7 @@ const RegisterAdmin = () => {
           <Col>
             <Form.Select
               aria-label="Gender"
-              className="mt-4"
+              className="mt-3"
               value={Gender}
               onChange={(e) => setGender(e.target.value)}
             >
@@ -120,7 +152,7 @@ const RegisterAdmin = () => {
           <Col>
             <input
               type="text"
-              className="w-100 mt-3"
+              className="w-100 mt-4"
               placeholder="Địa chỉ"
               autoComplete="on"
               required
