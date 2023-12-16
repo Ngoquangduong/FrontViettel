@@ -22,7 +22,7 @@ const Category = () => {
     event.preventDefault();
     try {
       await insertCategory({
-        categoryName,
+        CategoryName: categoryName,
       });
       setCategoryName(""); // Clear input after successful insertion
     } catch (e) {

@@ -71,14 +71,14 @@ export const ProductProvider = ({ children }) => {
   const insertProduct = async ({ ...data }) => {
     await csrf();
     setErrors([]);
-    try {
-      await axios.post("/Product/create", data);
+    // try {
+      await axios.post("/product/insert", data);
       await getProducts();
-    } catch (e) {
-      if (e.response.status === 422) {
-        setErrors(e.response.data.errors);
-      }
-    }
+    // } catch (e) {
+    //   if (e.response.status === 422) {
+    //     setErrors(e.response.data.errors);
+    //   }
+    // }
   };
 
   const updateProduct = async (id, { ...data }) => {
