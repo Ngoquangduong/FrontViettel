@@ -11,13 +11,20 @@ const Category = () => {
   const {
     categories,
     errors,
+    category,
+    getCategoryDetail,
+    setCategoryDetail,
     getCategory,
     insertCategory,
     updateCategory,
     deleteCategory,
   } = useCategoryContext();
   const [categoryName, setCategoryName] = useState("");
-  const [editingCategory, setEditingCategory] = useState(null);
+
+  const [editingCategory, setEditingCategory] = useState("");
+
+  const [updateActive, setUpdateActive] = useState(false);
+
   const handleInsertCategory = async (event) => {
     event.preventDefault();
     try {
@@ -34,24 +41,31 @@ const Category = () => {
   const handleUpdateCategory = async (id) => {
     try {
       await updateCategory(id, {
-        categoryName: editingCategory,
+        CategoryName: editingCategory,
       });
-      setEditingCategory(null); // Clear editing state after successful update
-      getCategory(); // Refresh the category list
     } catch (e) {
       if (e.response && e.response.status === 422) {
         console.error("Validation error:", e.response.data.errors);
       }
     }
+    setUpdateActive(false);
+    setCategoryDetail({});
+    setEditingCategory("");
   };
 
-  const handleEditCategory = (id, name) => {
-    setEditingCategory(name); // Set the category name in the editing state
+  const handleEditCategory = async (id, name) => {
+    setUpdateActive(true);
+    setEditingCategory(name);
+    await getCategoryDetail(id);
+    // Set the category name in the editing state
   };
 
   const handleCancelEdit = () => {
-    setEditingCategory(null); // Clear editing state if canceling edit
+    setUpdateActive(false);
+    setEditingCategory("");
+    setCategoryDetail({});
   };
+
   const handleDelete = (ID) => {
     deleteCategory(ID);
   };
@@ -65,7 +79,6 @@ const Category = () => {
   const paginate = (pageNumber) => {
     setCurrentCategoryPage(pageNumber);
   };
-
   useEffect(() => {
     let newIndexOfLastCategory = currentCategoryPage * categoryPerPage;
     let newIndexOfFirstCategory = newIndexOfLastCategory - categoryPerPage;
@@ -100,11 +113,12 @@ const Category = () => {
                     </tr>
                   </thead>
                   <tbody className="table-custom">
-                    {currentCategory.map((category) => (
-                      <tr key={category.CategoryID} className="table-custom">
-                        <td className="table-custom">{category.CategoryID}</td>
+                    {currentCategory.map((item) => (
+                      <tr key={item.CategoryID} className="table-custom">
+                        <td className="table-custom">{item.CategoryID}</td>
                         <td className="table-custom">
-                          {editingCategory === category.CategoryName ? (
+                          {updateActive === true &&
+                          category.CategoryID === item.CategoryID ? (
                             <input
                               type="text"
                               value={editingCategory}
@@ -114,16 +128,17 @@ const Category = () => {
                               }
                             />
                           ) : (
-                            category.CategoryName
+                            item.CategoryName
                           )}
                         </td>
                         <th className="table-custom d-flex justify-center">
-                          {editingCategory === category.CategoryName ? (
+                          {updateActive === true &&
+                          category.CategoryID === item.CategoryID ? (
                             <>
                               <button
                                 className="button-63 ms-2"
                                 onClick={() =>
-                                  handleUpdateCategory(category.CategoryName)
+                                  handleUpdateCategory(item.CategoryID)
                                 }
                               >
                                 Lưu
@@ -141,15 +156,15 @@ const Category = () => {
                                 className="button-63 ms-2"
                                 onClick={() =>
                                   handleEditCategory(
-                                    category.CategoryID,
-                                    category.CategoryName
+                                    item.CategoryID,
+                                    item.CategoryName
                                   )
                                 }
                               >
                                 Chỉnh sửa
                               </button>
                               <DeletePopUp
-                                name={category.CategoryID}
+                                name={item.CategoryID}
                                 handle={handleDelete}
                               ></DeletePopUp>
                             </>

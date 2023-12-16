@@ -7,6 +7,7 @@ const CategoryContext = createContext({});
 
 export const CategoryProvider = ({ children }) => {
   const [categories, setCategory] = useState([]);
+  const [category, setCategoryDetail] = useState({});
   const [errors, setErrors] = useState([]);
   const csrf = () => axios.get("/sanctum/csrf-cookie");
   const navigate = useNavigate();
@@ -23,6 +24,18 @@ export const CategoryProvider = ({ children }) => {
     }
   };
 
+  const getCategoryDetail = async (id) => {
+    try {
+      await csrf(); // Xác thực trước
+      const result = await axios.get("/category/" + id);
+      setCategoryDetail(result.data.category);
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        navigate("/admin/category");
+      }
+    }
+  };
   const insertCategory = async ({ ...data }) => {
     await csrf();
     setErrors([]);
@@ -41,8 +54,7 @@ export const CategoryProvider = ({ children }) => {
     await csrf();
     setErrors([]);
     try {
-      await axios.patch("/category/update" + id, data);
-
+      await axios.patch("/category/update/" + id, data);
       await getCategory();
     } catch (e) {
       if (e.response.status === 422) {
@@ -73,6 +85,9 @@ export const CategoryProvider = ({ children }) => {
       value={{
         categories,
         errors,
+        category,
+        setCategoryDetail,
+        getCategoryDetail,
         getCategory,
         insertCategory,
         updateCategory,
