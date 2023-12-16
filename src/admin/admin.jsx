@@ -77,7 +77,7 @@ function Adminhome() {
                   </thead>
                   <tbody className="table-custom">
                     {currentAdmins.map((item) => (
-                      <tr className="table-custom">
+                      <tr className="table-custom" key={item.id}>
                         <td className="table-custom">{item.id}</td>
                         <td className="table-custom">{item.name}</td>
                         <td className="table-custom">{item.Phone}</td>
