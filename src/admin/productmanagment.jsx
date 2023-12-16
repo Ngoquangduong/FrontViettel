@@ -16,7 +16,7 @@ import useServiceContext from "../context/ServiceContext";
 import DeletePopUp from "../component/DeletePopUp";
 import Paginate from "../component/Pagination";
 function Productmanagment() {
-  const { products, errors, insertProduct, deleteProduct } =
+  const { products, errors, insertProduct, deleteProduct,updateProduct  } =
     useProductContext();
   const [show, setShow] = useState(false);
   const { categories } = useCategoryContext();
@@ -90,7 +90,7 @@ function Productmanagment() {
       Speed: Speed,
       Bandwidth: Bandwidth,
       Price: Price,
-      Gift: Gilf,
+      Gift: Gift,
       Description: Description,
       IPStatic: IPStatic,
       UseDay: UseDay,
@@ -102,6 +102,35 @@ function Productmanagment() {
   const handleDelete = (ID) => {
     deleteProduct(ID);
   };
+  //--------------------update----------------------------
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const handleUpdateProduct = async () => {
+    try {
+      // Ensure selectedProduct is not null before updating
+      if (selectedProduct) {
+        await updateProduct(selectedProduct.ProductID, {
+          Speed: selectedProduct.Speed,
+          Bandwidth: selectedProduct.Bandwidth,
+          Price: selectedProduct.Price,
+          Gift: selectedProduct.Gift,
+          Description: selectedProduct.Description,
+          IPStatic: selectedProduct.IPStatic,
+          UseDay: selectedProduct.UseDay,
+          CategoryID: selectedCategory,
+          ServiceID: selectedService,
+        });
+
+        // Close the modal and fetch updated data
+        handleClose();
+        // You might want to refetch the products or update the state accordingly
+      }
+    } catch (e) {
+      console.error("Error updating product:", e);
+      // Handle the error, show a message to the user, etc.
+    }
+  };
+
+
   //----------------useEffect--------------------------
 
   useEffect(() => {
@@ -109,6 +138,9 @@ function Productmanagment() {
     handleServiceData(services);
   }, [categories, services]);
   // console.log(categories);
+
+
+
   return (
     <div>
       <Sidebar />
@@ -169,7 +201,7 @@ function Productmanagment() {
                             handle={handleDelete}
                           ></DeletePopUp>
                           <a href="#">
-                            <button className="button-63">Chỉnh sửa</button>
+                            <button className="button-63" onClick={handleUpdateProduct}>Chỉnh sửa</button>
                           </a>
                         </td>
                       </tr>
