@@ -32,7 +32,7 @@ function Usermanagement() {
   }, [admins, currentAdminPage]);
 
   const handleDelete = (ID) => {
-    deleteOrder(ID);
+    deleteAdmin(ID);
     getAdmins();
   };
   useEffect(() => {
@@ -43,7 +43,7 @@ function Usermanagement() {
       <Sidebar />
       <div className="container-fluid">
         <Container>
-          <RegisterAdmin></RegisterAdmin>
+          <RegisterAdmin/>
           <Row className="py-3">
             <Col md={12}>
               <h1 className="my-3 title-table">

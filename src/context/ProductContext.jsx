@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
 // import { data } from "autoprefixer";
 
 // ... (imports)
@@ -13,17 +13,15 @@ const ProductContext = createContext({});
 export const ProductProvider = ({ children }) => {
   const csrf = () => axios.get("/sanctum/csrf-cookie");
   // getProduct
-  const [totalProduct, setTotalProduct] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(8);
-  const [totalPages, setTotalPages] = useState(0);
 
+  const [product, setProductDetail] = useState({});
+  
   //-------------Filter--------------
   // set Variable
 
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
 
   // const { id } = useParams();
   const navigate = useNavigate();
@@ -42,7 +40,8 @@ export const ProductProvider = ({ children }) => {
     try {
       // await csrf();
       const result = await axios.get("/product/" + id);
-      setProduct(result.data.product[0]);
+      // setProduct(result.data.product[0]);
+      setProductDetail(result.data.product[0]);
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
@@ -85,7 +84,7 @@ export const ProductProvider = ({ children }) => {
     await csrf();
     setErrors([]);
     try {
-      await axios.patch("/product/update" + id, data);
+      await axios.patch("/product/update/" + id, data);
       await getProducts();
     } catch (e) {
       if (e.response.status === 422) {
@@ -107,9 +106,7 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  
   useEffect(() => {
     // console.log("hello");
     if (products.length === 0) {
@@ -123,12 +120,8 @@ export const ProductProvider = ({ children }) => {
         products,
         errors,
         product,
-        totalPages,
-        totalProduct,
-        productPerPage,
-        currentPage,
-        paginate,
         getProducts,
+        setProductDetail,
         getProductDetail,
         insertProduct,
         updateProduct,

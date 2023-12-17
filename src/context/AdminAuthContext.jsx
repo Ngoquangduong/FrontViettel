@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useEffect, useState } from "react";
 // import axios from "../api/axios.jsx";
 
@@ -64,6 +65,18 @@ export const AdminAuthProvider = ({ children }) => {
       }
     }
   };
+  const deleteAdmin = async (id) => {
+    await csrf();
+    setErrors([]);
+    try {
+      await axios.delete("/admin/delete/" + id);
+      await getAdmins();
+    } catch (e) {
+      if (e.response.status === 422) {
+        setErrors(e.response.data.errors);
+      }
+    }
+  };
 
   const logout = () => {
     axios.post("/admin/logout").then(() => {
@@ -87,6 +100,7 @@ export const AdminAuthProvider = ({ children }) => {
         logout,
         getAdmin,
         getAdmins,
+        deleteAdmin,
       }}
     >
       {" "}
