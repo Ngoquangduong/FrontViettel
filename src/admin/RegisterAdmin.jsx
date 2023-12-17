@@ -14,10 +14,9 @@ const RegisterAdmin = () => {
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const { admin, errors, register, setErrors } = useAdminAuthContext();
 
-
   const handleAdminRegister = async (event) => {
     event.preventDefault();
-    try{
+    try {
       register({
         name,
         email,
@@ -28,6 +27,7 @@ const RegisterAdmin = () => {
         password_confirmation,
       });
       setName("");
+<<<<<<< HEAD
     setEmail("");
     setPhone("");
     setGender("m");
@@ -36,14 +36,20 @@ const RegisterAdmin = () => {
     setPasswordConfirmation("");
     }catch(e){
       if(e.response.status === 422){
+=======
+      setEmail("");
+      setPhone("");
+      setGender("m");
+      setAddress("");
+      setPassword("");
+      setPasswordConfirmation("");
+    } catch (e) {
+      if (e.response.status === 422) {
+>>>>>>> f841946ca420f4a4ea682f03354e979b4478273d
         setErrors(e.response.data.errors);
       }
     }
-  
   };
-
-
-
 
   return (
     <Row>
@@ -55,15 +61,16 @@ const RegisterAdmin = () => {
               type="text"
               className="w-100"
               placeholder="Tên"
-             
               autoComplete="on"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             {/* <span className="text-red-400 text-sm m-2 p-2">abc</span> */}
-                {errors.name &&(
-                        <span className="text-red-400 text-sm m-2 p-2">{errors.name[0]}</span>
-                  )}
+            {errors.name && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.name[0]}
+              </span>
+            )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -77,6 +84,11 @@ const RegisterAdmin = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {errors.email && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.name[0]}
+              </span>
+            )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -93,6 +105,11 @@ const RegisterAdmin = () => {
               value={Phone}
               onChange={(e) => setPhone(e.target.value)}
             />
+            {errors.Phone && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.Phone[0]}
+              </span>
+            )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -102,12 +119,14 @@ const RegisterAdmin = () => {
               className="w-100"
               placeholder="Password"
               autoComplete="on"
-              
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
-              
+            {errors.password && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.name[0]}
+              </span>
+            )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -121,6 +140,11 @@ const RegisterAdmin = () => {
               value={password_confirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
+            {errors.password_confirmation && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.password_confirmation[0]}
+              </span>
+            )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>
@@ -137,6 +161,11 @@ const RegisterAdmin = () => {
               <option value="m">Nam</option>
               <option value="f">Nữ</option>
             </Form.Select>
+            {errors.Gender && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.Gender[0]}
+              </span>
+            )}
           </Col>
           <Col>
             <input
@@ -148,6 +177,11 @@ const RegisterAdmin = () => {
               value={Address}
               onChange={(e) => setAddress(e.target.value)}
             />
+            {errors.Address && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.Address[0]}
+              </span>
+            )}
             <span className="highlight"></span>
             <span className="bar mb-4"></span>
           </Col>

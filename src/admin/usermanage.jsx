@@ -11,7 +11,7 @@ import RegisterAdmin from "./RegisterAdmin";
 import Paginate from "../component/Pagination";
 
 function Usermanagement() {
-  const { admins, getAdmins } = useAdminAuthContext();
+  const { admins, getAdmins, deleteAdmin } = useAdminAuthContext();
   const [currentAdmins, setCurrentAdmins] = useState([]);
   // const [totalOrder, setTotalOrder] = useState(0);
   const [currentAdminPage, setCurrentAdminPage] = useState(1);
@@ -70,7 +70,7 @@ function Usermanagement() {
                   </thead>
                   <tbody className="table-custom">
                     {currentAdmins.map((item) => (
-                      <tr className="table-custom">
+                      <tr className="table-custom" key={item.id}>
                         <td className="table-custom">{item.id}</td>
                         <td className="table-custom">{item.name}</td>
                         <td className="table-custom">{item.Phone}</td>

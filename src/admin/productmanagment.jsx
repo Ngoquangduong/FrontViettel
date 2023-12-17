@@ -47,13 +47,13 @@ function Productmanagment() {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedService, setSelectedService] = useState(0);
   const [ProductID, setProductID] = useState("");
-  const [Price, setPrice] = useState(undefined);
-  const [UseDay, setUseDay] = useState(undefined);
+  const [Price, setPrice] = useState(0);
+  const [UseDay, setUseDay] = useState(0);
   const [Bandwidth, setBandwidth] = useState("");
   const [Speed, setSpeed] = useState("");
   const [Gift, setGift] = useState("");
   const [Description, setDescription] = useState("");
-  const [IPStatic, setIPStatic] = useState("");
+  const [IPstatic, setIPstatic] = useState("");
 
   // ---------------Paginate--------------------------
 
@@ -81,22 +81,34 @@ function Productmanagment() {
     setSelectedCategory(parseInt(selectedValue));
   };
   const handleServiceChange = (selectedValue) => {
-    setSelectedCategory(parseInt(selectedValue));
+    setSelectedService(parseInt(selectedValue));
   };
   const handleInsertProduct = async (event) => {
     event.preventDefault();
+    // console.log(Description);
+
     insertProduct({
       ProductID: ProductID,
       Speed: Speed,
       Bandwidth: Bandwidth,
       Price: Price,
-      Gift: Gilf,
+      Gift: Gift,
       Description: Description,
-      IPStatic: IPStatic,
+      IPstatic: IPstatic,
       UseDay: UseDay,
       CategoryID: selectedCategory,
       ServiceID: selectedService,
     });
+    setProductID("");
+    setPrice(0);
+    setSelectedCategory(0);
+    setSelectedService(0);
+    setUseDay(0);
+    setSpeed("");
+    setGift("");
+    setDescription("");
+    setBandwidth("");
+    setIPstatic("");
   };
 
   const handleDelete = (ID) => {
@@ -338,6 +350,7 @@ function Productmanagment() {
             <Form onSubmit={handleInsertProduct}>
               <Row>
                 <Col>
+                  <label htmlFor="">Tên Sản Phẩm</label>
                   <input
                     type="text"
                     className="w-100"
@@ -356,8 +369,9 @@ function Productmanagment() {
                 </Col>
 
                 <Col>
+                  <label htmlFor="">Giá Sản Phẩm</label>
                   <input
-                    type="text"
+                    type="number"
                     className="w-100"
                     placeholder="Giá sản phẩm"
                     value={Price}
@@ -376,6 +390,7 @@ function Productmanagment() {
 
               <Row>
                 <Col>
+                  <label htmlFor="">Tốc Độ Đường</label>
                   <input
                     type="text"
                     className="w-100"
@@ -394,6 +409,7 @@ function Productmanagment() {
                 </Col>
 
                 <Col>
+                  <label htmlFor="">Băng Thông</label>
                   <input
                     type="text"
                     className="w-100"
@@ -411,25 +427,27 @@ function Productmanagment() {
                   <span className="bar mb-4"></span>
                 </Col>
                 <Col>
+                  <label htmlFor="">IP tĩnh</label>
                   <input
                     type="text"
                     className="w-100"
                     placeholder="IP tĩnh"
-                    value={IPStatic}
-                    onChange={(e) => setIPStatic(e.target.value)}
+                    value={IPstatic}
+                    onChange={(e) => setIPstatic(e.target.value)}
                     required
                   />
                   <span className="highlight"></span>
-                  {errors.IPStatic && (
+                  {errors.IPstatic && (
                     <span className="text-red-400 text-sm m-2 p-2">
-                      {errors.IPStatic[0]}
+                      {errors.IPstatic[0]}
                     </span>
                   )}
                   <span className="bar mb-4"></span>
                 </Col>
                 <Col>
+                  <label htmlFor="">Ngày Dùng</label>
                   <input
-                    type="text"
+                    type="number"
                     className="w-100"
                     placeholder="Số ngày dùng"
                     value={UseDay}
@@ -449,18 +467,22 @@ function Productmanagment() {
                 className="mb-3 mt-3"
                 controlId="exampleForm.ControlTextarea1"
               >
+                <label htmlFor="">Mô Tả</label>
                 <Form.Control
                   as="textarea"
                   className="border-textarea"
                   rows={3}
                   placeholder="Mô tả"
+                  value={Description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
                 />
-                {errors.Description && (
-                  <span className="text-red-400 text-sm m-2 p-2">
-                    {errors.Description[0]}
-                  </span>
-                )}
               </Form.Group>
+              {errors.Description && (
+                <span className="text-red-400 text-sm m-2 p-2">
+                  {errors.Description[0]}
+                </span>
+              )}
               <span className="highlight"></span>
 
               <Row>
@@ -504,6 +526,7 @@ function Productmanagment() {
                 </Form.Select> */}
 
                 <Col>
+                  <label htmlFor="">Quà Tặng</label>
                   <input
                     type="text"
                     className="w-100"
