@@ -16,8 +16,16 @@ import useServiceContext from "../context/ServiceContext";
 import DeletePopUp from "../component/DeletePopUp";
 import Paginate from "../component/Pagination";
 function Productmanagment() {
-  const { products, errors, insertProduct, deleteProduct } =
-    useProductContext();
+  const {
+    products,
+    product,
+    errors,
+    getProductDetail,
+    insertProduct,
+    deleteProduct,
+    setProductDetail,
+    updateProduct,
+  } = useProductContext();
   const [show, setShow] = useState(false);
   const { categories } = useCategoryContext();
   const { services } = useServiceContext();
@@ -110,6 +118,86 @@ function Productmanagment() {
     setBandwidth("");
     setIPstatic("");
   };
+  const [selectedEditCategory, setSelectedEditCategory] = useState(0);
+  const [selectedEditService, setSelectedEditService] = useState(0);
+  const [updateActive, setUpdateActive] = useState(false);
+  const [editPrice, setEditPrice] = useState(0);
+  const [editDescription, setEditDescription] = useState("");
+  const [editGift, setEditGift] = useState("");
+  const [editSpeed, setEditSpeed] = useState("");
+  const [editBandwidth, setEditBandwidth] = useState("");
+  const [editIPstatic, setEditIPstatic] = useState("");
+  const [editUseDay, setEditUseDay] = useState(0);
+
+
+  const handleEditCategoryChange = (selectedValue) => {
+    setSelectedEditCategory(parseInt(selectedValue));
+  };
+  const handleEditServiceChange = (selectedValue) => {
+    setSelectedEditService(parseInt(selectedValue));
+  };
+  const handleUpdateProduct = async (id) => {
+    try {
+      await updateProduct(id, {
+        Speed: editSpeed,
+        Bandwidth: editBandwidth,
+        Price: editPrice,
+        Gift: editGift,
+        Description: editDescription,
+        IPstatic: editIPstatic,
+        UseDay: editUseDay,
+        CategoryID: selectedEditCategory,
+        ServiceID: selectedEditService,
+      });
+    } catch (e) {
+      if (e.response && e.response.status === 422) {
+        console.error("Validation error:", e.response.data.errors);
+      }
+    }
+
+    setUpdateActive(false);
+    setProductDetail({});
+    setEditPrice("");
+    setEditDescription("");
+    setEditBandwidth("");
+    setEditSpeed("");
+    setEditIPstatic("");
+    setEditGift("");
+  };
+
+  const handleEditProduct = async (
+    id,
+    Price,
+    Description,
+    Bandwidth,
+    Speed,
+    IPstatic,
+    Gift,
+    UseDay
+  ) => {
+    setUpdateActive(true);
+    setEditPrice(Price);
+    setEditDescription(Description);
+    setEditBandwidth(Bandwidth);
+    setEditSpeed(Speed);
+    setEditIPstatic(IPstatic);
+    setEditGift(Gift);
+    setEditUseDay(UseDay);
+    await getProductDetail(id);
+    // Set the category name in the editing state
+  };
+
+  const handleCancelEdit = () => {
+    setUpdateActive(false);
+    setEditPrice(0);
+    setDescription("");
+    setProductDetail({});
+    setEditBandwidth("");
+    setEditSpeed("");
+    setEditIPstatic("");
+    setEditGift("");
+    setEditUseDay(0);
+  };
 
   const handleDelete = (ID) => {
     deleteProduct(ID);
@@ -150,49 +238,177 @@ function Productmanagment() {
                       <th className="table-custom-rose">Số ngày dùng</th>
                       <th className="table-custom-rose">Loại sản phẩm</th>
                       <th className="table-custom-rose">Dịch vụ đi kèm</th>
+                      <th className="table-custom-rose">Qua</th>
                       <th className="table-custom-rose">Thao tác</th>
                     </tr>
                   </thead>
                   <tbody className="table-custom-rose">
                     {currentProduct.map((item) => (
                       <tr className="table-custom-rose" key={item.ProductID}>
-                        <td className="table-custom-rose">{item.ProductID}</td>
-                        <td className="table-custom-rose">
-                          {parseInt(item.Price)}
-                        </td>
-                        <td className="table-custom-rose">
-                          {item.Description}
-                        </td>
-                        <td className="table-custom-rose">{item.Bandwidth}</td>
-                        <td className="table-custom-rose">{item.Speed}</td>
-                        <td className="table-custom-rose">{item.IPstatic}</td>
-                        <td className="table-custom-rose">
-                          {item.UseDay} ngày
-                        </td>
-                        <td className="table-custom-rose">
-                          {item.category.CategoryName}
-                        </td>
-                        <td className="table-custom-rose">
-                          {item.service.ServiceName}
-                        </td>
-                        <td className="table-custom-rose d-flex ">
-                          <DeletePopUp
-                            name={item.ProductID}
-                            handle={handleDelete}
-                          ></DeletePopUp>
-                          <a href="#">
-                            <button className="button-63">Chỉnh sửa</button>
-                          </a>
-                        </td>
+                        {updateActive === true &&
+                        product.ProductID === item.ProductID ? (
+                          <>
+                            <td className="table-custom-rose">
+                              {item.ProductID}
+                            </td>
+                            <td className="table-custom-rose">
+                              <input
+                                type="number"
+                                value={editPrice}
+                                style={{ color: "#000" }}
+                                onChange={(e) => setEditPrice(e.target.value)}
+                              />
+                            </td>
+
+                            <td className="table-custom-rose">
+                              <input
+                                type="text"
+                                value={editDescription}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditDescription(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              {/* {item.Bandwidth} */}
+                              <input
+                                type="text"
+                                value={editBandwidth}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditBandwidth(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              {/* {item.Speed} */}
+                              <input
+                                type="text"
+                                value={editSpeed}
+                                style={{ color: "#000" }}
+                                onChange={(e) => setEditSpeed(e.target.value)}
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              {/* {item.IPstatic} */}
+                              <input
+                                type="text"
+                                value={editIPstatic}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditIPstatic(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              <input
+                                type="number"
+                                value={editUseDay}
+                                style={{ color: "#000" }}
+                                onChange={(e) => setEditUseDay(e.target.value)}
+                              />{" "}
+                              ngày
+                            </td>
+                            <td className="table-custom-rose">
+                              <SelectForm
+                                name={"Loại Sản Phẩm"}
+                                item={categoryData}
+                                onCategoryChange={handleEditCategoryChange}
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              <SelectForm
+                                name={"Loại Hỗ Trợ"}
+                                item={serviceData}
+                                onCategoryChange={handleEditServiceChange}
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              {/* {item.Gift} */}
+                              <input
+                                type="text"
+                                value={editGift}
+                                style={{ color: "#000" }}
+                                onChange={(e) => setEditGift(e.target.value)}
+                              />
+                            </td>
+                            <td className="table-custom-rose d-flex ">
+                              <>
+                                <button
+                                  className="button-63 ms-2"
+                                  onClick={() =>
+                                    handleUpdateProduct(item.ProductID)
+                                  }
+                                >
+                                  Lưu
+                                </button>
+                                <button
+                                  className="button-62 ms-2"
+                                  onClick={handleCancelEdit}
+                                >
+                                  Hủy
+                                </button>
+                              </>
+                            </td>
+                          </>
+                        ) : (
+                          <>
+                            <td className="table-custom-rose">
+                              {item.ProductID}
+                            </td>
+                            <td className="table-custom-rose">
+                              {parseInt(item.Price)}
+                            </td>
+                            <td className="table-custom-rose">
+                              {item.Description}
+                            </td>
+                            <td className="table-custom-rose">
+                              {item.Bandwidth}
+                            </td>
+                            <td className="table-custom-rose">{item.Speed}</td>
+                            <td className="table-custom-rose">
+                              {item.IPstatic}
+                            </td>
+                            <td className="table-custom-rose">
+                              {item.UseDay} ngày
+                            </td>
+                            <td className="table-custom-rose">
+                              {item.category.CategoryName}
+                            </td>
+                            <td className="table-custom-rose">
+                              {item.service.ServiceName}
+                            </td>
+                            <td className="table-custom-rose">{item.Gift}</td>
+                            <td className="table-custom-rose d-flex ">
+                              <DeletePopUp
+                                name={item.ProductID}
+                                handle={handleDelete}
+                              ></DeletePopUp>
+                              <a href="#">
+                                <button
+                                  className="button-63"
+                                  onClick={() =>
+                                    handleEditProduct(
+                                      item.ProductID,
+                                      item.Price,
+                                      item.Description,
+                                      item.Bandwidth,
+                                      item.Speed,
+                                      item.IPstatic,
+                                      item.Gift,
+                                      item.UseDay
+                                    )
+                                  }
+                                >
+                                  Chỉnh sửa
+                                </button>
+                              </a>
+                            </td>
+                          </>
+                        )}
                       </tr>
                     ))}
-
-                    {/* <tr>
-
-                      <td className="table-custom-rose">Tổng doanh thu :</td>
-                      <td className="table-custom-rose total-product">1</td>
-                    </tr> */}
-                    {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
                 <Paginate
