@@ -9,7 +9,6 @@ function DeletePopUp({ name, handle }) {
   const handleShow = () => setShow(true);
   const handleSubmit = () => {
     handleClose();
-    console.log(name);
     handle(name);
   };
   return (
