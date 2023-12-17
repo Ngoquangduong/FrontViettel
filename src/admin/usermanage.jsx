@@ -79,8 +79,8 @@ function Usermanagement() {
                           {item.Gender == "m" ? "Nam" : "Nữ"}
                         </td>
                         <td className="table-custom">{item.Address}</td>
-                        <td className="table-custom">
-                          <DeletePopUp
+                        <td className="table-custom d-flex">
+                          <DeletePopUp 
                             name={item.id}
                             handle={handleDelete}
                           ></DeletePopUp>

@@ -16,6 +16,7 @@ const Category = () => {
     updateCategory,
     deleteCategory,
   } = useCategoryContext();
+
   const [categoryName, setCategoryName] = useState("");
   const [editingCategory, setEditingCategory] = useState(null);
   const handleInsertCategory = async (event) => {
@@ -170,7 +171,7 @@ const Category = () => {
           </Row>
 
           <Row>
-            <Form onSubmit={handleInsertCategory}>
+            <Form method="post" onSubmit={handleInsertCategory}>
               <Row>
                 <h1 className="my-3 title-table">Thêm loại sản phẩm</h1>
                 <Col>

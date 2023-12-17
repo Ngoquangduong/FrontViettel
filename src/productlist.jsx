@@ -2,16 +2,12 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+
 import Header from "./component/Header";
-import { Form } from "react-bootstrap";
-import { Accordion } from "react-bootstrap";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
+
 import { Nav } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import Offcanvas from "react-bootstrap/Offcanvas";
+
 import "./assets/CSS/filter.css";
 import Footer from "./component/Footer";
 import PostList from "./component/PostList";

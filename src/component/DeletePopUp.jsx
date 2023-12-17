@@ -14,7 +14,7 @@ function DeletePopUp({ name, handle }) {
   };
   return (
     <>
-      <Button variant="danger" onClick={handleShow}>
+      <Button className="button-61 mx-2" onClick={handleShow}>
         Delete
       </Button>
 

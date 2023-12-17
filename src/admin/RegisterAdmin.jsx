@@ -31,7 +31,7 @@ const RegisterAdmin = () => {
     setEmail("");
     setPhone("");
     setGender("m");
-    Address("");
+    setAddress("");
     setPassword("");
     setPasswordConfirmation("");
     }catch(e){
