@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useEffect, useState } from "react";
 // import axios from "../api/axios.jsx";
 
@@ -45,7 +46,7 @@ export const AdminAuthProvider = ({ children }) => {
     try {
       // console.log(data);
       await axios.post("/admin/register", data);
-      getAdmins();
+      await getAdmins();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -87,6 +88,7 @@ export const AdminAuthProvider = ({ children }) => {
         logout,
         getAdmin,
         getAdmins,
+        deleteAdmin,
       }}
     >
       {" "}
