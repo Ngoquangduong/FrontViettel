@@ -27,16 +27,6 @@ const RegisterAdmin = () => {
         password_confirmation,
       });
       setName("");
-<<<<<<< HEAD
-    setEmail("");
-    setPhone("");
-    setGender("m");
-    setAddress("");
-    setPassword("");
-    setPasswordConfirmation("");
-    }catch(e){
-      if(e.response.status === 422){
-=======
       setEmail("");
       setPhone("");
       setGender("m");
@@ -45,7 +35,6 @@ const RegisterAdmin = () => {
       setPasswordConfirmation("");
     } catch (e) {
       if (e.response.status === 422) {
->>>>>>> f841946ca420f4a4ea682f03354e979b4478273d
         setErrors(e.response.data.errors);
       }
     }

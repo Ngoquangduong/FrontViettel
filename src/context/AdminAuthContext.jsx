@@ -45,7 +45,7 @@ export const AdminAuthProvider = ({ children }) => {
     try {
       // console.log(data);
       await axios.post("/admin/register", data);
-      getAdmins();
+      await getAdmins();
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
