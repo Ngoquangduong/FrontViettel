@@ -191,6 +191,7 @@ function Adminhome() {
                   <thead className="table-custom-rose ">
                     <tr className="table-custom-rose">
                       <th className="table-custom-rose">ID</th>
+                      <th className="table-custom-rose">Tên Sản Phẩm</th>
                       <th className="table-custom-rose">
                         Giá trị gói cước/dịch vụ
                       </th>
@@ -207,6 +208,9 @@ function Adminhome() {
                     {currentProduct.map((item) => (
                       <tr className="table-custom-rose" key={item.ProductID}>
                         <td className="table-custom-rose">{item.ProductID}</td>
+                        <td className="table-custom-rose">
+                          {item.ProductName}
+                        </td>
                         <td className="table-custom-rose">
                           {parseInt(item.Price)}
                         </td>

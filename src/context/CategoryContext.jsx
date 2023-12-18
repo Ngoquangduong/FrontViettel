@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
+import { toast } from "react-toastify";
 
 const CategoryContext = createContext({});
 
@@ -41,13 +42,14 @@ export const CategoryProvider = ({ children }) => {
     setErrors([]);
     try {
       await axios.post("/category/insert", data);
-
       await getCategory();
+      toast.success("Thêm Thành Công!");
       //   navigate("/");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("Thêm Không Thành Công!");
     }
   };
   const updateCategory = async (id, { ...data }) => {
@@ -56,10 +58,12 @@ export const CategoryProvider = ({ children }) => {
     try {
       await axios.patch("/category/update/" + id, data);
       await getCategory();
+      toast.success("Sửa Thành Công!");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("Sửa Không Thành Công!");
     }
   };
 
@@ -69,10 +73,13 @@ export const CategoryProvider = ({ children }) => {
     try {
       await axios.delete("/category/destroy/" + id);
       await getCategory();
+      toast.success("Xóa Thành Công!");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.success("Xóa Không Thành Công!");
+
     }
   };
   useEffect(() => {

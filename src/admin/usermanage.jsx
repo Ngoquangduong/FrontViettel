@@ -84,9 +84,9 @@ function Usermanagement() {
                             name={item.id}
                             handle={handleDelete}
                           ></DeletePopUp>
-                          <a href="#">
+                          {/* <a href="#">
                             <button className="button-63">Chỉnh sửa</button>
-                          </a>
+                          </a> */}
                         </td>
                       </tr>
                     ))}

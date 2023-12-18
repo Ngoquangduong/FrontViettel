@@ -19,7 +19,7 @@ const ProductDetail = ({ product }) => {
           <Card className="product-Detailimg position-relative">
             Card content
             <Card.Title className="text-light text-center uppercase position-absolute product-Detailname w-100 py-1">
-              {product.ProductID}
+              {product.ProductName}
             </Card.Title>
             <Card.Body className="justify-content-center align-items-center d-flex flex-column"></Card.Body>
           </Card>
@@ -29,7 +29,7 @@ const ProductDetail = ({ product }) => {
         <div className="p-4 my-3  img-block postition-relative ">
           <p className=" uppercase text-custom-title">
             <a href="" className="text-decoration-none text-custom-title">
-              {product.ProductID}
+              {product.ProductName}
             </a>
           </p>
           <p className="mt-3 text-success price">

@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "../api/axios.jsx";
+import { toast } from "react-toastify";
 
 const AdminAuthContext = createContext({});
 
@@ -47,10 +48,12 @@ export const AdminAuthProvider = ({ children }) => {
       // console.log(data);
       await axios.post("/admin/register", data);
       await getAdmins();
+      toast.success("Thêm thành công !")
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("Thêm không thành công");
     }
   };
   const getAdmins = async () => {
@@ -71,10 +74,12 @@ export const AdminAuthProvider = ({ children }) => {
     try {
       await axios.delete("/admin/delete/" + id);
       await getAdmins();
+      toast.success("Xóa thành công");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("Xóa không thành công");
     }
   };
 

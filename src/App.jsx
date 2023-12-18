@@ -19,26 +19,48 @@ import Notfound from "./component/Notfound";
 import Category from "./admin/Category";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/product/:id" element={<Detail />} />
-      <Route path="/productList" element={<List />} />
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<Detail />} />
+        <Route path="/productList" element={<List />} />
 
-      <Route element={<GuestAdminLayout />}>
-        <Route path="/admin/login" element={<Login />} />
-      </Route>
-      <Route element={<AuthAdminLayout />}>
-        <Route path="/admin" element={<Adminhome />} />
-        <Route path="/admin/usermanagment" element={<Usermanagement />} />
-        <Route path="/admin/ordermanagment" element={<Ordermanagment />} />
-        <Route path="/admin/productmanagment" element={<Productmanagment />} />
-        <Route path="/admin/productedit" element={<Productedit />} />
-        <Route path="/admin/category" element={<Category />} />
-      </Route>
-      <Route path="/*" element={<Notfound />} />
-    </Routes>
+        <Route element={<GuestAdminLayout />}>
+          <Route path="/admin/login" element={<Login />} />
+        </Route>
+        <Route element={<AuthAdminLayout />}>
+          <Route path="/admin" element={<Adminhome />} />
+          <Route path="/admin/usermanagment" element={<Usermanagement />} />
+          <Route path="/admin/ordermanagment" element={<Ordermanagment />} />
+          <Route
+            path="/admin/productmanagment"
+            element={<Productmanagment />}
+          />
+          <Route path="/admin/productedit" element={<Productedit />} />
+          <Route path="/admin/category" element={<Category />} />
+        </Route>
+        <Route path="/*" element={<Notfound />} />
+      </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
+    </>
   );
 }
 

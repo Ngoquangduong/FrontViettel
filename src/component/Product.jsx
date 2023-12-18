@@ -20,7 +20,7 @@ export default function Product(props) {
         <Card className="product-card-img position-relative">
           {/* Card content */}
           <Card.Title className="text-light text-center uppercase position-absolute product-name w-100 py-1">
-            {product.ProductID}
+            {product.ProductName}
           </Card.Title>
           <Card.Body className="justify-content-center align-items-center d-flex flex-column">
             <Card.Text className="text-light text-center">

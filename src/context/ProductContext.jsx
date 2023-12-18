@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // import { data } from "autoprefixer";
 // import { data } from "autoprefixer";
 
@@ -73,6 +74,7 @@ export const ProductProvider = ({ children }) => {
     // try {
       await axios.post("/product/insert", data);
       await getProducts();
+      toast.success("Thêm thành công");
     // } catch (e) {
     //   if (e.response.status === 422) {
     //     setErrors(e.response.data.errors);
@@ -84,12 +86,14 @@ export const ProductProvider = ({ children }) => {
     await csrf();
     setErrors([]);
     try {
-      await axios.patch("/product/update/" + id, data);
+      await axios.patch(`/product/update/${id}`, data);
       await getProducts();
+      toast.success("chỉnh sửa thành công")
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("chỉnh sửa thất bại");
     }
   };
 
@@ -97,12 +101,16 @@ export const ProductProvider = ({ children }) => {
     await csrf();
     setErrors([]);
     try {
-      await axios.delete("/product/delete" + id);
+      await axios.delete("/product/delete/" + id);
       await getProducts();
+      toast.success("xóa thành công");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
+
       }
+      toast.error("xóa không thành công");
+
     }
   };
 

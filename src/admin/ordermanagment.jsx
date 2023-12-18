@@ -222,7 +222,7 @@ function Ordermanagment() {
                         <td className="table-custom-green">{item.OrderID}</td>
                         <td className="table-custom-green">{item.name}</td>
                         <td className="table-custom-green">{item.DateStart}</td>
-                        <td className="table-custom-green">{item.ProductID}</td>
+                        <td className="table-custom-green">{item.product.ProductName}</td>
                         <td className="table-custom-green">
                           {item.product.Price}
                         </td>

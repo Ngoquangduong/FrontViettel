@@ -15,7 +15,7 @@ export default function RegisterForm() {
   const { payments } = usePaymentContext();
   const { products } = useProductContext();
 
-  const { insertOrder } = useOrderContext();
+  const { insertOrder, errors } = useOrderContext();
 
   const [selectedCity, setSelectedCity] = useState(undefined);
   const [selectedDistrict, setSelectedDistrict] = useState(undefined);
@@ -28,7 +28,6 @@ export default function RegisterForm() {
 
   const handleOrder = async (event) => {
     event.preventDefault();
-
     insertOrder({
       ProductID: selectedProduct,
       Phone: Phone,
@@ -38,15 +37,19 @@ export default function RegisterForm() {
       DistrictID: selectedDistrict,
       PaymentID: payment,
     });
+    setAddress("");
+    setName("");
+    setPhone("");
 
-    // login({ email, password });
   };
+
+
   return (
     <>
       <Container>
         <Row className="bg-confirm my-1 box-shadow-1">
           <h1 className="my-3 text-title ">Mua/đặt sản phẩm</h1>
-          <Form>
+          <Form onSubmit={handleOrder}>
             <Row>
               <Col>
                 <input
@@ -86,7 +89,7 @@ export default function RegisterForm() {
                   <option>Sản phẩm</option>
                   {products.map((item) => (
                     <option key={item.ProductID} value={item.ProductID}>
-                      {item.ProductID}
+                      {item.ProductName}
                     </option>
                   ))}
                 </Form.Select>

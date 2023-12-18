@@ -96,7 +96,7 @@ function Productmanagment() {
     // console.log(Description);
 
     insertProduct({
-      ProductID: ProductID,
+      ProductName: ProductName,
       Speed: Speed,
       Bandwidth: Bandwidth,
       Price: Price,
@@ -107,10 +107,10 @@ function Productmanagment() {
       CategoryID: selectedCategory,
       ServiceID: selectedService,
     });
-    setProductID("");
+    setProductName("");
     setPrice(0);
-    setSelectedCategory(0);
-    setSelectedService(0);
+    // setSelectedCategory(0);
+    // setSelectedService(0);
     setUseDay(0);
     setSpeed("");
     setGift("");
@@ -124,11 +124,11 @@ function Productmanagment() {
   const [editPrice, setEditPrice] = useState(0);
   const [editDescription, setEditDescription] = useState("");
   const [editGift, setEditGift] = useState("");
+  const [editProductName, setEditProductName] = useState("");
   const [editSpeed, setEditSpeed] = useState("");
   const [editBandwidth, setEditBandwidth] = useState("");
   const [editIPstatic, setEditIPstatic] = useState("");
   const [editUseDay, setEditUseDay] = useState(0);
-
 
   const handleEditCategoryChange = (selectedValue) => {
     setSelectedEditCategory(parseInt(selectedValue));
@@ -139,6 +139,7 @@ function Productmanagment() {
   const handleUpdateProduct = async (id) => {
     try {
       await updateProduct(id, {
+        ProductName: editProductName,
         Speed: editSpeed,
         Bandwidth: editBandwidth,
         Price: editPrice,
@@ -157,25 +158,32 @@ function Productmanagment() {
 
     setUpdateActive(false);
     setProductDetail({});
+    setEditProductName("");
     setEditPrice("");
     setEditDescription("");
     setEditBandwidth("");
     setEditSpeed("");
     setEditIPstatic("");
     setEditGift("");
+    setSelectedEditCategory(0);
+    setSelectedEditService(0);
   };
 
   const handleEditProduct = async (
     id,
+    ProductName,
     Price,
     Description,
     Bandwidth,
     Speed,
     IPstatic,
     Gift,
-    UseDay
+    UseDay,
+    CategoryID,
+    ServiceID
   ) => {
     setUpdateActive(true);
+    setEditProductName(ProductName);
     setEditPrice(Price);
     setEditDescription(Description);
     setEditBandwidth(Bandwidth);
@@ -183,12 +191,15 @@ function Productmanagment() {
     setEditIPstatic(IPstatic);
     setEditGift(Gift);
     setEditUseDay(UseDay);
+    setSelectedEditCategory(parseInt(CategoryID));
+    setSelectedEditService(parseInt(ServiceID));
     await getProductDetail(id);
     // Set the category name in the editing state
   };
 
   const handleCancelEdit = () => {
     setUpdateActive(false);
+    setEditProductName("");
     setEditPrice(0);
     setDescription("");
     setProductDetail({});
@@ -197,6 +208,8 @@ function Productmanagment() {
     setEditIPstatic("");
     setEditGift("");
     setEditUseDay(0);
+    setSelectedEditCategory(0);
+    setSelectedEditService(0);
   };
 
   const handleDelete = (ID) => {
@@ -228,6 +241,7 @@ function Productmanagment() {
                   <thead className="table-custom-rose ">
                     <tr className="table-custom-rose">
                       <th className="table-custom-rose">ID</th>
+                      <th className="table-custom-rose">Tên Sản Phẩm</th>
                       <th className="table-custom-rose">
                         Giá trị gói cước/dịch vụ
                       </th>
@@ -251,6 +265,17 @@ function Productmanagment() {
                             <td className="table-custom-rose">
                               {item.ProductID}
                             </td>
+                            <td className="table-custom-rose">
+                              <input
+                                type="text"
+                                value={editProductName}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditProductName(e.target.value)
+                                }
+                              />
+                            </td>
+
                             <td className="table-custom-rose">
                               <input
                                 type="number"
@@ -358,6 +383,9 @@ function Productmanagment() {
                               {item.ProductID}
                             </td>
                             <td className="table-custom-rose">
+                              {item.ProductName}
+                            </td>
+                            <td className="table-custom-rose">
                               {parseInt(item.Price)}
                             </td>
                             <td className="table-custom-rose">
@@ -391,13 +419,16 @@ function Productmanagment() {
                                   onClick={() =>
                                     handleEditProduct(
                                       item.ProductID,
+                                      item.ProductName,
                                       item.Price,
                                       item.Description,
                                       item.Bandwidth,
                                       item.Speed,
                                       item.IPstatic,
                                       item.Gift,
-                                      item.UseDay
+                                      item.UseDay,
+                                      item.CategoryID,
+                                      item.ServiceID
                                     )
                                   }
                                 >

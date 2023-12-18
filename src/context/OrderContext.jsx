@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "../api/axios.jsx";
 import { useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
+import { toast } from "react-toastify";
 
 const OrderContext = createContext({});
 
@@ -36,26 +37,33 @@ export const OrderProvider = ({ children }) => {
     try {
       await axios.post("/order/insert", data);
       await getOrders();
+      toast.success("Đăng Ký Thành Công!");
+
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("Đăng Ký Không Thành Công!");
     }
   };
   const Accept = async (id) => {
     try {
       await axios.get(`/Order/accept/` + id);
       await getOrders();
+      toast.success("Xác Nhận Thành Công!");
     } catch (error) {
       console.error("Error fetching order data:", error);
+      toast.error("Xác Nhận Không Thành Công!");
     }
   };
   const UnAccept = async (id) => {
     try {
       await axios.get(`/Order/unaccept/` + id);
       await getOrders();
+      toast.success("Hủy Xác Nhận Thành Công!");
     } catch (error) {
       console.error("Error fetching order data:", error);
+      toast.error("Hủy Xác Nhận Không Thành Công!");
     }
   };
   const updateOrder = async (id, { ...data }) => {
@@ -75,10 +83,12 @@ export const OrderProvider = ({ children }) => {
     try {
       await axios.delete(`/Order/destroy/` + id);
       await getOrders();
+      toast.success("Xóa Thành Công!");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
       }
+      toast.error("Xóa Không Thành Công!");
     }
   };
   useEffect(() => {
@@ -90,6 +100,7 @@ export const OrderProvider = ({ children }) => {
       value={{
         orders,
         order,
+        errors,
         getOrderDetail,
         insertOrder,
         Accept,

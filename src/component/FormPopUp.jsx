@@ -15,7 +15,7 @@ function FormPopUp(props) {
   const { districts } = useDistrictContext();
   const { payments } = usePaymentContext();
 
-  const { insertOrder } = useOrderContext();
+  const { insertOrder, errors } = useOrderContext();
 
   const [selectedCity, setSelectedCity] = useState(undefined);
   const [selectedDistrict, setSelectedDistrict] = useState(undefined);
@@ -26,13 +26,12 @@ function FormPopUp(props) {
   const [name, setName] = useState("");
   const [Address, setAddress] = useState("");
 
-  const [payment, setPayment] = useState(undefined);
+  const [payment, setPayment] = useState(0);
 
   const handleOrder = async (event) => {
     event.preventDefault();
     setSelectedProduct(product.ProductID);
-
-    insertOrder({
+    await insertOrder({
       ProductID: selectedProduct,
       Phone: Phone,
       name: name,
@@ -43,7 +42,6 @@ function FormPopUp(props) {
     });
 
     // login({ email, password });
-    
   };
   return (
     <Modal
@@ -65,7 +63,7 @@ function FormPopUp(props) {
                 id="contained-modal-title-vcenter"
                 className="justify-content-center align-items-center d-flex flex-column"
               >
-                {product.ProductID}
+                {product.ProductName}
               </Modal.Title>
               <span className="highlight"></span>
               <span className="bar mb-4"></span>
@@ -82,6 +80,11 @@ function FormPopUp(props) {
                 onChange={(e) => setName(e.target.value)}
               />
               <span className="highlight"></span>
+              {errors.name && (
+                <span className="text-red-400 text-sm m-2 p-2">
+                  {errors.name[0]}
+                </span>
+              )}
               <span className="bar mb-4"></span>
             </Col>
             <Col className="w-50 ">
@@ -99,6 +102,11 @@ function FormPopUp(props) {
                   </option>
                 ))}
               </Form.Select>
+              {errors.PaymentID && (
+                <span className="text-red-400 text-sm m-2 p-2">
+                  {errors.PaymentID[0]}
+                </span>
+              )}
             </Col>
           </Row>
 
@@ -113,6 +121,11 @@ function FormPopUp(props) {
                 onChange={(e) => setPhone(e.target.value)}
               />
               <span className="highlight"></span>
+              {errors.Phone && (
+                <span className="text-red-400 text-sm m-2 p-2">
+                  {errors.Phone[0]}
+                </span>
+              )}
               <span className="bar mb-4"></span>
             </Col>
             <Col className="w-25">
@@ -135,6 +148,11 @@ function FormPopUp(props) {
                   </option>
                 ))}
               </Form.Select>
+              {errors.CityID && (
+                <span className="text-red-400 text-sm m-2 p-2">
+                  {errors.CityID[0]}
+                </span>
+              )}
             </Col>
             <Col className="w-25 ">
               <Form.Select
@@ -153,6 +171,11 @@ function FormPopUp(props) {
                     </option>
                   ))}
               </Form.Select>
+              {errors.DistrictID && (
+                <span className="text-red-400 text-sm m-2 p-2">
+                  {errors.DistrictID[0]}
+                </span>
+              )}
             </Col>
           </Row>
 
@@ -169,6 +192,11 @@ function FormPopUp(props) {
               <span className="highlight"></span>
               <span className="bar mb-4"></span>
             </Col>
+            {errors.Address && (
+              <span className="text-red-400 text-sm m-2 p-2">
+                {errors.Address[0]}
+              </span>
+            )}
           </Row>
           <div className="text-center">
             <button className="bn632-hover bn28 mb-3" type="submit">
