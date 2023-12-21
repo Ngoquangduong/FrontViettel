@@ -215,10 +215,11 @@ const Category = () => {
                   <span className="highlight"></span>
                   <span className="bar mb-4"></span>
                 </Col>
-                <button type="submit" className="button-63">
-                  Xác nhận
-                </button>
+              
               </Row>
+              <button type="submit" className="button-63 mb-5">
+                  Xác nhận
+              </button>
             </Form>
           </Row>
         </Container>
