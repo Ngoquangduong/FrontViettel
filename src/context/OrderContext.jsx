@@ -14,6 +14,8 @@ export const OrderProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [errors, setErrors] = useState([]);
   const [order, setOrder] = useState([]);
+  const [exportOrderUnAccept, setExportOrderUnAccept] = useState([]);
+  const [exportOrderAccept, setExportOrderAccept] = useState([]);
 
   const getOrders = async () => {
     try {
@@ -38,7 +40,6 @@ export const OrderProvider = ({ children }) => {
       await axios.post("/order/insert", data);
       await getOrders();
       toast.success("Đăng Ký Thành Công!");
-
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -91,6 +92,25 @@ export const OrderProvider = ({ children }) => {
       toast.error("Xóa Không Thành Công!");
     }
   };
+  const getExportOrderAccept = async () => {
+    try {
+      await csrf();
+      const result = await axios.get("/order/export/Accept");
+      setExportOrderAccept(result.data.orders);
+      // toast.success("Xuất file thành công");
+    } catch (e) {
+      // toast.error("Xuất file không thành công");
+    }
+  };
+  const getExportOrderUnAccept = async () => {
+    try {
+      await csrf();
+      const result = await axios.get("/order/export/UnAccept");
+      setExportOrderUnAccept(result.data.orders);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
     getOrders();
   }, []);
@@ -101,11 +121,16 @@ export const OrderProvider = ({ children }) => {
         orders,
         order,
         errors,
+        exportOrderAccept,
+        exportOrderUnAccept,
         getOrderDetail,
         insertOrder,
         Accept,
         UnAccept,
         deleteOrder,
+
+        getExportOrderAccept,
+        getExportOrderUnAccept,
       }}
     >
       {children}

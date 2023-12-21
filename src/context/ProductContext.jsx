@@ -16,13 +16,13 @@ export const ProductProvider = ({ children }) => {
   // getProduct
 
   const [product, setProductDetail] = useState({});
-  
+
   //-------------Filter--------------
   // set Variable
 
   const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState([]);
-  // const [product, setProduct] = useState({});
+  const [productExport, setProductExport] = useState([]);
 
   // const { id } = useParams();
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export const ProductProvider = ({ children }) => {
   const getProductDetail = async (id) => {
     try {
       // await csrf();
-      const result = await axios.get("/product/" + id);
+      const result = await axios.get("/product/detail/" + id);
       // setProduct(result.data.product[0]);
       setProductDetail(result.data.product[0]);
     } catch (error) {
@@ -72,9 +72,9 @@ export const ProductProvider = ({ children }) => {
     await csrf();
     setErrors([]);
     // try {
-      await axios.post("/product/insert", data);
-      await getProducts();
-      toast.success("Thêm thành công");
+    await axios.post("/product/insert", data);
+    await getProducts();
+    toast.success("Thêm thành công");
     // } catch (e) {
     //   if (e.response.status === 422) {
     //     setErrors(e.response.data.errors);
@@ -88,7 +88,7 @@ export const ProductProvider = ({ children }) => {
     try {
       await axios.patch(`/product/update/${id}`, data);
       await getProducts();
-      toast.success("chỉnh sửa thành công")
+      toast.success("chỉnh sửa thành công");
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
@@ -107,14 +107,20 @@ export const ProductProvider = ({ children }) => {
     } catch (e) {
       if (e.response.status === 422) {
         setErrors(e.response.data.errors);
-
       }
-      toast.error("xóa không thành công");
-
+      toast.error("Xóa không thành công");
+    }
+  };
+  const getProductExport = async () => {
+    try {
+      await csrf();
+      const result = await axios.get("/product/export");
+      setProductExport(result.data.products);
+    } catch (error) {
+      console.error("Error fetching users:", error);
     }
   };
 
-  
   useEffect(() => {
     // console.log("hello");
     if (products.length === 0) {
@@ -128,12 +134,14 @@ export const ProductProvider = ({ children }) => {
         products,
         errors,
         product,
+        productExport,
         getProducts,
         setProductDetail,
         getProductDetail,
         insertProduct,
         updateProduct,
         deleteProduct,
+        getProductExport,
       }}
     >
       {children}

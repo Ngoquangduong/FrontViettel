@@ -10,9 +10,19 @@ import AcceptPopUp from "../component/AcceptPopUp";
 import { useEffect, useState } from "react";
 import Paginate from "../component/Pagination";
 import DeletePopUp from "../component/DeletePopUp";
+import { CSVLink, CSVDownload } from "react-csv";
 
 function Ordermanagment() {
-  const { orders, Accept, UnAccept, deleteOrder } = useOrderContext();
+  const {
+    orders,
+    Accept,
+    UnAccept,
+    deleteOrder,
+    exportOrderAccept,
+    exportOrderUnAccept,
+    getExportOrderAccept,
+    getExportOrderUnAccept,
+  } = useOrderContext();
   const [orderAccept, setOrderAccept] = useState([]);
   const [orderUnAccept, setOrderUnAccept] = useState([]);
 
@@ -60,6 +70,8 @@ function Ordermanagment() {
   useEffect(() => {
     getOrderAccpet();
     getOrderUnAccpet();
+    getExportOrderAccept();
+    getExportOrderUnAccept();
   }, [orders.length === 0, orders]);
   useEffect(() => {
     let newIndexOfLastProduct = currentAcceptPage * orderPerPage;
@@ -176,7 +188,13 @@ function Ordermanagment() {
                   paginate={paginateUnAccept}
                 ></Paginate>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              <CSVLink
+                data={orderUnAccept}
+                filename="orderAccept.csv"
+                className="button-62"
+              >
+                {"Download CSV"}
+              </CSVLink>
             </Col>
           </Row>
           <Row className="py-3">
@@ -222,7 +240,9 @@ function Ordermanagment() {
                         <td className="table-custom-green">{item.OrderID}</td>
                         <td className="table-custom-green">{item.name}</td>
                         <td className="table-custom-green">{item.DateStart}</td>
-                        <td className="table-custom-green">{item.product.ProductName}</td>
+                        <td className="table-custom-green">
+                          {item.product.ProductName}
+                        </td>
                         <td className="table-custom-green">
                           {item.product.Price}
                         </td>
@@ -272,7 +292,13 @@ function Ordermanagment() {
                   paginate={paginateAccept}
                 ></Paginate>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              <CSVLink
+                data={orderAccept}
+                filename="orderAccpet.csv"
+                className="button-62"
+              >
+                {"Download CSV"}
+              </CSVLink>
             </Col>
           </Row>
         </Container>

@@ -100,7 +100,7 @@ function Usermanagement() {
                   paginate={paginate}
                 ></Paginate>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              {/* <button className="button-62">Xuất dữ liệu</button> */}
             </Col>
           </Row>
         </Container>

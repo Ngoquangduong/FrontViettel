@@ -15,6 +15,11 @@ import SelectForm from "../component/SelectForm";
 import useServiceContext from "../context/ServiceContext";
 import DeletePopUp from "../component/DeletePopUp";
 import Paginate from "../component/Pagination";
+// import {  } from "react-csv";
+import axios from "../api/axios";
+// import { data } from "autoprefixer";
+import { CSVLink, CSVDownload } from "react-csv";
+
 function Productmanagment() {
   const {
     products,
@@ -25,6 +30,8 @@ function Productmanagment() {
     deleteProduct,
     setProductDetail,
     updateProduct,
+    productExport,
+    getProductExport,
   } = useProductContext();
   const [show, setShow] = useState(false);
   const { categories } = useCategoryContext();
@@ -35,26 +42,10 @@ function Productmanagment() {
   const [categoryData, setCategoryData] = useState([]);
   const [serviceData, setServiceData] = useState([]);
 
-  const handleCategoryData = (data) => {
-    let temp = data.map((item) => ({
-      ID: item.CategoryID,
-      Name: item.CategoryName,
-    }));
-    // console.log(temp);
-    setCategoryData(temp);
-  };
-  const handleServiceData = (data) => {
-    let temp = data.map((item) => ({
-      ID: item.ServiceID,
-      Name: item.ServiceName,
-    }));
-    // console.log(temp);
-    setServiceData(temp);
-  };
   // ----- insertProduct-------------------------------
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedService, setSelectedService] = useState(0);
-  const [ProductID, setProductID] = useState("");
+  const [ProductName, setProductName] = useState("");
   const [Price, setPrice] = useState(0);
   const [UseDay, setUseDay] = useState(0);
   const [Bandwidth, setBandwidth] = useState("");
@@ -63,7 +54,21 @@ function Productmanagment() {
   const [Description, setDescription] = useState("");
   const [IPstatic, setIPstatic] = useState("");
 
+  //edit
+  const [selectedEditCategory, setSelectedEditCategory] = useState(0);
+  const [selectedEditService, setSelectedEditService] = useState(0);
+  const [updateActive, setUpdateActive] = useState(false);
+  const [editPrice, setEditPrice] = useState(0);
+  const [editDescription, setEditDescription] = useState("");
+  const [editGift, setEditGift] = useState("");
+  const [editProductName, setEditProductName] = useState("");
+  const [editSpeed, setEditSpeed] = useState("");
+  const [editBandwidth, setEditBandwidth] = useState("");
+  const [editIPstatic, setEditIPstatic] = useState("");
+  const [editUseDay, setEditUseDay] = useState(0);
   // ---------------Paginate--------------------------
+
+  //Export
 
   const [currentProduct, setCurrentProduct] = useState([]);
   // const [totalOrder, setTotalOrder] = useState(0);
@@ -85,6 +90,22 @@ function Productmanagment() {
   }, [products, currentProductPage]);
   //---------------------------------------------------------
 
+  const handleCategoryData = (data) => {
+    let temp = data.map((item) => ({
+      ID: item.CategoryID,
+      Name: item.CategoryName,
+    }));
+    // console.log(temp);
+    setCategoryData(temp);
+  };
+  const handleServiceData = (data) => {
+    let temp = data.map((item) => ({
+      ID: item.ServiceID,
+      Name: item.ServiceName,
+    }));
+    // console.log(temp);
+    setServiceData(temp);
+  };
   const handleCategoryChange = (selectedValue) => {
     setSelectedCategory(parseInt(selectedValue));
   };
@@ -118,17 +139,6 @@ function Productmanagment() {
     setBandwidth("");
     setIPstatic("");
   };
-  const [selectedEditCategory, setSelectedEditCategory] = useState(0);
-  const [selectedEditService, setSelectedEditService] = useState(0);
-  const [updateActive, setUpdateActive] = useState(false);
-  const [editPrice, setEditPrice] = useState(0);
-  const [editDescription, setEditDescription] = useState("");
-  const [editGift, setEditGift] = useState("");
-  const [editProductName, setEditProductName] = useState("");
-  const [editSpeed, setEditSpeed] = useState("");
-  const [editBandwidth, setEditBandwidth] = useState("");
-  const [editIPstatic, setEditIPstatic] = useState("");
-  const [editUseDay, setEditUseDay] = useState(0);
 
   const handleEditCategoryChange = (selectedValue) => {
     setSelectedEditCategory(parseInt(selectedValue));
@@ -215,7 +225,9 @@ function Productmanagment() {
   const handleDelete = (ID) => {
     deleteProduct(ID);
   };
-  //----------------useEffect--------------------------
+  useEffect(() => {
+    getProductExport();
+  }, [products]);
 
   useEffect(() => {
     handleCategoryData(categories);
@@ -448,11 +460,18 @@ function Productmanagment() {
                   paginate={paginate}
                 ></Paginate>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
-              <button className="button-63 mx-3">Nhập dữ liệu</button>
+              <CSVLink
+                data={productExport}
+                filename="products.csv"
+                className="button-62"
+              >
+                {"Download CSV"}
+              </CSVLink>
+              {/* <button className="button-63 mx-3">Nhập dữ liệu</button>
+
               <Button className="btn-filter-3" onClick={handleShow}>
                 Cập nhật sản phẩm
-              </Button>
+              </Button> */}
               <Modal
                 className="mt-5"
                 show={show}
@@ -601,8 +620,8 @@ function Productmanagment() {
                   <input
                     type="text"
                     className="w-100"
-                    value={ProductID}
-                    onChange={(e) => setProductID(e.target.value)}
+                    value={ProductName}
+                    onChange={(e) => setProductName(e.target.value)}
                     placeholder="Tên sản phẩm"
                     required
                   />

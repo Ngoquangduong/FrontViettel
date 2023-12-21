@@ -7,6 +7,8 @@ import useCategoryContext from "../context/CategoryContext";
 import DeletePopUp from "../component/DeletePopUp";
 import Paginate from "../component/Pagination";
 
+import { CSVLink, CSVDownload } from "react-csv";
+
 const Category = () => {
   const {
     categories,
@@ -18,6 +20,8 @@ const Category = () => {
     insertCategory,
     updateCategory,
     deleteCategory,
+    exportCategory,
+    getExportCategory,
   } = useCategoryContext();
 
   const [categoryName, setCategoryName] = useState("");
@@ -25,6 +29,10 @@ const Category = () => {
   const [editingCategory, setEditingCategory] = useState("");
 
   const [updateActive, setUpdateActive] = useState(false);
+
+  useEffect(() => {
+    getExportCategory();
+  }, [categories]);
 
   const handleInsertCategory = async (event) => {
     event.preventDefault();
@@ -181,7 +189,13 @@ const Category = () => {
                   paginate={paginate}
                 ></Paginate>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              <CSVLink
+                data={exportCategory}
+                filename="categories.csv"
+                className="button-62"
+              >
+                {"Download CSV"}
+              </CSVLink>
             </Col>
           </Row>
 

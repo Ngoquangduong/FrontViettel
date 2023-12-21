@@ -93,7 +93,7 @@ function Adminhome() {
                   </tbody>
                 </Table>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              {/* <button className="button-62">Xuất dữ liệu</button> */}
             </Col>
           </Row>
           <Row>
@@ -173,7 +173,7 @@ function Adminhome() {
                   </tbody>
                 </Table>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              {/* <button className="button-62">Xuất dữ liệu</button> */}
             </Col>
           </Row>
 
@@ -241,7 +241,7 @@ function Adminhome() {
                   </tbody>
                 </Table>
               </div>
-              <button className="button-62">Xuất dữ liệu</button>
+              {/* <button className="button-62">Xuất dữ liệu</button> */}
             </Col>
           </Row>
         </Container>
