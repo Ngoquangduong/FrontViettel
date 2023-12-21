@@ -161,14 +161,15 @@ export default function List() {
               ) : (
                 <>
                   <ProductList products={currentProduct}></ProductList>
-                  <Paginate
+                  
+                </>
+              )}
+            </Row>
+            <Paginate
                     dataPerPage={productPerPage}
                     totalData={products.length}
                     paginate={paginate}
                   ></Paginate>
-                </>
-              )}
-            </Row>
 
             {/* 
 -----------------------------------------------------------------postlist------------------------------------------------------------------------ */}

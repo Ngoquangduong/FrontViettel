@@ -15,7 +15,7 @@ export default function Product(props) {
   };
 
   return (
-    <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3 row-cols-4">
+    <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3 row-cols-4 overflow-hidden">
       <Link to={`/product/${product.ProductID}`} onClick={reload}>
         <Card className="product-card-img position-relative">
           {/* Card content */}
@@ -30,7 +30,7 @@ export default function Product(props) {
             </Card.Text>
             <Button
               // onClick={ProductDetailHandle}
-              className="mx-auto text-dark button-62 mt-2 "
+              className="mx-auto text-dark button-62 card-button mt-2 "
             >
               Chi tiết
             </Button>
