@@ -16,16 +16,24 @@ background-repeat: no-repeat;
 background-size: contain;
 height: 100vh;
 } */
+
+.card-text {position: absolute;
+top: 40%;}
+
 .product-card-img:hover{
     scale: 1.06;
     box-shadow:  1px 1px 10px 1px rgba(177, 177, 177, 0.329);
 }
-.product-name {top: 20%;
+.product-name {top: 10%;
 font-size: 1.5rem;
 font-weight: 700;
 background-color: rgba(255, 255, 255, 0.489);
+position:absolute;
+
 
 }
+.card-button {position: absolute;
+top: 45%;}
 
 /* .bg-red {  background-image: linear-gradient(260deg, #959595, #A4A5A6,#dcdcdc);
     background-size: 400% 400%;
