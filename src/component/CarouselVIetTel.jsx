@@ -6,7 +6,7 @@ export default function CarouselVietTel(){
         <Carousel  >
         <Carousel.Item className="responsive-carousel">
           <img
-            className="d-block w-100 Carousel-home"
+            className="d-block w-100 Carousel-home cover"
             src="/carousel1.jpg"
             
             alt="First slide"

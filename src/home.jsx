@@ -10,6 +10,7 @@ import RegisterForm from "./component/RegisterForm";
 import Footer from "./component/Footer";
 import PostList from "./component/PostList";
 import "./assets/CSS/form.css";
+import "./assets/CSS/main.css";
 import ProductListHome from "./component/ProductListHome";
 import "./assets/CSS/product.css";
 import { FormProvider } from "./context/FormContext";
@@ -35,7 +36,7 @@ function Home() {
     window.scrollTo(0, 0);
   };
   return (
-    <div className="bg-all">
+    <div className="bg-all ">
       <Header />
       {/* <Container fluid="md p-4 border-menu my-3 bg-home-menu"> */}
       {/* {data.map(() => {
@@ -44,31 +45,63 @@ function Home() {
         </Col>;
       })} */}
       <CarouselVietTel />
-      <Container fluid="md p-4  my-3 bg-home-menu">
+      {/* <Container fluid="md p-4  my-3 bg-home-menu">
         <h2 className=" text-title">Đăng ký sản phẩm</h2>
-        <Row>{/* Mobile-first design: Full width on small screens */}</Row>
+        
         <RegisterForm />
-      </Container>
+      </Container> */}
+      <div className="category-block ">
+        <div className="divider mt-5"></div>
+        <h1 className="text-center mt-3 text-bigtitle uppercase">
+          Gói cước hộ gia đình
+        </h1>
+        {categories.slice(0, 3).map((item) => (
+          <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
+            <h2 className="text-title uppercase">
+              Gói cước {item.CategoryName}
+            </h2>
+            <Row>
+              <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
+            </Row>
+          </Container>
+        ))}
 
-      {categories.slice(0, 4).map((item) => (
-        <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
-          <h2 className="text-title">
-            Sản phẩm nổi bật cho {item.CategoryName}
-          </h2>
-          <Row>
-            <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
-          </Row>
-        </Container>
-      ))}
+        <div className="text-center">
+          <button
+            onClick={handleShowMore}
+            className="bn632-hover bn28 mb-3"
+            type="submit"
+          >
+            Xem Thêm
+          </button>
+        </div>
+        <div className="divider my-4"></div>
+      </div>
 
-      <div className="text-center">
-        <button
-          onClick={handleShowMore}
-          className="bn632-hover bn28 mb-3"
-          type="submit"
-        >
-          Xem Thêm
-        </button>
+      <div className="category-block">
+        <div className="divider mt-5"></div>
+        <h1 className="text-center mt-3 text-bigtitle uppercase">
+          Gói cước doanh nghiệp
+        </h1>
+        {categories.slice(3, 5).map((item) => (
+          <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
+            <h2 className="text-title">Gói cước {item.CategoryName}</h2>
+            <Row>
+              <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
+            </Row>
+          </Container>
+        ))}
+
+        <div className="text-center">
+          <button
+            onClick={handleShowMore}
+            className="bn632-hover bn28 mb-3"
+            type="submit"
+          >
+            Xem Thêm
+          </button>
+        </div>
+        <div className="divider my-4"></div>
       </div>
 
       <PostList />

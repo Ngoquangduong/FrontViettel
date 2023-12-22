@@ -1,100 +1,130 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
-.text-title{color: #000879;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;}
-.form-normal-text {color: #000879;
-    font-family: 'Montserrat', sans-serif;}
+.text-title {
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.form-normal-text {
+  color: #000879;
+  font-family: "Montserrat", sans-serif;
+}
 
-.group 			  { 
-  position:relative; 
-  margin-bottom:45px; 
+.group {
+  position: relative;
+  margin-bottom: 45px;
 }
-input 				{
-  font-size:18px;
-  padding:10px 10px 10px 5px;
-  display:block;
-  width:300px;
-  border:none;
-  border-bottom:1px solid #757575;
+input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #757575;
 }
-input:focus 		{ outline:none; }
+input:focus {
+  outline: none;
+}
 
 /* LABEL ======================================= */
-label 				 {
-  color:#999; 
-  font-size:18px;
-  font-weight:normal;
-  
-  pointer-events:none;
-  left:5px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label 		{
-  
-  font-size:14px;
-  color:#5264AE;
+input:focus ~ label,
+input:valid ~ label {
+  font-size: 14px;
+  color: #5264ae;
 }
 
 /* BOTTOM BARS ================================= */
-.bar 	{ position:relative; display:block; width:100%; }
-.bar:before, .bar:after 	{
-  content:'';
-  height:2px; 
-  width:0;
-  bottom:1px; 
-  position:absolute;
-  background:#5264AE; 
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
 }
 .bar:before {
-  left:50%;
+  left: 50%;
 }
 .bar:after {
-  right:50%; 
+  right: 50%;
 }
 
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
-  width:50%;
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
 }
 
 /* HIGHLIGHTER ================================== */
 
-
 /* active state */
 input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
 }
 
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 @-moz-keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 @keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
-
 
 /* ================================================================================================================ */
 @media only screen and (max-width: 600px) {
   /* For tablets: */
-  
-  .button-63 {margin-top: 1rem;}
+
+  .button-63 {
+    margin-top: 1rem;
+  }
 }
-.responsive-offcanvas{max-width: 86% !important;}
+.responsive-offcanvas {
+  max-width: 86% !important;
+}

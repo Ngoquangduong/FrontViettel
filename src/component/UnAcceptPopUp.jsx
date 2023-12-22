@@ -14,7 +14,7 @@ function UnAcceptPopUp({ name, handle }) {
   };
   return (
     <>
-      <Button variant="success" onClick={handleShow}>
+      <Button className="btn btn-outline-success" onClick={handleShow}>
         Đã Xác Nhận
       </Button>
 

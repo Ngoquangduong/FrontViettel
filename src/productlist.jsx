@@ -95,7 +95,7 @@ export default function List() {
                     defaultActiveKey="/home"
                     as="ul"
                   >
-                    <Nav.Item as="li">
+                    {/* <Nav.Item as="li">
                       <Nav.Link
                         href=""
                         eventKey={"/home"}
@@ -113,7 +113,7 @@ export default function List() {
                       <Nav.Link eventKey="link-2" className="filter-text">
                         Gói cố định
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                     <Nav.Item as="li" className="ms-auto">
                       <Button
                         onClick={handleShow}
@@ -161,15 +161,14 @@ export default function List() {
               ) : (
                 <>
                   <ProductList products={currentProduct}></ProductList>
-                  
                 </>
               )}
             </Row>
             <Paginate
-                    dataPerPage={productPerPage}
-                    totalData={products.length}
-                    paginate={paginate}
-                  ></Paginate>
+              dataPerPage={productPerPage}
+              totalData={products.length}
+              paginate={paginate}
+            ></Paginate>
 
             {/* 
 -----------------------------------------------------------------postlist------------------------------------------------------------------------ */}

@@ -1,212 +1,218 @@
 .icon-logo {
-    height: 60px;
+  height: 60px;
 
-    width: 60px !important;
+  width: 60px !important;
 }
 
 .icon-animation {
-    transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
 .icon-animation:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
+.text-bigtitle {
+  color: rgb(234, 49, 49);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
 .box-shadow-1 {
-    box-shadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+  box-shadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
 }
 
+.category-block {
+  background-image: url("../../../public/Formbg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-size: cover;
+  width: 90%;
+  margin: auto;
+}
 .notfound-text {
-    font-size: 5rem;
-    transition-duration: 0.3s;
-    left: 50%;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 25%;
+  font-size: 5rem;
+  transition-duration: 0.3s;
+  left: 50%;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 25%;
 }
 
 .notfound-text:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 * {
-    font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-
-
 
 /* -----------------------------------------------------------------paginate ---------------------------------------------------------------------------
  */
 
-
 .pagination {
-    height: 36px;
-    margin: 18px 0;
-    color: #850000;
-    justify-content: center;
-
+  height: 36px;
+  margin: 18px 0;
+  color: #850000;
+  justify-content: center;
 }
 
 .pagination ul {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    margin-left: 0;
-    color: #ffffff;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+  *zoom: 1;
+  margin-left: 0;
+  color: #ffffff;
 
-    margin-bottom: 0;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .pagination li {
-    display: inline;
+  display: inline;
 
-    color: #850000;
+  color: #850000;
 }
 
 .pagination a {
-    float: left;
-    padding: 0 14px;
-    line-height: 34px;
-    color: #850000;
-    box-shadow: rgba(0, 0, 0, 0.612) 0px 7px 29px 0px;
-    text-decoration: none;
-    border: 1px solid #000000;
-    border-left-width: 0;
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  color: #850000;
+  box-shadow: rgba(0, 0, 0, 0.612) 0px 7px 29px 0px;
+  text-decoration: none;
+  border: 1px solid #000000;
+  border-left-width: 0;
 }
 
 .pagination a:hover,
 .pagination .active a {
-    background-color: #850000 !important;
-    color: #ffffff !important;
+  background-color: #850000 !important;
+  color: #ffffff !important;
 }
 
 .pagination a:focus {
-    background-color: #850000 !important;
-    color: #ffffff !important;
-    
+  background-color: #850000 !important;
+  color: #ffffff !important;
 }
 
-.active>.page-link {
-    background-color: #850000 !important;
-    color: #ffffff !important;
-    border: 1px solid #fafafa !important;
+.active > .page-link {
+  background-color: #850000 !important;
+  color: #ffffff !important;
+  border: 1px solid #fafafa !important;
 }
 
 .pagination .active a {
-    color: #ffffff;
-    background-color: #850000 !important;
-    cursor: default;
-    border: #000000;
+  color: #ffffff;
+  background-color: #850000 !important;
+  cursor: default;
+  border: #000000;
 }
 
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
-    color: #999999;
-    background-color: transparent;
-    cursor: default;
+  color: #999999;
+  background-color: transparent;
+  cursor: default;
 }
 
 .pagination li:first-child a {
-    border-left-width: 1px;
-    -webkit-border-radius: 3px 0 0 3px;
-    -moz-border-radius: 3px 0 0 3px;
-    border-radius: 3px 0 0 3px;
+  border-left-width: 1px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
 }
 
 .pagination li:last-child a {
-    -webkit-border-radius: 0 3px 3px 0;
-    -moz-border-radius: 0 3px 3px 0;
-    border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
 }
 
 .pagination-centered {
-    text-align: center;
+  text-align: center;
 }
 
 .pagination-right {
-    text-align: right;
+  text-align: right;
 }
 
 .pager {
-    margin-left: 0;
-    margin-bottom: 18px;
-    list-style: none;
-    text-align: center;
-    color: #850000;
-    *zoom: 1;
+  margin-left: 0;
+  margin-bottom: 18px;
+  list-style: none;
+  text-align: center;
+  color: #850000;
+  *zoom: 1;
 }
 
 .pager:before,
 .pager:after {
-    display: table;
-    content: "";
+  display: table;
+  content: "";
 }
 
 .pager:after {
-    clear: both;
+  clear: both;
 }
 
 .pager li {
-    display: inline;
-    color: #850000;
+  display: inline;
+  color: #850000;
 }
 
 .pager a {
-    display: inline-block;
-    padding: 5px 14px;
-    color: #850000;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+  display: inline-block;
+  padding: 5px 14px;
+  color: #850000;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
 }
 
 .pager a:hover {
-    text-decoration: none;
-    background-color: #f5f5f5;
+  text-decoration: none;
+  background-color: #f5f5f5;
 }
 
 .pager .next a {
-    float: right;
+  float: right;
 }
 
 .pager .previous a {
-    float: left;
+  float: left;
 }
 
 .pager .disabled a,
 .pager .disabled a:hover {
-    color: #999999;
+  color: #999999;
 }
-
 
 /* end */
 
-
 .divider {
-    height: 1px;
-    width: 100%;
-    background-color: #9999997f;
+  height: 1px;
+  width: 100%;
+  background-color: #9999997f;
 }
 
-
 .responsive-carousel {
-    height: 620px;
+  height: 820px;
 }
 
 @media only screen and (max-width: 600px) {
-    /* For tablets: */
+  /* For tablets: */
 
-    .responsive-carousel {
-        height: 360px;
-    }
+  .responsive-carousel {
+    height: 360px;
+  }
 }

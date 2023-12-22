@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
-.product-card-img {  background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
-    url('/BG_PRODUCT.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    height: 24rem;
-    transition-duration: 0.4s;
+.product-card-img {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),
+    url("/BG_PRODUCT.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: 24rem;
+  transition-duration: 0.4s;
 }
 
 /* .bg-productpage {background-image: url('/rm373-502.jpg');
@@ -17,67 +18,94 @@ background-size: contain;
 height: 100vh;
 } */
 
-.card-text {position: absolute;
-top: 40%;}
-
-.product-card-img:hover{
-    scale: 1.06;
-    box-shadow:  1px 1px 10px 1px rgba(177, 177, 177, 0.329);
+.card-text {
+  position: absolute;
+  top: 40%;
 }
-.product-name {top: 10%;
-font-size: 1.5rem;
-font-weight: 700;
-background-color: rgba(255, 255, 255, 0.489);
-position:absolute;
 
-
+.product-card-img:hover {
+  scale: 1.06;
+  box-shadow: 1px 1px 10px 1px rgba(177, 177, 177, 0.329);
 }
-.card-button {position: absolute;
-top: 45%;}
+.product-name {
+  top: 15%;
+  color: rgb(238, 25, 25) !important;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.861);
+  position: absolute;
+}
+.card-button {
+  position: absolute;
+  top: 65%;
+}
 
 /* .bg-red {  background-image: linear-gradient(260deg, #959595, #A4A5A6,#dcdcdc);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     height: 100%;} */
-.bg-red {background-color: #eeeeee;}
-
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
-.Carousel-home {height: 100%;
-    
-    width:100%;}
-.menu-title {font-size: 2rem;
-   
-    font-family: 'Montserrat', sans-serif !important;
-    color: rgb(171, 2, 2);}
-
-.border-menu{
-    /* border: 3px solid rgba(250, 128, 114, 0.603); */
-    border-radius: 3%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-   position: relative;
-    
+.bg-red {
+  background-color: #eeeeee;
 }
-.bg-home-menu{background-image: url('/public/hehe.jpg');
-              background-position: center;
-            background-repeat: no-repeat;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        background-size: cover;}
-        
-.bg-all {background-image: url('/public/2nd.jpg');
-    background-position: center;
-  background-repeat: no-repeat;
-  
-background-size: cover;}
 
-        
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.Carousel-home {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.menu-title {
+  font-size: 2rem;
+
+  font-family: "Montserrat", sans-serif !important;
+  color: rgb(171, 2, 2);
+}
+
+.border-menu {
+  /* border: 3px solid rgba(250, 128, 114, 0.603); */
+  border-radius: 3%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+}
+.bg-home-menu {
+  background-color: #0805051f !important;
+  padding: 1rem !important;
+  border-radius: 12px;
+}
+
+.bg-all {
+  background-image: url("/public/2nd.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-size: cover;
+}
+
+.price {
+  color: #09db4f !important;
+  position: absolute;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  top: 30%;
+}
+.detail-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.product-description {
+  font-weight: 400 !important;
+  font-size: 1rem;
+}

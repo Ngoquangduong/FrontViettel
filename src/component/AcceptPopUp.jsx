@@ -14,7 +14,7 @@ function AcceptPopUp({ name, handle }) {
   };
   return (
     <>
-      <Button variant="danger" onClick={handleShow}>
+      <Button className="button-61" onClick={handleShow}>
         Chưa Xác Nhận
       </Button>
 

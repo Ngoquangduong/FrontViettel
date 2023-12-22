@@ -59,6 +59,7 @@ function Productmanagment() {
   const [selectedEditService, setSelectedEditService] = useState(0);
   const [updateActive, setUpdateActive] = useState(false);
   const [editPrice, setEditPrice] = useState(0);
+  const [editProductID, setEditProductID] = useState(0);
   const [editDescription, setEditDescription] = useState("");
   const [editGift, setEditGift] = useState("");
   const [editProductName, setEditProductName] = useState("");
@@ -149,6 +150,7 @@ function Productmanagment() {
   const handleUpdateProduct = async (id) => {
     try {
       await updateProduct(id, {
+        ProductID: editProductID,
         ProductName: editProductName,
         Speed: editSpeed,
         Bandwidth: editBandwidth,
@@ -193,6 +195,7 @@ function Productmanagment() {
     ServiceID
   ) => {
     setUpdateActive(true);
+    setEditProductID(id);
     setEditProductName(ProductName);
     setEditPrice(Price);
     setEditDescription(Description);
@@ -248,36 +251,43 @@ function Productmanagment() {
                   bordered
                   hover
                   size="sm"
-                  className="table-custom-rose"
+                  className="table-custom-money"
                 >
-                  <thead className="table-custom-rose ">
-                    <tr className="table-custom-rose">
-                      <th className="table-custom-rose">ID</th>
-                      <th className="table-custom-rose">Tên Sản Phẩm</th>
-                      <th className="table-custom-rose">
+                  <thead className="table-custom-money ">
+                    <tr className="table-custom-money">
+                      <th className="table-custom-money">Thứ tự ưu tiên</th>
+                      <th className="table-custom-money">Tên Sản Phẩm</th>
+                      <th className="table-custom-money">
                         Giá trị gói cước/dịch vụ
                       </th>
-                      <th className="table-custom-rose"> Mô Tả</th>
-                      <th className="table-custom-rose">Băng thông</th>
-                      <th className="table-custom-rose">Tốc độ đường truyền</th>
-                      <th className="table-custom-rose">IP tĩnh</th>
-                      <th className="table-custom-rose">Số ngày dùng</th>
-                      <th className="table-custom-rose">Loại sản phẩm</th>
-                      <th className="table-custom-rose">Dịch vụ đi kèm</th>
-                      <th className="table-custom-rose">Qua</th>
-                      <th className="table-custom-rose">Thao tác</th>
+                      <th className="table-custom-money"> Mô Tả</th>
+                      <th className="table-custom-money">Băng thông</th>
+                      <th className="table-custom-money">Tốc độ đường truyền</th>
+                      <th className="table-custom-money">IP tĩnh</th>
+                      <th className="table-custom-money">Số ngày dùng</th>
+                      <th className="table-custom-money">Loại sản phẩm</th>
+                      <th className="table-custom-money">Dịch vụ đi kèm</th>
+                      <th className="table-custom-money">Qua</th>
+                      <th className="table-custom-money">Thao tác</th>
                     </tr>
                   </thead>
-                  <tbody className="table-custom-rose">
+                  <tbody className="table-custom-money">
                     {currentProduct.map((item) => (
-                      <tr className="table-custom-rose" key={item.ProductID}>
+                      <tr className="table-custom-money" key={item.ProductID}>
                         {updateActive === true &&
                         product.ProductID === item.ProductID ? (
                           <>
-                            <td className="table-custom-rose">
-                              {item.ProductID}
+                            <td className="table-custom-money">
+                              <input
+                                type="number"
+                                value={editProductID}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditProductID(e.target.value)
+                                }
+                              />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               <input
                                 type="text"
                                 value={editProductName}
@@ -288,7 +298,7 @@ function Productmanagment() {
                               />
                             </td>
 
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               <input
                                 type="number"
                                 value={editPrice}
@@ -297,7 +307,7 @@ function Productmanagment() {
                               />
                             </td>
 
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               <input
                                 type="text"
                                 value={editDescription}
@@ -307,7 +317,7 @@ function Productmanagment() {
                                 }
                               />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {/* {item.Bandwidth} */}
                               <input
                                 type="text"
@@ -318,7 +328,7 @@ function Productmanagment() {
                                 }
                               />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {/* {item.Speed} */}
                               <input
                                 type="text"
@@ -327,7 +337,7 @@ function Productmanagment() {
                                 onChange={(e) => setEditSpeed(e.target.value)}
                               />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {/* {item.IPstatic} */}
                               <input
                                 type="text"
@@ -338,7 +348,7 @@ function Productmanagment() {
                                 }
                               />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               <input
                                 type="number"
                                 value={editUseDay}
@@ -347,21 +357,21 @@ function Productmanagment() {
                               />{" "}
                               ngày
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               <SelectForm
                                 name={"Loại Sản Phẩm"}
                                 item={categoryData}
                                 onCategoryChange={handleEditCategoryChange}
                               />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               <SelectForm
                                 name={"Loại Hỗ Trợ"}
                                 item={serviceData}
                                 onCategoryChange={handleEditServiceChange}
                               />
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {/* {item.Gift} */}
                               <input
                                 type="text"
@@ -370,7 +380,7 @@ function Productmanagment() {
                                 onChange={(e) => setEditGift(e.target.value)}
                               />
                             </td>
-                            <td className="table-custom-rose d-flex ">
+                            <td className="table-custom-money d-flex ">
                               <>
                                 <button
                                   className="button-63 ms-2"
@@ -391,36 +401,36 @@ function Productmanagment() {
                           </>
                         ) : (
                           <>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.ProductID}
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.ProductName}
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {parseInt(item.Price)}
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.Description}
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.Bandwidth}
                             </td>
-                            <td className="table-custom-rose">{item.Speed}</td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">{item.Speed}</td>
+                            <td className="table-custom-money">
                               {item.IPstatic}
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.UseDay} ngày
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.category.CategoryName}
                             </td>
-                            <td className="table-custom-rose">
+                            <td className="table-custom-money">
                               {item.service.ServiceName}
                             </td>
-                            <td className="table-custom-rose">{item.Gift}</td>
-                            <td className="table-custom-rose d-flex ">
+                            <td className="table-custom-money">{item.Gift}</td>
+                            <td className="table-custom-money d-flex ">
                               <DeletePopUp
                                 name={item.ProductID}
                                 handle={handleDelete}
@@ -465,7 +475,7 @@ function Productmanagment() {
                 filename="products.csv"
                 className="button-62"
               >
-                {"Download CSV"}
+                {"Xuất file Excel"}
               </CSVLink>
               {/* <button className="button-63 mx-3">Nhập dữ liệu</button>
 

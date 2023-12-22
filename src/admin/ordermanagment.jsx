@@ -107,68 +107,71 @@ function Ordermanagment() {
                   size="sm"
                   className="table-custom-green"
                 >
-                  <thead className="table-custom-green ">
-                    <tr className="table-custom-green">
-                      <th className="table-custom-green">ID</th>
-                      <th className="table-custom-green">Tên</th>
-                      <th className="table-custom-green">Ngày Đăng Ký</th>
-                      <th className="table-custom-green ">
-                        Gói cước/dịch vụ đặt
+                  <thead className="table-custom-rose ">
+                    <tr className="table-custom-rose">
+                      <th className="table-custom-rose ">TT</th>
+                      <th className="table-custom-rose text-center mt-0">
+                        Tên
                       </th>
-                      <th className="table-custom-green ">
-                        Giá trị gói cước/dịch vụ
-                      </th>
-                      <th className="table-custom-green">Số điện thoại</th>
-                      <th className="table-custom-green">Địa chỉ</th>
-                      <th className="table-custom-green">Thành phố</th>
-                      <th className="table-custom-green">Quận</th>
-                      <th className="table-custom-green">
+                      <th className="table-custom-rose">Ngày Đăng Ký</th>
+                      <th className="table-custom-rose ">Gói cước</th>
+                      <th className="table-custom-rose">Giá cước</th>
+                      <th className="table-custom-rose">Điện thoại LH</th>
+                      <th className="table-custom-rose">Địa chỉ lắp đặt</th>
+                      <th className="table-custom-rose">Thành phố</th>
+                      <th className="table-custom-rose">Quận</th>
+                      <th className="table-custom-rose">
                         Phương Thức Thanh Toán
                       </th>
 
-                      <th className="table-custom-green">Dịch Vụ Đi Kèm</th>
-                      <th className="table-custom-green">Trạng thái đơn</th>
+                      <th className="table-custom-rose">Dịch Vụ Đi Kèm</th>
+                      <th className="table-custom-rose">Trạng thái đơn</th>
                       <th className="table-custom-rose">Thao tác</th>
                     </tr>
                   </thead>
-                  <tbody className="table-custom-green">
+                  <tbody className="table-custom-rose">
                     {currentUnAcceptOrder.map((item) => (
-                      <tr className="table-custom-green" key={item.OrderID}>
-                        <td className="table-custom-green">{item.OrderID}</td>
-                        <td className="table-custom-green">{item.name}</td>
-                        <td className="table-custom-green">{item.DateStart}</td>
-                        <td className="table-custom-green">{item.ProductID}</td>
-                        <td className="table-custom-green">
-                          {item.product.Price}
+                      <tr className="table-custom-rose" key={item.OrderID}>
+                        <td className="table-custom-rose">{item.OrderID}</td>
+                        <td className="table-custom-rose">{item.name}</td>
+                        <td className="table-custom-rose">{item.DateStart}</td>
+                        <td className="table-custom-rose">
+                          {item.product.ProductName}
                         </td>
-                        <td className="table-custom-green">{item.Phone}</td>
-                        <td className="table-custom-green">{item.Address}</td>
-                        <td className="table-custom-green">
+                        <td className="table-custom-rose">
+                          {item && item.product.Price ? (
+                            <>
+                              {item.product.Price.toLocaleString("en-US")} VND
+                            </>
+                          ) : (
+                            <span>No price available</span>
+                          )}
+                        </td>
+                        <td className="table-custom-rose">{item.Phone}</td>
+                        <td className="table-custom-rose">{item.Address}</td>
+                        <td className="table-custom-rose">
                           {item.city.CityName}
                         </td>
-                        <td className="table-custom-green">
+                        <td className="table-custom-rose">
                           {item.district.DistrictName}
                         </td>
-                        <td className="table-custom-green">
+                        <td className="table-custom-rose">
                           {item.payment.PaymentName}
                         </td>
-                        <td className="table-custom-green">
+                        <td className="table-custom-rose">
                           {item.service.ServiceName}
                         </td>
-                        <td className="table-custom-green">
+                        <td className="table-custom-rose">
                           <AcceptPopUp
                             name={item.OrderID}
                             handle={handleAccept}
                           ></AcceptPopUp>
                         </td>
-                        <td className="table-custom-green d-flex ">
+                        <td className="table-custom-rose d-flex ">
                           <DeletePopUp
                             name={item.OrderID}
                             handle={handleDelete}
                           ></DeletePopUp>
-                          <a href="#">
-                            <button className="button-63">Chỉnh sửa</button>
-                          </a>
                         </td>
                       </tr>
                     ))}
@@ -193,7 +196,7 @@ function Ordermanagment() {
                 filename="orderAccept.csv"
                 className="button-62"
               >
-                {"Download CSV"}
+                {"Xuất File Excel"}
               </CSVLink>
             </Col>
           </Row>
@@ -231,7 +234,7 @@ function Ordermanagment() {
 
                       <th className="table-custom-green">Dịch Vụ Đi Kèm</th>
                       <th className="table-custom-green">Trạng thái đơn</th>
-                      <th className="table-custom-rose">Thao tác</th>
+                      <th className="table-custom-green">Thao tác</th>
                     </tr>
                   </thead>
                   <tbody className="table-custom-green">
@@ -271,9 +274,6 @@ function Ordermanagment() {
                             name={item.OrderID}
                             handle={handleDelete}
                           ></DeletePopUp>
-                          <a href="#">
-                            <button className="button-63">Chỉnh sửa</button>
-                          </a>
                         </td>
                       </tr>
                     ))}
@@ -297,7 +297,7 @@ function Ordermanagment() {
                 filename="orderAccpet.csv"
                 className="button-62"
               >
-                {"Download CSV"}
+                {"Xuất File Excel"}
               </CSVLink>
             </Col>
           </Row>

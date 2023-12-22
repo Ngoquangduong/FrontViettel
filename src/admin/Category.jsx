@@ -26,6 +26,7 @@ const Category = () => {
 
   const [categoryName, setCategoryName] = useState("");
 
+  const [editCategoryID, setEditCategoryID] = useState("");
   const [editingCategory, setEditingCategory] = useState("");
 
   const [updateActive, setUpdateActive] = useState(false);
@@ -50,6 +51,7 @@ const Category = () => {
   const handleUpdateCategory = async (id) => {
     try {
       await updateCategory(id, {
+        CategoryID: editCategoryID,
         CategoryName: editingCategory,
       });
     } catch (e) {
@@ -64,6 +66,7 @@ const Category = () => {
 
   const handleEditCategory = async (id, name) => {
     setUpdateActive(true);
+    setEditCategoryID(id);
     setEditingCategory(name);
     await getCategoryDetail(id);
     // Set the category name in the editing state
@@ -114,7 +117,7 @@ const Category = () => {
                 >
                   <thead className="table-custom">
                     <tr className="table-custom">
-                      <th className="table-custom">ID</th>
+                      <th className="table-custom">Thứ tự ưu tiên</th>
                       <th className="table-custom">Tên loại sản phẩm</th>
                       <th className="table-custom ">
                         <p className="text-center">Thao tác</p>
@@ -124,7 +127,7 @@ const Category = () => {
                   <tbody className="table-custom">
                     {currentCategory.map((item) => (
                       <tr key={item.CategoryID} className="table-custom">
-                        <td className="table-custom">{item.CategoryID}</td>
+                        {/* <td className="table-custom">{item.CategoryID}</td>
                         <td className="table-custom">
                           {updateActive === true &&
                           category.CategoryID === item.CategoryID ? (
@@ -178,7 +181,77 @@ const Category = () => {
                               ></DeletePopUp>
                             </>
                           )}
-                        </th>
+                        </th> */}
+                        {updateActive === true &&
+                        category.CategoryID === item.CategoryID ? (
+                          <>
+                            <td className="table-custom-rose">
+                              <input
+                                type="number"
+                                value={editCategoryID}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditCategoryID(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td className="table-custom-rose">
+                              <input
+                                type="text"
+                                value={editingCategory}
+                                style={{ color: "#000" }}
+                                onChange={(e) =>
+                                  setEditingCategory(e.target.value)
+                                }
+                              />
+                            </td>
+
+                            <td className="table-custom-rose d-flex ">
+                              <>
+                                <button
+                                  className="button-63 ms-2"
+                                  onClick={() =>
+                                    handleUpdateCategory(item.CategoryID)
+                                  }
+                                >
+                                  Lưu
+                                </button>
+                                <button
+                                  className="button-62 ms-2"
+                                  onClick={handleCancelEdit}
+                                >
+                                  Hủy
+                                </button>
+                              </>
+                            </td>
+                          </>
+                        ) : (
+                          <>
+                            <td className="table-custom-rose">
+                              {item.CategoryID}
+                            </td>
+                            <td className="table-custom-rose">
+                              {item.CategoryName}
+                            </td>
+                            <td className="table-custom-rose d-flex ">
+                              <button
+                                className="button-63 ms-2"
+                                onClick={() =>
+                                  handleEditCategory(
+                                    item.CategoryID,
+                                    item.CategoryName
+                                  )
+                                }
+                              >
+                                Chỉnh sửa
+                              </button>
+                              <DeletePopUp
+                                name={item.CategoryID}
+                                handle={handleDelete}
+                              ></DeletePopUp>
+                            </td>
+                          </>
+                        )}
                       </tr>
                     ))}
                   </tbody>
@@ -194,7 +267,7 @@ const Category = () => {
                 filename="categories.csv"
                 className="button-62"
               >
-                {"Download CSV"}
+                {"Xuất file Excel"}
               </CSVLink>
             </Col>
           </Row>
@@ -215,10 +288,9 @@ const Category = () => {
                   <span className="highlight"></span>
                   <span className="bar mb-4"></span>
                 </Col>
-              
               </Row>
               <button type="submit" className="button-63 mb-5">
-                  Xác nhận
+                Xác nhận
               </button>
             </Form>
           </Row>

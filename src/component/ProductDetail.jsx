@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
@@ -10,8 +11,6 @@ import FormPopUp from "./FormPopUp";
 const ProductDetail = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
   // const { product } = useProductContext();
-
-
   return (
     <Row className="mx-auto my-3">
       <Col xs={12} sm={6} md={4} lg={3}>
@@ -32,9 +31,16 @@ const ProductDetail = ({ product }) => {
               {product.ProductName}
             </a>
           </p>
-          <p className="mt-3 text-success price">
-            {parseInt(product.Price)}
-            <span> /tháng</span>
+          <p className="mt-3 text-success detail-price">
+            {/* {product.Price.toLocaleString('en-US')} */}
+            {product && product.Price ? (
+              <>
+                {product.Price.toLocaleString("en-US")}
+                <span> /tháng</span>
+              </>
+            ) : (
+              <span>No price available</span>
+            )}
           </p>
           <span className="text-custom">Ưu đãi: </span>{" "}
           <span className="text-danger text-custom-title"> {product.Gift}</span>
@@ -60,7 +66,11 @@ const ProductDetail = ({ product }) => {
               Đăng ký
             </button>
 
-            <FormPopUp show={modalShow} onHide={() => setModalShow(false)} />
+            <FormPopUp
+              show={modalShow}
+              product={product}
+              onHide={() => setModalShow(false)}
+            />
           </div>
         </div>
       </Col>

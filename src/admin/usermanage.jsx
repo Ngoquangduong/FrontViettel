@@ -47,7 +47,7 @@ function Usermanagement() {
           <Row className="py-3">
             <Col md={12}>
               <h1 className="my-3 title-table">
-                Danh sách tài khoản người dùng
+                Danh sách tài khoản admin
               </h1>
               <div className="table-responsive br-6">
                 <Table

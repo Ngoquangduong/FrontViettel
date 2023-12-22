@@ -10,7 +10,6 @@ import usePaymentContext from "../context/PaymentContext";
 import useOrderContext from "../context/OrderContext";
 
 function FormPopUp(props) {
-  const { product } = useProductContext();
   const { cities } = useCityContext();
   const { districts } = useDistrictContext();
   const { payments } = usePaymentContext();
@@ -19,9 +18,6 @@ function FormPopUp(props) {
 
   const [selectedCity, setSelectedCity] = useState(undefined);
   const [selectedDistrict, setSelectedDistrict] = useState(undefined);
-  const [selectedProduct, setSelectedProduct] = useState(
-    product.ProductID || ""
-  );
   const [Phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [Address, setAddress] = useState("");
@@ -30,9 +26,8 @@ function FormPopUp(props) {
 
   const handleOrder = async (event) => {
     event.preventDefault();
-    setSelectedProduct(product.ProductID);
     await insertOrder({
-      ProductID: selectedProduct,
+      ProductID: props.product.ProductID,
       Phone: Phone,
       name: name,
       Address: Address,
@@ -63,7 +58,7 @@ function FormPopUp(props) {
                 id="contained-modal-title-vcenter"
                 className="justify-content-center align-items-center d-flex flex-column"
               >
-                {product.ProductName}
+                {props.product.ProductName}
               </Modal.Title>
               <span className="highlight"></span>
               <span className="bar mb-4"></span>
