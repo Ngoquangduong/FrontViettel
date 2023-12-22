@@ -16,6 +16,7 @@ export default function ProductListHome({ CategoryID }) {
     let temp = products.filter((item) => {
       return item.CategoryID === CategoryID;
     });
+    temp.sort((a, b) => a.sort - b.sort);
     setCurrentProduct(temp);
   }, [CategoryID, products]);
 

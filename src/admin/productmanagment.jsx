@@ -53,13 +53,14 @@ function Productmanagment() {
   const [Gift, setGift] = useState("");
   const [Description, setDescription] = useState("");
   const [IPstatic, setIPstatic] = useState("");
+  const [NTPrice, setNTPrice] = useState(0);
+  const [productSort, setProductSort] = useState(1);
 
   //edit
   const [selectedEditCategory, setSelectedEditCategory] = useState(0);
   const [selectedEditService, setSelectedEditService] = useState(0);
   const [updateActive, setUpdateActive] = useState(false);
   const [editPrice, setEditPrice] = useState(0);
-  const [editProductID, setEditProductID] = useState(0);
   const [editDescription, setEditDescription] = useState("");
   const [editGift, setEditGift] = useState("");
   const [editProductName, setEditProductName] = useState("");
@@ -67,6 +68,8 @@ function Productmanagment() {
   const [editBandwidth, setEditBandwidth] = useState("");
   const [editIPstatic, setEditIPstatic] = useState("");
   const [editUseDay, setEditUseDay] = useState(0);
+  const [editNTPrice, setEditNTPrice] = useState(0);
+  const [editProductSort, setEditProductSort] = useState(1);
   // ---------------Paginate--------------------------
 
   //Export
@@ -120,6 +123,8 @@ function Productmanagment() {
     insertProduct({
       ProductName: ProductName,
       Speed: Speed,
+      sort: productSort,
+      NTPrice: NTPrice,
       Bandwidth: Bandwidth,
       Price: Price,
       Gift: Gift,
@@ -131,6 +136,8 @@ function Productmanagment() {
     });
     setProductName("");
     setPrice(0);
+    setNTPrice(0);
+    setProductSort(1);
     // setSelectedCategory(0);
     // setSelectedService(0);
     setUseDay(0);
@@ -150,9 +157,10 @@ function Productmanagment() {
   const handleUpdateProduct = async (id) => {
     try {
       await updateProduct(id, {
-        ProductID: editProductID,
         ProductName: editProductName,
         Speed: editSpeed,
+        NTPrice: editNTPrice,
+        sort: editProductSort,
         Bandwidth: editBandwidth,
         Price: editPrice,
         Gift: editGift,
@@ -170,6 +178,8 @@ function Productmanagment() {
 
     setUpdateActive(false);
     setProductDetail({});
+    setEditNTPrice(0);
+    setEditProductSort(1);
     setEditProductName("");
     setEditPrice("");
     setEditDescription("");
@@ -185,6 +195,8 @@ function Productmanagment() {
     id,
     ProductName,
     Price,
+    NTPrice,
+    sort,
     Description,
     Bandwidth,
     Speed,
@@ -195,9 +207,10 @@ function Productmanagment() {
     ServiceID
   ) => {
     setUpdateActive(true);
-    setEditProductID(id);
     setEditProductName(ProductName);
     setEditPrice(Price);
+    setEditNTPrice(NTPrice);
+    setProductSort(sort);
     setEditDescription(Description);
     setEditBandwidth(Bandwidth);
     setEditSpeed(Speed);
@@ -255,14 +268,20 @@ function Productmanagment() {
                 >
                   <thead className="table-custom-money ">
                     <tr className="table-custom-money">
-                      <th className="table-custom-money">Thứ tự ưu tiên</th>
+                      <th className="table-custom-money">ID</th>
+                      <th className="table-custom-money">Độ ưu tiên</th>
                       <th className="table-custom-money">Tên Sản Phẩm</th>
                       <th className="table-custom-money">
-                        Giá trị gói cước/dịch vụ
+                        Giá nội thành gói cước
+                      </th>
+                      <th className="table-custom-money">
+                        Giá ngoại thành gói cước
                       </th>
                       <th className="table-custom-money"> Mô Tả</th>
                       <th className="table-custom-money">Băng thông</th>
-                      <th className="table-custom-money">Tốc độ đường truyền</th>
+                      <th className="table-custom-money">
+                        Tốc độ đường truyền
+                      </th>
                       <th className="table-custom-money">IP tĩnh</th>
                       <th className="table-custom-money">Số ngày dùng</th>
                       <th className="table-custom-money">Loại sản phẩm</th>
@@ -278,12 +297,15 @@ function Productmanagment() {
                         product.ProductID === item.ProductID ? (
                           <>
                             <td className="table-custom-money">
+                              {product.ProductID}
+                            </td>
+                            <td className="table-custom-money">
                               <input
                                 type="number"
-                                value={editProductID}
+                                value={editProductSort}
                                 style={{ color: "#000" }}
                                 onChange={(e) =>
-                                  setEditProductID(e.target.value)
+                                  setEditProductSort(e.target.value)
                                 }
                               />
                             </td>
@@ -306,7 +328,14 @@ function Productmanagment() {
                                 onChange={(e) => setEditPrice(e.target.value)}
                               />
                             </td>
-
+                            <td className="table-custom-money">
+                              <input
+                                type="number"
+                                value={editNTPrice}
+                                style={{ color: "#000" }}
+                                onChange={(e) => setEditNTPrice(e.target.value)}
+                              />
+                            </td>
                             <td className="table-custom-money">
                               <input
                                 type="text"
@@ -404,11 +433,15 @@ function Productmanagment() {
                             <td className="table-custom-money">
                               {item.ProductID}
                             </td>
+                            <td className="table-custom-money">{item.sort}</td>
                             <td className="table-custom-money">
                               {item.ProductName}
                             </td>
                             <td className="table-custom-money">
                               {parseInt(item.Price)}
+                            </td>
+                            <td className="table-custom-money">
+                              {parseInt(item.NTPrice)}
                             </td>
                             <td className="table-custom-money">
                               {item.Description}
@@ -443,6 +476,8 @@ function Productmanagment() {
                                       item.ProductID,
                                       item.ProductName,
                                       item.Price,
+                                      item.NTPrice,
+                                      item.sort,
                                       item.Description,
                                       item.Bandwidth,
                                       item.Speed,
@@ -645,13 +680,49 @@ function Productmanagment() {
                 </Col>
 
                 <Col>
-                  <label htmlFor="">Giá Sản Phẩm</label>
+                  <label htmlFor="">Giá Nội Thành Sản Phẩm</label>
                   <input
                     type="number"
                     className="w-100"
                     placeholder="Giá sản phẩm"
                     value={Price}
-                    onChange={(e) => setPrice(parseFloat(e.target.value))}
+                    onChange={(e) => setPrice(e.target.value)}
+                    required
+                  />
+                  <span className="highlight"></span>
+                  {errors.Price && (
+                    <span className="text-red-400 text-sm m-2 p-2">
+                      {errors.Price[0]}
+                    </span>
+                  )}
+                  <span className="bar mb-4"></span>
+                </Col>
+                <Col>
+                  <label htmlFor="">Giá Ngoại Thành Sản Phẩm</label>
+                  <input
+                    type="number"
+                    className="w-100"
+                    placeholder="Giá sản phẩm"
+                    value={NTPrice}
+                    onChange={(e) => setNTPrice(e.target.value)}
+                    required
+                  />
+                  <span className="highlight"></span>
+                  {errors.Price && (
+                    <span className="text-red-400 text-sm m-2 p-2">
+                      {errors.Price[0]}
+                    </span>
+                  )}
+                  <span className="bar mb-4"></span>
+                </Col>
+                <Col>
+                  <label htmlFor="">Độ Ưu tiên sản phẩm</label>
+                  <input
+                    type="number"
+                    className="w-100"
+                    placeholder="Giá sản phẩm"
+                    value={productSort}
+                    onChange={(e) => setProductSort(e.target.value)}
                     required
                   />
                   <span className="highlight"></span>

@@ -26,7 +26,6 @@ const Category = () => {
 
   const [categoryName, setCategoryName] = useState("");
 
-  const [editCategoryID, setEditCategoryID] = useState("");
   const [editingCategory, setEditingCategory] = useState("");
 
   const [updateActive, setUpdateActive] = useState(false);
@@ -51,7 +50,6 @@ const Category = () => {
   const handleUpdateCategory = async (id) => {
     try {
       await updateCategory(id, {
-        CategoryID: editCategoryID,
         CategoryName: editingCategory,
       });
     } catch (e) {
@@ -66,7 +64,6 @@ const Category = () => {
 
   const handleEditCategory = async (id, name) => {
     setUpdateActive(true);
-    setEditCategoryID(id);
     setEditingCategory(name);
     await getCategoryDetail(id);
     // Set the category name in the editing state
@@ -185,16 +182,7 @@ const Category = () => {
                         {updateActive === true &&
                         category.CategoryID === item.CategoryID ? (
                           <>
-                            <td className="table-custom-rose">
-                              <input
-                                type="number"
-                                value={editCategoryID}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditCategoryID(e.target.value)
-                                }
-                              />
-                            </td>
+                            <td className="table-custom">{item.CategoryID}</td>
                             <td className="table-custom-rose">
                               <input
                                 type="text"
