@@ -40,10 +40,15 @@ export default function Product(props) {
               )}
               {/* {product.Description} */}
             </Card.Text>
+            <div className="d-flex price-tag flex-column ">
+              <Card.Title className="  text-center w-100 ">
+                {product.Price.toLocaleString("en-US")}VND
+              </Card.Title>
+              <Card.Title className=" text-center   w-100 ">
+              <span className="price-hint">Ngoại thành : </span> <span>{product.NTPrice.toLocaleString("en-US")}VND</span>
+              </Card.Title>
+            </div>
 
-            <Card.Title className=" price text-center uppercase position-absolute w-100 py-1">
-              {product.Price.toLocaleString("en-US")} VND
-            </Card.Title>
 
             <div className="d-flex card-button justify-content-center flex-column ">
               <div className="my-2">
