@@ -56,7 +56,7 @@ const ProductDetail = ({ product }) => {
           </div>
           <p className="text-custom">
             <span className="text-custom-title">Mô tả :</span>
-            {product.Description}
+            <pre>{product.Description}</pre>
           </p>
           <div className="my-3">
             <button

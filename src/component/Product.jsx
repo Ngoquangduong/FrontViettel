@@ -33,9 +33,11 @@ export default function Product(props) {
           </Card.Title>
           <Card.Body className="justify-content-center align-items-center d-flex flex-column">
             <Card.Text className="text-light text-center px-3 product-description ">
-              {product.Description.length > 50
-                ? product.Description.substring(0, 50) + "..."
-                : product.Description}
+              {product.Description.length > 50 ? (
+                <pre>{product.Gift.substring(0, 50) + "..."}</pre>
+              ) : (
+                <pre>{product.Gift}</pre>
+              )}
               {/* {product.Description} */}
             </Card.Text>
 

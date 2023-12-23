@@ -8,6 +8,7 @@ import DeletePopUp from "../component/DeletePopUp";
 import Paginate from "../component/Pagination";
 
 import { CSVLink, CSVDownload } from "react-csv";
+import CategoryUpdate from "../component/CategoryUpdate";
 
 const Category = () => {
   const {
@@ -26,10 +27,6 @@ const Category = () => {
 
   const [categoryName, setCategoryName] = useState("");
 
-  const [editingCategory, setEditingCategory] = useState("");
-
-  const [updateActive, setUpdateActive] = useState(false);
-
   useEffect(() => {
     getExportCategory();
   }, [categories]);
@@ -46,33 +43,6 @@ const Category = () => {
         console.error("Validation error:", e.response.data.errors);
       }
     }
-  };
-  const handleUpdateCategory = async (id) => {
-    try {
-      await updateCategory(id, {
-        CategoryName: editingCategory,
-      });
-    } catch (e) {
-      if (e.response && e.response.status === 422) {
-        console.error("Validation error:", e.response.data.errors);
-      }
-    }
-    setUpdateActive(false);
-    setCategoryDetail({});
-    setEditingCategory("");
-  };
-
-  const handleEditCategory = async (id, name) => {
-    setUpdateActive(true);
-    setEditingCategory(name);
-    await getCategoryDetail(id);
-    // Set the category name in the editing state
-  };
-
-  const handleCancelEdit = () => {
-    setUpdateActive(false);
-    setEditingCategory("");
-    setCategoryDetail({});
   };
 
   const handleDelete = (ID) => {
@@ -124,122 +94,21 @@ const Category = () => {
                   <tbody className="table-custom">
                     {currentCategory.map((item) => (
                       <tr key={item.CategoryID} className="table-custom">
-                        {/* <td className="table-custom">{item.CategoryID}</td>
-                        <td className="table-custom">
-                          {updateActive === true &&
-                          category.CategoryID === item.CategoryID ? (
-                            <input
-                              type="text"
-                              value={editingCategory}
-                              style={{ color: "#000" }}
-                              onChange={(e) =>
-                                setEditingCategory(e.target.value)
-                              }
-                            />
-                          ) : (
-                            item.CategoryName
-                          )}
-                        </td>
-                        <th className="table-custom d-flex justify-center">
-                          {updateActive === true &&
-                          category.CategoryID === item.CategoryID ? (
-                            <>
-                              <button
-                                className="button-63 ms-2"
-                                onClick={() =>
-                                  handleUpdateCategory(item.CategoryID)
-                                }
-                              >
-                                Lưu
-                              </button>
-                              <button
-                                className="button-62 ms-2"
-                                onClick={handleCancelEdit}
-                              >
-                                Hủy
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              <button
-                                className="button-63 ms-2"
-                                onClick={() =>
-                                  handleEditCategory(
-                                    item.CategoryID,
-                                    item.CategoryName
-                                  )
-                                }
-                              >
-                                Chỉnh sửa
-                              </button>
-                              <DeletePopUp
-                                name={item.CategoryID}
-                                handle={handleDelete}
-                              ></DeletePopUp>
-                            </>
-                          )}
-                        </th> */}
-                        {updateActive === true &&
-                        category.CategoryID === item.CategoryID ? (
-                          <>
-                            <td className="table-custom">{item.CategoryID}</td>
-                            <td className="table-custom-rose">
-                              <input
-                                type="text"
-                                value={editingCategory}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditingCategory(e.target.value)
-                                }
-                              />
-                            </td>
-
-                            <td className="table-custom-rose d-flex ">
-                              <>
-                                <button
-                                  className="button-63 ms-2"
-                                  onClick={() =>
-                                    handleUpdateCategory(item.CategoryID)
-                                  }
-                                >
-                                  Lưu
-                                </button>
-                                <button
-                                  className="button-62 ms-2"
-                                  onClick={handleCancelEdit}
-                                >
-                                  Hủy
-                                </button>
-                              </>
-                            </td>
-                          </>
-                        ) : (
-                          <>
-                            <td className="table-custom-rose">
-                              {item.CategoryID}
-                            </td>
-                            <td className="table-custom-rose">
-                              {item.CategoryName}
-                            </td>
-                            <td className="table-custom-rose d-flex ">
-                              <button
-                                className="button-63 ms-2"
-                                onClick={() =>
-                                  handleEditCategory(
-                                    item.CategoryID,
-                                    item.CategoryName
-                                  )
-                                }
-                              >
-                                Chỉnh sửa
-                              </button>
-                              <DeletePopUp
-                                name={item.CategoryID}
-                                handle={handleDelete}
-                              ></DeletePopUp>
-                            </td>
-                          </>
-                        )}
+                        <>
+                          <td className="table-custom-rose">
+                            {item.CategoryID}
+                          </td>
+                          <td className="table-custom-rose">
+                            {item.CategoryName}
+                          </td>
+                          <td className="table-custom-rose d-flex ">
+                            <CategoryUpdate Category={item}></CategoryUpdate>
+                            <DeletePopUp
+                              name={item.CategoryID}
+                              handle={handleDelete}
+                            ></DeletePopUp>
+                          </td>
+                        </>
                       </tr>
                     ))}
                   </tbody>

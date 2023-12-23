@@ -19,6 +19,7 @@ import Paginate from "../component/Pagination";
 import axios from "../api/axios";
 // import { data } from "autoprefixer";
 import { CSVLink, CSVDownload } from "react-csv";
+import ProductUpdate from "../component/ProductUpdate";
 
 function Productmanagment() {
   const {
@@ -37,8 +38,8 @@ function Productmanagment() {
   const { categories } = useCategoryContext();
   const { services } = useServiceContext();
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
   const [categoryData, setCategoryData] = useState([]);
   const [serviceData, setServiceData] = useState([]);
 
@@ -56,20 +57,6 @@ function Productmanagment() {
   const [NTPrice, setNTPrice] = useState(0);
   const [productSort, setProductSort] = useState(1);
 
-  //edit
-  const [selectedEditCategory, setSelectedEditCategory] = useState(0);
-  const [selectedEditService, setSelectedEditService] = useState(0);
-  const [updateActive, setUpdateActive] = useState(false);
-  const [editPrice, setEditPrice] = useState(0);
-  const [editDescription, setEditDescription] = useState("");
-  const [editGift, setEditGift] = useState("");
-  const [editProductName, setEditProductName] = useState("");
-  const [editSpeed, setEditSpeed] = useState("");
-  const [editBandwidth, setEditBandwidth] = useState("");
-  const [editIPstatic, setEditIPstatic] = useState("");
-  const [editUseDay, setEditUseDay] = useState(0);
-  const [editNTPrice, setEditNTPrice] = useState(0);
-  const [editProductSort, setEditProductSort] = useState(1);
   // ---------------Paginate--------------------------
 
   //Export
@@ -148,96 +135,6 @@ function Productmanagment() {
     setIPstatic("");
   };
 
-  const handleEditCategoryChange = (selectedValue) => {
-    setSelectedEditCategory(parseInt(selectedValue));
-  };
-  const handleEditServiceChange = (selectedValue) => {
-    setSelectedEditService(parseInt(selectedValue));
-  };
-  const handleUpdateProduct = async (id) => {
-    try {
-      await updateProduct(id, {
-        ProductName: editProductName,
-        Speed: editSpeed,
-        NTPrice: editNTPrice,
-        sort: editProductSort,
-        Bandwidth: editBandwidth,
-        Price: editPrice,
-        Gift: editGift,
-        Description: editDescription,
-        IPstatic: editIPstatic,
-        UseDay: editUseDay,
-        CategoryID: selectedEditCategory,
-        ServiceID: selectedEditService,
-      });
-    } catch (e) {
-      if (e.response && e.response.status === 422) {
-        console.error("Validation error:", e.response.data.errors);
-      }
-    }
-
-    setUpdateActive(false);
-    setProductDetail({});
-    setEditNTPrice(0);
-    setEditProductSort(1);
-    setEditProductName("");
-    setEditPrice("");
-    setEditDescription("");
-    setEditBandwidth("");
-    setEditSpeed("");
-    setEditIPstatic("");
-    setEditGift("");
-    setSelectedEditCategory(0);
-    setSelectedEditService(0);
-  };
-
-  const handleEditProduct = async (
-    id,
-    ProductName,
-    Price,
-    NTPrice,
-    sort,
-    Description,
-    Bandwidth,
-    Speed,
-    IPstatic,
-    Gift,
-    UseDay,
-    CategoryID,
-    ServiceID
-  ) => {
-    setUpdateActive(true);
-    setEditProductName(ProductName);
-    setEditPrice(Price);
-    setEditNTPrice(NTPrice);
-    setProductSort(sort);
-    setEditDescription(Description);
-    setEditBandwidth(Bandwidth);
-    setEditSpeed(Speed);
-    setEditIPstatic(IPstatic);
-    setEditGift(Gift);
-    setEditUseDay(UseDay);
-    setSelectedEditCategory(parseInt(CategoryID));
-    setSelectedEditService(parseInt(ServiceID));
-    await getProductDetail(id);
-    // Set the category name in the editing state
-  };
-
-  const handleCancelEdit = () => {
-    setUpdateActive(false);
-    setEditProductName("");
-    setEditPrice(0);
-    setDescription("");
-    setProductDetail({});
-    setEditBandwidth("");
-    setEditSpeed("");
-    setEditIPstatic("");
-    setEditGift("");
-    setEditUseDay(0);
-    setSelectedEditCategory(0);
-    setSelectedEditService(0);
-  };
-
   const handleDelete = (ID) => {
     deleteProduct(ID);
   };
@@ -293,208 +190,54 @@ function Productmanagment() {
                   <tbody className="table-custom-money">
                     {currentProduct.map((item) => (
                       <tr className="table-custom-money" key={item.ProductID}>
-                        {updateActive === true &&
-                        product.ProductID === item.ProductID ? (
-                          <>
-                            <td className="table-custom-money">
-                              {product.ProductID}
-                            </td>
-                            <td className="table-custom-money">
-                              <input
-                                type="number"
-                                value={editProductSort}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditProductSort(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              <input
-                                type="text"
-                                value={editProductName}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditProductName(e.target.value)
-                                }
-                              />
-                            </td>
+                        <>
+                          <td className="table-custom-money">
+                            {item.ProductID}
+                          </td>
+                          <td className="table-custom-money">{item.sort}</td>
+                          <td className="table-custom-money">
+                            {item.ProductName}
+                          </td>
+                          <td className="table-custom-money">
+                            {parseInt(item.Price)}
+                          </td>
+                          <td className="table-custom-money">
+                            {parseInt(item.NTPrice)}
+                          </td>
+                          <td className="table-custom-money">
+                            {item.Description}
+                          </td>
+                          <td className="table-custom-money">
+                            {item.Bandwidth}
+                          </td>
+                          <td className="table-custom-money">{item.Speed}</td>
+                          <td className="table-custom-money">
+                            {item.IPstatic}
+                          </td>
+                          <td className="table-custom-money">
+                            {item.UseDay} ngày
+                          </td>
+                          <td className="table-custom-money">
+                            {item.category.CategoryName}
+                          </td>
+                          <td className="table-custom-money">
+                            {item.service.ServiceName}
+                          </td>
+                          <td className="table-custom-money">{item.Gift}</td>
+                          <td className="table-custom-money d-flex ">
+                            <DeletePopUp
+                              name={item.ProductID}
+                              handle={handleDelete}
+                            ></DeletePopUp>
+                            {/* <a href="#"> */}
 
-                            <td className="table-custom-money">
-                              <input
-                                type="number"
-                                value={editPrice}
-                                style={{ color: "#000" }}
-                                onChange={(e) => setEditPrice(e.target.value)}
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              <input
-                                type="number"
-                                value={editNTPrice}
-                                style={{ color: "#000" }}
-                                onChange={(e) => setEditNTPrice(e.target.value)}
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              <input
-                                type="text"
-                                value={editDescription}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditDescription(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              {/* {item.Bandwidth} */}
-                              <input
-                                type="text"
-                                value={editBandwidth}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditBandwidth(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              {/* {item.Speed} */}
-                              <input
-                                type="text"
-                                value={editSpeed}
-                                style={{ color: "#000" }}
-                                onChange={(e) => setEditSpeed(e.target.value)}
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              {/* {item.IPstatic} */}
-                              <input
-                                type="text"
-                                value={editIPstatic}
-                                style={{ color: "#000" }}
-                                onChange={(e) =>
-                                  setEditIPstatic(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              <input
-                                type="number"
-                                value={editUseDay}
-                                style={{ color: "#000" }}
-                                onChange={(e) => setEditUseDay(e.target.value)}
-                              />{" "}
-                              ngày
-                            </td>
-                            <td className="table-custom-money">
-                              <SelectForm
-                                name={"Loại Sản Phẩm"}
-                                item={categoryData}
-                                onCategoryChange={handleEditCategoryChange}
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              <SelectForm
-                                name={"Loại Hỗ Trợ"}
-                                item={serviceData}
-                                onCategoryChange={handleEditServiceChange}
-                              />
-                            </td>
-                            <td className="table-custom-money">
-                              {/* {item.Gift} */}
-                              <input
-                                type="text"
-                                value={editGift}
-                                style={{ color: "#000" }}
-                                onChange={(e) => setEditGift(e.target.value)}
-                              />
-                            </td>
-                            <td className="table-custom-money d-flex ">
-                              <>
-                                <button
-                                  className="button-63 ms-2"
-                                  onClick={() =>
-                                    handleUpdateProduct(item.ProductID)
-                                  }
-                                >
-                                  Lưu
-                                </button>
-                                <button
-                                  className="button-62 ms-2"
-                                  onClick={handleCancelEdit}
-                                >
-                                  Hủy
-                                </button>
-                              </>
-                            </td>
-                          </>
-                        ) : (
-                          <>
-                            <td className="table-custom-money">
-                              {item.ProductID}
-                            </td>
-                            <td className="table-custom-money">{item.sort}</td>
-                            <td className="table-custom-money">
-                              {item.ProductName}
-                            </td>
-                            <td className="table-custom-money">
-                              {parseInt(item.Price)}
-                            </td>
-                            <td className="table-custom-money">
-                              {parseInt(item.NTPrice)}
-                            </td>
-                            <td className="table-custom-money">
-                              {item.Description}
-                            </td>
-                            <td className="table-custom-money">
-                              {item.Bandwidth}
-                            </td>
-                            <td className="table-custom-money">{item.Speed}</td>
-                            <td className="table-custom-money">
-                              {item.IPstatic}
-                            </td>
-                            <td className="table-custom-money">
-                              {item.UseDay} ngày
-                            </td>
-                            <td className="table-custom-money">
-                              {item.category.CategoryName}
-                            </td>
-                            <td className="table-custom-money">
-                              {item.service.ServiceName}
-                            </td>
-                            <td className="table-custom-money">{item.Gift}</td>
-                            <td className="table-custom-money d-flex ">
-                              <DeletePopUp
-                                name={item.ProductID}
-                                handle={handleDelete}
-                              ></DeletePopUp>
-                              <a href="#">
-                                <button
-                                  className="button-63"
-                                  onClick={() =>
-                                    handleEditProduct(
-                                      item.ProductID,
-                                      item.ProductName,
-                                      item.Price,
-                                      item.NTPrice,
-                                      item.sort,
-                                      item.Description,
-                                      item.Bandwidth,
-                                      item.Speed,
-                                      item.IPstatic,
-                                      item.Gift,
-                                      item.UseDay,
-                                      item.CategoryID,
-                                      item.ServiceID
-                                    )
-                                  }
-                                >
-                                  Chỉnh sửa
-                                </button>
-                              </a>
-                            </td>
-                          </>
-                        )}
+                            <ProductUpdate
+                              product={item}
+                              categoryData={categoryData}
+                              serviceData={serviceData}
+                            ></ProductUpdate>
+                          </td>
+                        </>
                       </tr>
                     ))}
                   </tbody>
@@ -512,145 +255,6 @@ function Productmanagment() {
               >
                 {"Xuất file Excel"}
               </CSVLink>
-              {/* <button className="button-63 mx-3">Nhập dữ liệu</button>
-
-              <Button className="btn-filter-3" onClick={handleShow}>
-                Cập nhật sản phẩm
-              </Button> */}
-              <Modal
-                className="mt-5"
-                show={show}
-                onHide={handleClose}
-                animation={false}
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title>
-                    {" "}
-                    <h1 className="my-3 title-table">Chỉnh sửa sản phẩm</h1>
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="p-3">
-                  <Row>
-                    <Form>
-                      <Row>
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Tên sản phẩm"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Giá sản phẩm"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Tốc độ đường truyền"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Băng thông"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="IP tĩnh"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Số ngày dùng"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-                      </Row>
-                      <Form.Group
-                        className="mb-3 mt-3"
-                        controlId="exampleForm.ControlTextarea1"
-                      >
-                        <Form.Control
-                          as="textarea"
-                          className="border-textarea"
-                          rows={3}
-                          placeholder="Mô tả"
-                        />
-                      </Form.Group>
-
-                      <Row>
-                        <SelectForm
-                          name={"Loại Sản Phẩm"}
-                          item={categoryData}
-                          onCategoryChange={handleCategoryChange}
-                        />
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Tốc độ đường truyền"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-                        <Col>
-                          <input
-                            type="text"
-                            className="w-100"
-                            placeholder="Dịch vụ đi kèm"
-                            required
-                          />
-                          <span className="highlight"></span>
-                          <span className="bar mb-4"></span>
-                        </Col>
-                      </Row>
-                      <div className="">
-                        <button
-                          className="btn-filter-3 p-3"
-                          type="submit"
-                          onClick={handleClose}
-                        >
-                          Xác nhận
-                        </button>
-                      </div>
-                    </Form>
-                  </Row>
-                </Modal.Body>
-              </Modal>
             </Col>
           </Row>
           {/* ------------------------------------------------------------------------form------------------------------------------          */}
@@ -671,9 +275,9 @@ function Productmanagment() {
                     required
                   />
                   <span className="highlight"></span>
-                  {errors.ProductID && (
+                  {errors.ProductName && (
                     <span className="text-red-400 text-sm m-2 p-2">
-                      {errors.ProductID[0]}
+                      {errors.ProductName[0]}
                     </span>
                   )}
                   <span className="bar mb-4"></span>
@@ -708,9 +312,9 @@ function Productmanagment() {
                     required
                   />
                   <span className="highlight"></span>
-                  {errors.Price && (
+                  {errors.NTPrice && (
                     <span className="text-red-400 text-sm m-2 p-2">
-                      {errors.Price[0]}
+                      {errors.NTPrice[0]}
                     </span>
                   )}
                   <span className="bar mb-4"></span>
@@ -726,9 +330,9 @@ function Productmanagment() {
                     required
                   />
                   <span className="highlight"></span>
-                  {errors.Price && (
+                  {errors.sort && (
                     <span className="text-red-400 text-sm m-2 p-2">
-                      {errors.Price[0]}
+                      {errors.sort[0]}
                     </span>
                   )}
                   <span className="bar mb-4"></span>
@@ -872,24 +476,27 @@ function Productmanagment() {
                   <option value="3">Three</option>
                 </Form.Select> */}
 
-                <Col>
+                <Form.Group
+                  className="mb-3 mt-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
                   <label htmlFor="">Quà Tặng</label>
-                  <input
-                    type="text"
-                    className="w-100"
+                  <Form.Control
+                    as="textarea"
+                    className="border-textarea"
+                    rows={3}
+                    placeholder="Quà Tặng"
                     value={Gift}
                     onChange={(e) => setGift(e.target.value)}
-                    placeholder="Quà tặng"
                     required
                   />
-                  <span className="highlight"></span>
-                  {errors.Gift && (
-                    <span className="text-red-400 text-sm m-2 p-2">
-                      {errors.Gift[0]}
-                    </span>
-                  )}
-                  <span className="bar mb-4"></span>
-                </Col>
+                </Form.Group>
+                {errors.Gift && (
+                  <span className="text-red-400 text-sm m-2 p-2">
+                    {errors.Gift[0]}
+                  </span>
+                )}
+                <span className="highlight"></span>
               </Row>
               <div className="">
                 <button className="bn632-hover bn28 mb-3" type="submit">
