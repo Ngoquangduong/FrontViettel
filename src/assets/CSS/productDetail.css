@@ -47,6 +47,7 @@
   font-family: "Quicksand", sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .bg-detail {
@@ -68,4 +69,7 @@
   background-position: center;
   height: 400px;
   width: 400px;
+}
+.product-price-name {
+  color: #000;
 }

@@ -16,7 +16,6 @@ export default function Product(props) {
   const reload = () => {
     window.scrollTo(0, 0);
   };
-
   return (
     <Col
       xs={12}
@@ -32,24 +31,40 @@ export default function Product(props) {
             {product.ProductName}
           </Card.Title>
           <Card.Body className="justify-content-center align-items-center d-flex flex-column">
-            <Card.Text className="text-light text-center px-3 product-description ">
-              {product.Description.length > 50 ? (
-                <pre>{product.Gift.substring(0, 50) + "..."}</pre>
+            <div className="d-flex flex-column price-tag">
+              <Card.Title className=" text-center  w-100 product-description">
+                <b className="product-bandwidth">{product.Bandwidth}</b>
+              </Card.Title>
+              <Card.Title className=" text-center  w-100 product-description">
+                <p className="product-category">
+                  {product.category.CategoryName}
+                </p>
+              </Card.Title>
+              <Card.Title className="text-center w-100 d-flex flex-column ">
+                <span className="price-hint">Nội thành : </span>{" "}
+                {/* {product.Price.toLocaleString("en-US")}VND */}
+                <span className="price-hint nt-price">
+                  {product.Price.toLocaleString("en-US")}VND
+                </span>
+              </Card.Title>
+              <Card.Title className=" text-center  w-100 d-flex flex-column ">
+                <span className="price-hint">Ngoại thành : </span>{" "}
+                <span className="price-hint nt-price">
+                  {product.NTPrice.toLocaleString("en-US")}VND
+                </span>
+              </Card.Title>
+            </div>
+            {/* <Card.Text className="text-light text-center px-3 product-description ">
+              {product.Gift.length >= 39 ? (
+                <>
+                  {" "}
+                  <pre>{product.Gift.substring(0, 39)}</pre>
+                  <span>...</span>
+                </>
               ) : (
                 <pre>{product.Gift}</pre>
               )}
-              {/* {product.Description} */}
-            </Card.Text>
-            <div className="d-flex price-tag flex-column ">
-              <Card.Title className="  text-center w-100 ">
-                {product.Price.toLocaleString("en-US")}VND
-              </Card.Title>
-              <Card.Title className=" text-center   w-100 ">
-              <span className="price-hint">Ngoại thành : </span> <span>{product.NTPrice.toLocaleString("en-US")}VND</span>
-              </Card.Title>
-            </div>
-
-
+            </Card.Text> */}
             <div className="d-flex card-button justify-content-center flex-column ">
               <div className="my-2">
                 <button

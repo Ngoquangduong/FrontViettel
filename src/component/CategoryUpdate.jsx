@@ -22,11 +22,13 @@ function MyVerticallyCenteredModal(props) {
   } = useCategoryContext();
 
   const [editingCategory, setEditingCategory] = useState("");
+  const [editSort, setEditSort] = useState(1);
   const handleUpdateCategory = async (event, id) => {
     event.preventDefault();
     try {
       await updateCategory(id, {
         CategoryName: editingCategory,
+        sort: editSort,
       });
     } catch (e) {
       if (e.response && e.response.status === 422) {
@@ -37,6 +39,7 @@ function MyVerticallyCenteredModal(props) {
   };
 
   useEffect(() => {
+    setEditSort(props.category.sort);
     setEditingCategory(props.category.CategoryName);
   }, [props.show]);
   return (
@@ -62,12 +65,27 @@ function MyVerticallyCenteredModal(props) {
           >
             <Row>
               <Col>
+                <label htmlFor="">Tên loại sản phẩm</label>
+
                 <input
                   type="text"
                   className="w-100"
                   placeholder="Tên loại sản phẩm"
                   value={editingCategory}
                   onChange={(e) => setEditingCategory(e.target.value)}
+                  required
+                />
+                <span className="highlight"></span>
+                <span className="bar mb-4"></span>
+              </Col>
+              <Col>
+                <label htmlFor="">Thứ tự ưu tiên</label>
+                <input
+                  type="number"
+                  className="w-100"
+                  placeholder="Tên loại sản phẩm"
+                  value={editSort}
+                  onChange={(e) => setEditSort(e.target.value)}
                   required
                 />
                 <span className="highlight"></span>
