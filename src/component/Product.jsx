@@ -22,7 +22,7 @@ export default function Product(props) {
       xs={12}
       sm={6}
       md={6}
-      lg={3}
+      lg={4}
       className="p-3 my-3 row-cols-4 overflow-hidden"
     >
       <a className="">

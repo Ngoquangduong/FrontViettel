@@ -18,10 +18,16 @@ export default function ProductList({products}) {
   return (
     <div>
       <Container>
-        <Row className="mx-auto w-100 row-cols-4 justify-content-center">
-          {products.map((item) => (
-            <Product key={item.ProductID} item={item} className="col"></Product>
-          ))}
+        <Row className="mx-auto w-100 col-12 justify-content-center">
+        {products.map((item) => (
+            
+            
+              <Product key={item.ProductID} item={item}/>
+              
+            
+           
+            
+          ))} 
         </Row>
       </Container>
     </div>

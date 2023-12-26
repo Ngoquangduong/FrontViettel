@@ -113,12 +113,12 @@ height: 100vh;
   font-weight: 400 !important;
   font-size: 1rem;
   position: absolute;
-  top: 30%;
+  top: 20%;
 }
 
 .price-tag {
   position: absolute;
-  top: 45%;
+  top: 40%;
   color: #5dfe93;
 }
 

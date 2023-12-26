@@ -8,6 +8,7 @@ import Product from "./Product";
 import "../assets/CSS/filter.css";
 import useProductContext from "../context/ProductContext";
 import { useEffect, useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
 
 export default function ProductListHome({ CategoryID }) {
   const { products } = useProductContext();
@@ -23,9 +24,13 @@ export default function ProductListHome({ CategoryID }) {
   return (
     <div>
       <Container>
-        <Row className="mx-auto w-100 row-cols-4">
-          {currentProduct.slice(0, 4).map((item) => (
-            <Product key={item.ProductID} item={item} className="col"></Product>
+        <Row className="mx-auto w-100 justify-content-center">
+          {currentProduct.slice(0, 3).map((item) => (
+            <Product
+              className="w-100"
+              key={item.ProductID}
+              item={item}
+            ></Product>
           ))}
         </Row>
       </Container>
