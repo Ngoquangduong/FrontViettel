@@ -192,7 +192,7 @@ function Ordermanagment() {
                 ></Paginate>
               </div>
               <CSVLink
-                data={orderUnAccept}
+                data={exportOrderUnAccept}
                 filename="orderAccept.csv"
                 className="button-62"
               >
@@ -293,8 +293,8 @@ function Ordermanagment() {
                 ></Paginate>
               </div>
               <CSVLink
-                data={orderAccept}
-                filename="orderAccpet.csv"
+                data={exportOrderAccept}
+                filename="orderAccept.csv"
                 className="button-62"
               >
                 {"Xuất File Excel"}

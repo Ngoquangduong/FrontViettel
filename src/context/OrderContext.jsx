@@ -95,7 +95,7 @@ export const OrderProvider = ({ children }) => {
   const getExportOrderAccept = async () => {
     try {
       await csrf();
-      const result = await axios.get("/order/export/Accept");
+      result = await axios.get("/order/export/Accept");
       setExportOrderAccept(result.data.orders);
       // toast.success("Xuất file thành công");
     } catch (e) {

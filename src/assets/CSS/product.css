@@ -121,23 +121,20 @@ height: 100vh;
   font-weight: 400 !important;
   font-size: 1rem;
 
-  position: absolute;
+  /* position: absolute; */
   top: 20%;
 
   color: #fff;
   margin-bottom: 1rem;
   /* position: absolute; */
   /* top: 40%; */
-
 }
 
 .price-tag {
   position: absolute;
 
-
   top: 21%;
   /* color: #5dfe93; */
-
 }
 
 .price-hint {
