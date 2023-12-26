@@ -31,8 +31,9 @@ const ProductDetail = ({ product }) => {
               {product.ProductName}
             </a>
           </p>
-          <p className="mt-3 text-success detail-price">
+          <p className="mt-3 detail-price">
             {/* {product.Price.toLocaleString('en-US')} */}
+            <span className="product-price-name">Nội thành: </span>
             {product && product.Price ? (
               <>
                 {product.Price.toLocaleString("en-US")}
@@ -42,22 +43,37 @@ const ProductDetail = ({ product }) => {
               <span>No price available</span>
             )}
           </p>
-          <span className="text-custom">Ưu đãi: </span>{" "}
-          <span className="text-danger text-custom-title"> {product.Gift}</span>
+          <p className="mb-3 detail-price">
+            {/* {product.Price.toLocaleString('en-US')} */}
+            <span className="product-price-name">Ngoại thành: </span>
+            {product && product.NTPrice ? (
+              <>
+                {product.NTPrice.toLocaleString("en-US")}
+                <span> /tháng</span>
+              </>
+            ) : (
+              <span>No price available</span>
+            )}
+          </p>
           <div className="d-flex">
             <Col md={6} lg={6} className="text-custom my-3 ">
-              <span className="text-custom-title">Băng thông :</span>
+              <span className="text-custom-title">Băng thông: </span>
               <span className="text-custom-title">{product.Bandwidth}</span>
             </Col>
             <Col md={6} lg={6} className="text-custom my-3 ">
-              <span className="text-custom-title">Tốc độ đường truyền :</span>
+              <span className="text-custom-title">Tốc độ đường truyền: </span>
               <span className="text-custom-title">{product.Speed}</span>
             </Col>
           </div>
-          <p className="text-custom">
-            <span className="text-custom-title">Mô tả :</span>
-            <pre>{product.Description}</pre>
-          </p>
+          <span className="text-custom-title">Ưu đãi: </span>{" "}
+          <div className="text-danger text-custom-title mb-3">
+            {/* {" "} */}
+            <pre>{product.Gift}</pre>
+          </div>
+          <div className="text-custom text-custom-title">
+            <span className="text-custom-title">Mô tả: </span>
+            <pre className="text-success">{product.Description}</pre>
+          </div>
           <div className="my-3">
             <button
               className="bn632-hover bn28"

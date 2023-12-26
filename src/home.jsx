@@ -24,6 +24,7 @@ function Home() {
   const { categories, getCategory } = useCategoryContext();
   const navigate = useNavigate();
 
+  const [categorySort, setCategorySort] = useState([]);
   // console.log(categories);
 
   useEffect(() => {
@@ -31,6 +32,13 @@ function Home() {
       getCategory();
     }
   }, [categories]);
+  useEffect(() => {
+    if (categorySort == undefined || categorySort.length == []) {
+      let temp = categories;
+      temp.sort((a, b) => a.sort - b.sort);
+      setCategorySort(temp);
+    }
+  });
   const handleShowMore = () => {
     navigate("/productList");
     window.scrollTo(0, 0);
@@ -53,9 +61,9 @@ function Home() {
       <div className="category-block ">
         <div className="divider mt-5"></div>
         <h1 className="text-center mt-3 text-bigtitle uppercase">
-          Gói cước hộ gia đình
+          Gói cước hộ gia đình (HOT)
         </h1>
-        {categories.slice(0, 3).map((item) => (
+        {categorySort.slice(0, 3).map((item) => (
           <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
             <h2 className="text-title uppercase">
               Gói cước {item.CategoryName}
@@ -77,13 +85,39 @@ function Home() {
         </div>
         <div className="divider my-4"></div>
       </div>
+      <div className="category-block ">
+        <div className="divider mt-5"></div>
+        <h1 className="text-center mt-3 text-bigtitle uppercase">
+          Gói cước hộ gia đình
+        </h1>
+        {categorySort.slice(3, 6).map((item) => (
+          <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
+            <h2 className="text-title uppercase">
+              Gói cước {item.CategoryName}
+            </h2>
+            <Row>
+              <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
+            </Row>
+          </Container>
+        ))}
 
+        <div className="text-center">
+          <button
+            onClick={handleShowMore}
+            className="bn632-hover bn28 mb-3"
+            type="submit"
+          >
+            Xem Thêm
+          </button>
+        </div>
+        <div className="divider my-4"></div>
+      </div>
       <div className="category-block">
         <div className="divider mt-5"></div>
         <h1 className="text-center mt-3 text-bigtitle uppercase">
           Gói cước doanh nghiệp
         </h1>
-        {categories.slice(3, 5).map((item) => (
+        {categorySort.slice(6, 8).map((item) => (
           <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
             <h2 className="text-title">Gói cước {item.CategoryName}</h2>
             <Row>

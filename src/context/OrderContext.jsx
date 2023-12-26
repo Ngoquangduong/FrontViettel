@@ -128,7 +128,6 @@ export const OrderProvider = ({ children }) => {
         Accept,
         UnAccept,
         deleteOrder,
-
         getExportOrderAccept,
         getExportOrderUnAccept,
       }}

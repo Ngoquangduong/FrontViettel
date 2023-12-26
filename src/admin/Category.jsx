@@ -26,6 +26,7 @@ const Category = () => {
   } = useCategoryContext();
 
   const [categoryName, setCategoryName] = useState("");
+  const [sort, setSort] = useState(1);
 
   useEffect(() => {
     getExportCategory();
@@ -36,8 +37,10 @@ const Category = () => {
     try {
       await insertCategory({
         CategoryName: categoryName,
+        sort: sort,
       });
-      setCategoryName(""); // Clear input after successful insertion
+      setCategoryName("");
+      setSort(1); // Clear input after successful insertion
     } catch (e) {
       if (e.response && e.response.status === 422) {
         console.error("Validation error:", e.response.data.errors);
@@ -84,6 +87,7 @@ const Category = () => {
                 >
                   <thead className="table-custom">
                     <tr className="table-custom">
+                      <th className="table-custom">ID</th>
                       <th className="table-custom">Thứ tự ưu tiên</th>
                       <th className="table-custom">Tên loại sản phẩm</th>
                       <th className="table-custom ">
@@ -98,6 +102,7 @@ const Category = () => {
                           <td className="table-custom-rose">
                             {item.CategoryID}
                           </td>
+                          <td className="table-custom-rose">{item.sort}</td>
                           <td className="table-custom-rose">
                             {item.CategoryName}
                           </td>
@@ -134,12 +139,26 @@ const Category = () => {
               <Row>
                 <h1 className="my-3 title-table">Thêm loại sản phẩm</h1>
                 <Col>
+                  <label htmlFor="">Tên loại sản phẩm</label>
                   <input
                     type="text"
                     className="w-100"
                     placeholder="Tên loại sản phẩm"
                     value={categoryName}
                     onChange={(e) => setCategoryName(e.target.value)}
+                    required
+                  />
+                  <span className="highlight"></span>
+                  <span className="bar mb-4"></span>
+                </Col>
+                <Col>
+                  <label htmlFor="">Thứ tự ưu tiên</label>
+                  <input
+                    type="number"
+                    className="w-100"
+                    placeholder="Tên loại sản phẩm"
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
                     required
                   />
                   <span className="highlight"></span>
