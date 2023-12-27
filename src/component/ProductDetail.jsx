@@ -11,6 +11,7 @@ import FormPopUp from "./FormPopUp";
 const ProductDetail = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
   // const { product } = useProductContext();
+  // console.log(product);
   return (
     <Row className="mx-auto my-3">
       <Col xs={12} sm={6} md={4} lg={3}>
@@ -28,7 +29,12 @@ const ProductDetail = ({ product }) => {
         <div className="p-4 my-3  img-block postition-relative ">
           <p className=" uppercase text-custom-title">
             <a href="" className="text-decoration-none text-custom-title">
-              {product.ProductName}
+              {/* {product.ProductName}{" "} */}
+              {product && product.category.CategoryName ? (
+                <>{product.category.CategoryName}</>
+              ) : (
+                <span>No available</span>
+              )}
             </a>
           </p>
           <p className="mt-3 detail-price">

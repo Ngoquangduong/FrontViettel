@@ -21,7 +21,7 @@ import useProductContext from "./context/ProductContext";
 
 function Detail() {
   const [recommnet, setRecomment] = useState([]);
-  const [categoryID, setCategoryID] = useState(null);
+  // const [categoryID, setCategoryID] = useState(null);
   const { id } = useParams();
 
   const { products, product, getProductDetail } = useProductContext();

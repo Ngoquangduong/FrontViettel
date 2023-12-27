@@ -39,6 +39,7 @@ export default function List() {
   const handleShow = () => setShow(true);
 
   const paginate = (pageNumber) => {
+    window.scrollTo(0, 0);
     setCurrentPage(pageNumber);
   };
   // useEffect(() => {
@@ -161,14 +162,14 @@ export default function List() {
               ) : (
                 <>
                   <ProductList products={currentProduct}></ProductList>
+                  <Paginate
+                    dataPerPage={productPerPage}
+                    totalData={products.length}
+                    paginate={paginate}
+                  ></Paginate>
                 </>
               )}
             </Row>
-            <Paginate
-              dataPerPage={productPerPage}
-              totalData={products.length}
-              paginate={paginate}
-            ></Paginate>
 
             {/* 
 -----------------------------------------------------------------postlist------------------------------------------------------------------------ */}

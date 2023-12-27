@@ -69,8 +69,8 @@ function Filter({ show, handleClose, setFilterResult, filterResult }) {
       }
       if (sort === "A_Z") {
         filterData.sort((a, b) => {
-          const productIDA = a.ProductID.toUpperCase();
-          const productIDB = b.ProductID.toUpperCase();
+          const productIDA = a.ProductName.toUpperCase();
+          const productIDB = b.ProductName.toUpperCase();
           return productIDA.localeCompare(productIDB);
         });
         filterData = filterData.filter((item) => {
@@ -79,8 +79,8 @@ function Filter({ show, handleClose, setFilterResult, filterResult }) {
       }
       if (sort === "Z_A") {
         filterData.sort((a, b) => {
-          const productIDA = a.ProductID.toUpperCase();
-          const productIDB = b.ProductID.toUpperCase();
+          const productIDA = a.ProductName.toUpperCase();
+          const productIDB = b.ProductName.toUpperCase();
           return productIDB.localeCompare(productIDA);
         });
         filterData = filterData.filter((item) => {
