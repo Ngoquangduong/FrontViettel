@@ -18,6 +18,7 @@ function Ordermanagment() {
     Accept,
     UnAccept,
     deleteOrder,
+    getOrders,
     exportOrderAccept,
     exportOrderUnAccept,
     getExportOrderAccept,
@@ -73,6 +74,11 @@ function Ordermanagment() {
     getExportOrderAccept();
     getExportOrderUnAccept();
   }, [orders.length === 0, orders]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getOrders();
+    }, 10000);
+  }, [orders]);
   useEffect(() => {
     let newIndexOfLastProduct = currentAcceptPage * orderPerPage;
     let newIndexOfFirstProduct = newIndexOfLastProduct - orderPerPage;
