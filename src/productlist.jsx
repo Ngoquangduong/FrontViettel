@@ -27,7 +27,7 @@ export default function List() {
   const [currentProduct, setCurrentProduct] = useState([]);
   const [totalProduct, setTotalProduct] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(8);
+  const [productPerPage, setProductPerPage] = useState(9);
   const [totalPages, setTotalPages] = useState(0);
   // const [indexOfLastProduct, setIndexOfLastProduct] = useState(
   //   currentPage * productPerPage

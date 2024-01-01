@@ -29,7 +29,7 @@ export const CategoryProvider = ({ children }) => {
   const getCategoryDetail = async (id) => {
     try {
       await csrf(); // Xác thực trước
-      const result = await axios.get("/category/" + id);
+      const result = await axios.get("/category/detail/" + id);
       setCategoryDetail(result.data.category);
     } catch (error) {
       console.log(error);

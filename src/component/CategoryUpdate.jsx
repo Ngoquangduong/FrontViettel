@@ -30,12 +30,12 @@ function MyVerticallyCenteredModal(props) {
         CategoryName: editingCategory,
         sort: editSort,
       });
+      props.onHide();
     } catch (e) {
       if (e.response && e.response.status === 422) {
         console.error("Validation error:", e.response.data.errors);
       }
     }
-    props.onHide();
   };
 
   useEffect(() => {
@@ -66,7 +66,6 @@ function MyVerticallyCenteredModal(props) {
             <Row>
               <Col>
                 <label htmlFor="">Tên loại sản phẩm</label>
-
                 <input
                   type="text"
                   className="w-100"
@@ -76,6 +75,11 @@ function MyVerticallyCenteredModal(props) {
                   required
                 />
                 <span className="highlight"></span>
+                {errors.CategoryName && (
+                  <span className="text-red-400 text-sm m-2 p-2">
+                    {errors.CategoryName[0]}
+                  </span>
+                )}
                 <span className="bar mb-4"></span>
               </Col>
               <Col>
@@ -89,6 +93,11 @@ function MyVerticallyCenteredModal(props) {
                   required
                 />
                 <span className="highlight"></span>
+                {errors.sort && (
+                  <span className="text-red-400 text-sm m-2 p-2">
+                    {errors.sort[0]}
+                  </span>
+                )}
                 <span className="bar mb-4"></span>
               </Col>
             </Row>

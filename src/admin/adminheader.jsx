@@ -118,6 +118,20 @@ const Sidebar = () => {
                   Quản lý sản phẩm
                 </NavLink>
               </li>
+              <li className=" sidebar-items">
+                <NavLink
+                  to="/admin/blog"
+                  className=" d-block p-3  "
+                  style={({ isActive }) => {
+                    return {
+                      background: isActive ? "#5cb85c" : "",
+                      color: isActive ? "white" : "",
+                    };
+                  }}
+                >
+                  Quản lý bài đăng
+                </NavLink>
+              </li>
 
               {/* <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">

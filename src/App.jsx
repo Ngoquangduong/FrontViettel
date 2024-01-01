@@ -18,7 +18,7 @@ import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import Notfound from "./component/Notfound";
 import Category from "./admin/Category";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import BlogAdmin from "./admin/BlogAdmin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -43,6 +43,7 @@ function App() {
           />
           <Route path="/admin/productedit" element={<Productedit />} />
           <Route path="/admin/category" element={<Category />} />
+          <Route path="/admin/blog" element={<BlogAdmin />} />
         </Route>
         <Route path="/*" element={<Notfound />} />
       </Routes>
