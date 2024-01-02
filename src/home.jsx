@@ -44,104 +44,119 @@ function Home() {
     window.scrollTo(0, 0);
   };
   return (
-    <div className="bg-all ">
-      <Header />
-      {/* <Container fluid="md p-4 border-menu my-3 bg-home-menu"> */}
-      {/* {data.map(() => {
-        <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
-          <h1>12345</h1>
-        </Col>;
-      })} */}
-      <CarouselVietTel />
-      {/* <Container fluid="md p-4  my-3 bg-home-menu">
-        <h2 className=" text-title">Đăng ký sản phẩm</h2>
-        
-        <RegisterForm />
-      </Container> */}
-      <div className="category-block ">
-        <div className="divider mt-5"></div>
-        <h1 className="text-center mt-3 text-bigtitle uppercase">
-          Gói cước hộ gia đình (HOT)
-        </h1>
-        {categorySort.slice(0, 3).map((item) => (
-          <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
-            <h2 className="text-title uppercase">
-              Gói cước {item.CategoryName}
-            </h2>
-            <Row>
-              <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
-            </Row>
-          </Container>
-        ))}
+    <>
+     <div className="fixed-noti mx-auto d-flex justify-content-center align-items-center">
+      <p>Hỗ trợ đăng ký <span className="text-danger phone-number">0962.88.9696 </span> </p>
+     <img src="/public//phone-icon.png" className="phone ms-2 me-auto" alt="" /></div>
 
-        <div className="text-center">
-          <button
-            onClick={handleShowMore}
-            className="bn632-hover bn28 mb-3"
-            type="submit"
-          >
-            Xem Thêm
-          </button>
-        </div>
-        <div className="divider my-4"></div>
-      </div>
-      <div className="category-block ">
-        <div className="divider mt-5"></div>
-        <h1 className="text-center mt-3 text-bigtitle uppercase">
-          Gói cước hộ gia đình
-        </h1>
-        {categorySort.slice(3, 6).map((item) => (
-          <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
-            <h2 className="text-title uppercase">
-              Gói cước {item.CategoryName}
-            </h2>
-            <Row>
-              <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
-            </Row>
-          </Container>
-        ))}
+     <div className="fixed-noti-2 mx-auto d-flex justify-content-center align-items-center flex-column">
+      <p>Đặt trước 6 tháng tặng 1 tháng</p>
+      <div className="divider"></div>
+      <p>Đặt trước 12 tháng tặng 2 tháng</p>
+   </div>
+      <div className="bg-all ">
+     
+     <Header className="z-1 header"/>
+    
+     {/* <Container fluid="md p-4 border-menu my-3 bg-home-menu"> */}
+     {/* {data.map(() => {
+       <Col xs={12} sm={6} md={6} lg={3} className="p-3 my-3">
+         <h1>12345</h1>
+       </Col>;
+     })} */}
+     
+     <CarouselVietTel className="z-1 position-static"/>
+     
+     {/* <Container fluid="md p-4  my-3 bg-home-menu">
+       <h2 className=" text-title">Đăng ký sản phẩm</h2>
+       
+       <RegisterForm />
+     </Container> */}
+     <div className="category-block ">
+       <div className="divider mt-5"></div>
+       <h1 className="text-center mt-3 text-bigtitle uppercase">
+         Gói cước hộ gia đình (HOT)
+       </h1>
+       {categorySort.slice(0, 3).map((item) => (
+         <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
+           <h2 className="text-title uppercase">
+             Gói cước {item.CategoryName}
+           </h2>
+           <Row>
+             <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
+           </Row>
+         </Container>
+       ))}
 
-        <div className="text-center">
-          <button
-            onClick={handleShowMore}
-            className="bn632-hover bn28 mb-3"
-            type="submit"
-          >
-            Xem Thêm
-          </button>
-        </div>
-        <div className="divider my-4"></div>
-      </div>
-      <div className="category-block">
-        <div className="divider mt-5"></div>
-        <h1 className="text-center mt-3 text-bigtitle uppercase">
-          Gói cước doanh nghiệp
-        </h1>
-        {categorySort.slice(6, 8).map((item) => (
-          <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
-            <h2 className="text-title">Gói cước {item.CategoryName}</h2>
-            <Row>
-              <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
-            </Row>
-          </Container>
-        ))}
+       <div className="text-center">
+         <button
+           onClick={handleShowMore}
+           className="bn632-hover bn28 mb-3"
+           type="submit"
+         >
+           Xem Thêm
+         </button>
+       </div>
+       <div className="divider my-4"></div>
+     </div>
+     <div className="category-block ">
+       <div className="divider mt-5"></div>
+       <h1 className="text-center mt-3 text-bigtitle uppercase">
+         Gói cước hộ gia đình
+       </h1>
+       {categorySort.slice(3, 6).map((item) => (
+         <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
+           <h2 className="text-title uppercase">
+             Gói cước {item.CategoryName}
+           </h2>
+           <Row>
+             <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
+           </Row>
+         </Container>
+       ))}
 
-        <div className="text-center">
-          <button
-            onClick={handleShowMore}
-            className="bn632-hover bn28 mb-3"
-            type="submit"
-          >
-            Xem Thêm
-          </button>
-        </div>
-        <div className="divider my-4"></div>
-      </div>
+       <div className="text-center">
+         <button
+           onClick={handleShowMore}
+           className="bn632-hover bn28 mb-3"
+           type="submit"
+         >
+           Xem Thêm
+         </button>
+       </div>
+       <div className="divider my-4"></div>
+     </div>
+     <div className="category-block">
+       <div className="divider mt-5"></div>
+       <h1 className="text-center mt-3 text-bigtitle uppercase">
+         Gói cước doanh nghiệp
+       </h1>
+       {categorySort.slice(6, 8).map((item) => (
+         <Container fluid="md p-4  my-3 bg-home-menu" key={item.CategoryID}>
+           <h2 className="text-title">Gói cước {item.CategoryName}</h2>
+           <Row>
+             <ProductListHome CategoryID={item.CategoryID}></ProductListHome>
+           </Row>
+         </Container>
+       ))}
 
-      <PostList />
+       <div className="text-center">
+         <button
+           onClick={handleShowMore}
+           className="bn632-hover bn28 mb-3"
+           type="submit"
+         >
+           Xem Thêm
+         </button>
+       </div>
+       <div className="divider my-4"></div>
+     </div>
 
-      <Footer />
-    </div>
+     <PostList />
+
+     <Footer />
+   </div></>
+  
   );
 }
 

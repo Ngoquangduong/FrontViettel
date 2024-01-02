@@ -18,8 +18,7 @@ function Header() {
           <Nav className="mx-auto">
             <Link to="/" className='nav-text-red text-custom-header'>Trang chủ</Link>
             <Link to="/Productlist" className='nav-text-red text-custom-header'>Sản phẩm</Link>
-            <Link to="https://www.vietteltelecom.vn/sme" className='nav-text-red text-custom-header'>Dịch vụ doanh nghiệp</Link>
-            <Link to="https://www.vietteltelecom.vn/ho-tro-khach-hang" className='nav-text-red text-custom-header'>Hỗ trợ</Link>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
