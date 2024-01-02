@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Product from "./component/Product";
 import CarouselVietTel from "./component/CarouselVIetTel";
+import CIcon from '@coreui/icons-react';
+import * as icon from '@coreui/icons';
 import RegisterForm from "./component/RegisterForm";
 import Footer from "./component/Footer";
 import PostList from "./component/PostList";
@@ -49,10 +51,13 @@ function Home() {
       <p>Hỗ trợ đăng ký <span className="text-danger phone-number">0962.88.9696 </span> </p>
      <img src="/public//phone-icon.png" className="phone ms-2 me-auto" alt="" /></div>
 
-     <div className="fixed-noti-2 mx-auto d-flex justify-content-center align-items-center flex-column">
-      <p>Đặt trước 6 tháng tặng 1 tháng</p>
-      <div className="divider"></div>
-      <p>Đặt trước 12 tháng tặng 2 tháng</p>
+     <div className="fixed-noti-2 mx-auto">
+     <img src="../public/gift3.png" alt="" className="gift"/>
+      <div className="d-flex flex-column relative justify-content-center align-items-center my-auto">
+        
+      <p className="fixed-noti-2-text">Đặt trước 6 tháng tặng 1 tháng</p>
+      <p className="fixed-noti-2-text">Đặt trước 12 tháng tặng 2 tháng </p>
+      </div>
    </div>
       <div className="bg-all ">
      
