@@ -8,9 +8,10 @@ import useOrderContext from "../context/OrderContext";
 import UnAcceptPopUp from "../component/UnAcceptPopUp";
 import AcceptPopUp from "../component/AcceptPopUp";
 import { useEffect, useState } from "react";
-import Paginate from "../component/Pagination";
+// import Paginate from "../component/Pagination";
 import DeletePopUp from "../component/DeletePopUp";
 import { CSVLink, CSVDownload } from "react-csv";
+import Pagination from "../component/Pagination2";
 
 function Ordermanagment() {
   const {
@@ -35,14 +36,14 @@ function Ordermanagment() {
   const [orderPerPage, setOrderPerPage] = useState(12);
   // const [totalPages, setTotalPages] = useState(0);
 
-  const paginateAccept = (pageNumber) => {
-    setCurrentAcceptPage(pageNumber);
-  };
-  const paginateUnAccept = (pageNumber) => {
-    setCurrentUnAcceptPage(pageNumber);
-  };
+  // const paginateAccept = (pageNumber) => {
+  //   setCurrentAcceptPage(pageNumber);
+  // };
+  // const paginateUnAccept = (pageNumber) => {
+  //   setCurrentUnAcceptPage(pageNumber);
+  // };
 
-  const getOrderAccpet = () => {
+  const getOrderAccept = () => {
     let filterData = orders;
     filterData = filterData.filter((item) => {
       return item.Accept == 1;
@@ -50,12 +51,50 @@ function Ordermanagment() {
     filterData.sort((a, b) => parseInt(b.OrderID) - parseInt(a.OrderID));
     setOrderAccept(filterData);
   };
-  const getOrderUnAccpet = () => {
+  const getOrderUnAccept = () => {
     let filterData = orders;
     filterData = filterData.filter((item) => {
       return item.Accept == 0;
     });
     setOrderUnAccept(filterData);
+  };
+
+  let totalPageOrderAcceptt = Math.ceil(orderAccept.length / orderPerPage);
+  let totalPageOrderUnAccept = Math.ceil(orderUnAccept.length / orderPerPage);
+
+  const handlePageChangeUnAccept = (value) => {
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentUnAcceptPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentUnAcceptPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentUnAcceptPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentUnAcceptPage(totalPage);
+    } else {
+      setCurrentUnAcceptPage(value);
+    }
+  };
+  const handlePageChangeAccept = (value) => {
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentAcceptPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentAcceptPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentAcceptPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentAcceptPage(totalPage);
+    } else {
+      setCurrentAcceptPage(value);
+    }
   };
 
   const handleAccept = (id) => {
@@ -69,8 +108,8 @@ function Ordermanagment() {
   };
 
   useEffect(() => {
-    getOrderAccpet();
-    getOrderUnAccpet();
+    getOrderAccept();
+    getOrderUnAccept();
     getExportOrderAccept();
     getExportOrderUnAccept();
   }, [orders.length === 0, orders]);
@@ -191,11 +230,13 @@ function Ordermanagment() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                <Paginate
-                  dataPerPage={orderPerPage}
-                  totalData={orderUnAccept.length}
-                  paginate={paginateUnAccept}
-                ></Paginate>
+                <Pagination
+                  totalPage={totalPageOrderUnAccept}
+                  page={currentUnAcceptPage}
+                  limit={orderPerPage}
+                  siblings={1}
+                  onPageChange={handlePageChangeUnAccept}
+                ></Pagination>
               </div>
               <CSVLink
                 data={exportOrderUnAccept}
@@ -292,11 +333,13 @@ function Ordermanagment() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                <Paginate
-                  dataPerPage={orderPerPage}
-                  totalData={orderAccept.length}
-                  paginate={paginateAccept}
-                ></Paginate>
+                <Pagination
+                  totalPage={totalPageOrderAcceptt}
+                  page={currentAcceptPage}
+                  limit={orderPerPage}
+                  siblings={1}
+                  onPageChange={handlePageChangeAccept}
+                ></Pagination>
               </div>
               <CSVLink
                 data={exportOrderAccept}

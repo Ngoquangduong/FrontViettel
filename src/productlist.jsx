@@ -16,7 +16,8 @@ import { FormProvider } from "./context/FormContext";
 import ProductList from "./component/ProductList";
 import useProductContext from "./context/ProductContext";
 import Filter from "./Filter";
-import Paginate from "./component/Pagination";
+import Pagination from "./component/Pagination2";
+// import Paginate from "./component/Pagination";
 
 export default function List() {
   const { getProducts, products } = useProductContext();
@@ -38,10 +39,30 @@ export default function List() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const paginate = (pageNumber) => {
+  let totalPage = Math.ceil(products.length / productPerPage);
+  let filterTotalPage = Math.ceil(filterResult.length / productPerPage);
+  const handlePageChange = (value) => {
     window.scrollTo(0, 0);
-    setCurrentPage(pageNumber);
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentPage(totalPage);
+    } else {
+      setCurrentPage(value);
+    }
   };
+  // const paginate = (pageNumber) => {
+  //   window.scrollTo(0, 0);
+  //   setCurrentPage(pageNumber);
+  // };
   // useEffect(() => {
   //   function handleResize() {
   //     setShowNav(window.innerWidth >= 768);
@@ -55,6 +76,7 @@ export default function List() {
   //     window.removeEventListener("resize", handleResize);
   //   };
   // }, []);
+
   useEffect(() => {
     let newIndexOfLastProduct = currentPage * productPerPage;
     let newIndexOfFirstProduct = newIndexOfLastProduct - productPerPage;
@@ -153,20 +175,35 @@ export default function List() {
               {filterResult.length > 0 ? (
                 <>
                   <ProductList products={currentProduct}></ProductList>
-                  <Paginate
+                  {/* <Paginate
                     dataPerPage={productPerPage}
                     totalData={filterResult.length}
                     paginate={paginate}
-                  ></Paginate>
+                  ></Paginate> */}
+                  <Pagination
+                    totalPage={filterTotalPage}
+                    page={currentPage}
+                    limit={productPerPage}
+                    siblings={1}
+                    onPageChange={handlePageChange}
+                  ></Pagination>
                 </>
               ) : (
                 <>
                   <ProductList products={currentProduct}></ProductList>
-                  <Paginate
+
+                  <Pagination
+                    totalPage={totalPage}
+                    page={currentPage}
+                    limit={productPerPage}
+                    siblings={1}
+                    onPageChange={handlePageChange}
+                  ></Pagination>
+                  {/* <Paginate
                     dataPerPage={productPerPage}
                     totalData={products.length}
                     paginate={paginate}
-                  ></Paginate>
+                  ></Paginate> */}
                 </>
               )}
             </Row>

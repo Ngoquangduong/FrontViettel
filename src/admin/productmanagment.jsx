@@ -14,12 +14,10 @@ import useCategoryContext from "../context/CategoryContext";
 import SelectForm from "../component/SelectForm";
 import useServiceContext from "../context/ServiceContext";
 import DeletePopUp from "../component/DeletePopUp";
-import Paginate from "../component/Pagination";
-// import {  } from "react-csv";
 import axios from "../api/axios";
-// import { data } from "autoprefixer";
 import { CSVLink, CSVDownload } from "react-csv";
 import ProductUpdate from "../component/ProductUpdate";
+import Pagination from "../component/Pagination2";
 
 function Productmanagment() {
   const {
@@ -67,8 +65,26 @@ function Productmanagment() {
   const [productPerPage, setProductPerPage] = useState(12);
   // const [totalPages, setTotalPages] = useState(0);
 
-  const paginate = (pageNumber) => {
-    setCurrentProductPage(pageNumber);
+  let totalPage = Math.ceil(products.length / productPerPage);
+  // const paginate = (pageNumber) => {
+  //   setCurrentCategoryPage(pageNumber);
+  // };
+  const handlePageChange = (value) => {
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentProductPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentProductPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentProductPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentProductPage(totalPage);
+    } else {
+      setCurrentProductPage(value);
+    }
   };
 
   useEffect(() => {
@@ -242,11 +258,13 @@ function Productmanagment() {
                     ))}
                   </tbody>
                 </Table>
-                <Paginate
-                  dataPerPage={productPerPage}
-                  totalData={products.length}
-                  paginate={paginate}
-                ></Paginate>
+                <Pagination
+                  totalPage={totalPage}
+                  page={currentProductPage}
+                  limit={productPerPage}
+                  siblings={1}
+                  onPageChange={handlePageChange}
+                ></Pagination>
               </div>
               <CSVLink
                 data={productExport}
