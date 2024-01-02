@@ -63,12 +63,12 @@ function MyVerticallyCenteredModal(props) {
         CategoryID: selectedEditCategory,
         ServiceID: selectedEditService,
       });
+      props.onHide();
     } catch (e) {
       if (e.response && e.response.status === 422) {
         console.error("Validation error:", e.response.data.errors);
       }
     }
-    props.onHide();
   };
   useEffect(() => {
     setCategoryData(props.categorydata);

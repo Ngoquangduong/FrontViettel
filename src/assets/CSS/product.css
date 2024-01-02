@@ -122,19 +122,21 @@ height: 100vh;
   font-weight: 400 !important;
   font-size: 1rem;
 
+  position: absolute;
+  top: 20%;
+
   color: #fff;
   margin-bottom: 1rem;
   /* position: absolute; */
   /* top: 40%; */
-
 }
 
 .price-tag {
   position: absolute;
 
+
   top: 21%;
   /* color: #5dfe93; */
-
 }
 
 .price-hint {
@@ -146,7 +148,7 @@ height: 100vh;
 }
 .product-category {
   font-weight: 600 !important;
-  font-size: 1rem !important;
+  font-size: 0.9rem !important;
 }
 .detail-nt-price {
   font-size: 1rem;

@@ -39,6 +39,7 @@ export const ProductProvider = ({ children }) => {
   // getProductDetail-------------------------
   const getProductDetail = async (id) => {
     try {
+      console.log(id);
       // await csrf();
       const result = await axios.get("/product/detail/" + id);
       // setProduct(result.data.product[0]);

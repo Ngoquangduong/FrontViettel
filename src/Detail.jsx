@@ -21,21 +21,20 @@ import useProductContext from "./context/ProductContext";
 
 function Detail() {
   const [recommnet, setRecomment] = useState([]);
-  const [categoryID, setCategoryID] = useState(null);
+  // const [categoryID, setCategoryID] = useState(null);
   const { id } = useParams();
 
   const { products, product, getProductDetail } = useProductContext();
-
   useEffect(() => {
     const fetchData = async () => {
       // setRecomment([]);
+      // console.log(id);
       await getProductDetail(id);
 
       // getProductDetail is completed at this point
     };
 
     fetchData();
-    // console.log(product);
   }, [id, product == {}]);
 
   useEffect(() => {

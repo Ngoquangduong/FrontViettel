@@ -135,7 +135,7 @@ const Category = () => {
           </Row>
 
           <Row>
-            <Form method="post" onSubmit={handleInsertCategory}>
+            <Form onSubmit={handleInsertCategory}>
               <Row>
                 <h1 className="my-3 title-table">Thêm loại sản phẩm</h1>
                 <Col>
@@ -149,6 +149,11 @@ const Category = () => {
                     required
                   />
                   <span className="highlight"></span>
+                  {errors.CategoryName && (
+                    <span className="text-red-400 text-sm m-2 p-2">
+                      {errors.CategoryName[0]}
+                    </span>
+                  )}
                   <span className="bar mb-4"></span>
                 </Col>
                 <Col>
@@ -162,6 +167,11 @@ const Category = () => {
                     required
                   />
                   <span className="highlight"></span>
+                  {errors.sort && (
+                    <span className="text-red-400 text-sm m-2 p-2">
+                      {errors.sort[0]}
+                    </span>
+                  )}
                   <span className="bar mb-4"></span>
                 </Col>
               </Row>

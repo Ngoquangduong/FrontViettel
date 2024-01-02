@@ -22,6 +22,7 @@ import { PaymentProvider } from "./context/PaymentContext.jsx";
 import { CityProvider } from "./context/CityContext.jsx";
 import { DistrictProvider } from "./context/DistrictContext.jsx";
 import { OrderProvider } from "./context/OrderContext.jsx";
+import { BlogProvider } from "./context/BlogContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -30,15 +31,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <ServiceProvider>
           <CategoryProvider>
             <CityProvider>
-              <DistrictProvider>
-                <PaymentProvider>
-                  <OrderProvider>
-                    <AdminAuthProvider>
-                      <App />
-                    </AdminAuthProvider>
-                  </OrderProvider>
-                </PaymentProvider>
-              </DistrictProvider>
+              <BlogProvider>
+                <DistrictProvider>
+                  <PaymentProvider>
+                    <OrderProvider>
+                      <AdminAuthProvider>
+                        <App />
+                      </AdminAuthProvider>
+                    </OrderProvider>
+                  </PaymentProvider>
+                </DistrictProvider>
+              </BlogProvider>
             </CityProvider>
           </CategoryProvider>
         </ServiceProvider>

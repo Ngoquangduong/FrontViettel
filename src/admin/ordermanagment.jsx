@@ -18,6 +18,7 @@ function Ordermanagment() {
     Accept,
     UnAccept,
     deleteOrder,
+    getOrders,
     exportOrderAccept,
     exportOrderUnAccept,
     getExportOrderAccept,
@@ -73,6 +74,11 @@ function Ordermanagment() {
     getExportOrderAccept();
     getExportOrderUnAccept();
   }, [orders.length === 0, orders]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getOrders();
+    }, 10000);
+  }, [orders]);
   useEffect(() => {
     let newIndexOfLastProduct = currentAcceptPage * orderPerPage;
     let newIndexOfFirstProduct = newIndexOfLastProduct - orderPerPage;
@@ -192,7 +198,7 @@ function Ordermanagment() {
                 ></Paginate>
               </div>
               <CSVLink
-                data={orderUnAccept}
+                data={exportOrderUnAccept}
                 filename="orderAccept.csv"
                 className="button-62"
               >
@@ -293,8 +299,8 @@ function Ordermanagment() {
                 ></Paginate>
               </div>
               <CSVLink
-                data={orderAccept}
-                filename="orderAccpet.csv"
+                data={exportOrderAccept}
+                filename="orderAccept.csv"
                 className="button-62"
               >
                 {"Xuất File Excel"}
