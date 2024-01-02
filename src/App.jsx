@@ -12,7 +12,7 @@ import Ordermanagment from "./admin/ordermanagment";
 import Productmanagment from "./admin/productmanagment";
 import List from "./productlist";
 import Productedit from "./admin/productedit";
-
+import Posts from "./Posts";
 import AuthAdminLayout from "./layouts/AuthAdminLayout";
 import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import Notfound from "./component/Notfound";
@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<Detail />} />
         <Route path="/productList" element={<List />} />
-
+        <Route path="/Posts" element={<Posts/>} />
         <Route element={<GuestAdminLayout />}>
           <Route path="/admin/login" element={<Login />} />
         </Route>

@@ -92,11 +92,11 @@ const BlogAdmin = () => {
               <Row>
                 <h1 className="my-3 title-table">Bài đăng</h1>
                 <Col>
-                  <label htmlFor="">Tiêu đề bài đăng</label>
+                  
                   <input
                     type="text"
                     className="w-100"
-                    placeholder="Tên loại sản phẩm"
+                    placeholder="Tiêu đề bài đăng"
                     value={blogTitle}
                     onChange={(e) => setBlogTitle(e.target.value)}
                     required
@@ -185,7 +185,7 @@ const BlogAdmin = () => {
           </Row>
           <Row className="py-3">
             <Col md={12}>
-              <h1 className="my-3 title-table">Danh sách loại sản phẩm</h1>
+              <h1 className="my-3 title-table">Danh sách các bài đăng</h1>
               <div className="table-responsive br-6">
                 <Table
                   striped
