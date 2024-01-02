@@ -1,11 +1,12 @@
 import { Row, Col, Card } from "react-bootstrap";
 import "../assets/CSS/font.css"
 import "../assets/CSS/main.css"
+import { useState } from "react";
 
 
 export default function PortCard(props) {
 
-	const [blogs] = useState(props.item);
+	const [blogs, setBlog] = useState(props.item);
 	return (
 		<>
 			<div style={{
@@ -19,7 +20,7 @@ export default function PortCard(props) {
 					textAlign: "center",
 					color: "#C90000"
 				}} className="fs-4 my-3 normal-text">
-					{blogs.blogTitle}
+					{blogs.BlogTitle}
 				</h1>
 				</a>
 				<Row className="p-2 d-flex flex-column">

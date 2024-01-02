@@ -1,7 +1,14 @@
 import { Row, Col, Container } from "react-bootstrap";
 import "../assets/CSS/font.css";
 import PostCard from "./PostCard";
-export default function PostList() {
+import useBlogContext from "../context/BlogContext";
+import { BlogProvider } from "../context/BlogContext";
+import { useState } from "react";
+export default function PostList({ }) {
+
+  const {blogs} = useBlogContext();
+  const [currentBlog, setCurrentBlog] = useState([]);
+
   return (
     <>
       <div className=" pb-5 ">
@@ -9,11 +16,11 @@ export default function PostList() {
          
           <Row>
             <Col xs={12} sm={6} md={4} lg={4}>
-              <PostCard />
+              {currentBlog.map((item) => (
+                <PostCard key={item.BlogID} item={item}/>
+              ))}
             </Col>
-            <Col xs={12} sm={6} md={4} lg={4}>
-              <PostCard />
-            </Col>
+          
           </Row>
           <a href="" className=" float-end link-text">
             Xem nhiều hơn

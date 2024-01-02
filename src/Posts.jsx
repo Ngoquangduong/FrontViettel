@@ -6,8 +6,10 @@ import useBlogContext from "./context/BlogContext";
 import { Row, Col} from "react-bootstrap";
 import { current } from "@reduxjs/toolkit";
 import PortCard from "./component/PostCard";
+import { useState } from "react";
   const Posts = () => {
-   const {blogs} = useBlogContext();
+   const {blogs, getBlogs} = useBlogContext();
+   const [currentBlog, setCurrentBlog] = useState([]);
  
 
   return (
@@ -22,7 +24,7 @@ import PortCard from "./component/PostCard";
 
             {blogs.map((item) => (
 
-            <PortCard key={blogs.blogId} item={item} ></PortCard>
+            <PostList blogs={currentBlog} ></PostList>
             ))}
 
   {/* {currentBlog.map((item) => (
