@@ -18,18 +18,18 @@ import useProductContext from "./context/ProductContext";
 import Filter from "./Filter";
 import Pagination from "./component/Pagination2";
 // import Paginate from "./component/Pagination";
-
+import useBlogContext from "./context/BlogContext";
 export default function List() {
+  const { blogs } = useBlogContext();
+
   const { getProducts, products } = useProductContext();
   const [filterResult, setFilterResult] = useState([]);
   const [showNav, setShowNav] = useState(false);
   const [show, setShow] = useState(false);
 
   const [currentProduct, setCurrentProduct] = useState([]);
-  const [totalProduct, setTotalProduct] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage, setProductPerPage] = useState(9);
-  const [totalPages, setTotalPages] = useState(0);
   // const [indexOfLastProduct, setIndexOfLastProduct] = useState(
   //   currentPage * productPerPage
   // );
@@ -175,11 +175,7 @@ export default function List() {
               {filterResult.length > 0 ? (
                 <>
                   <ProductList products={currentProduct}></ProductList>
-                  {/* <Paginate
-                    dataPerPage={productPerPage}
-                    totalData={filterResult.length}
-                    paginate={paginate}
-                  ></Paginate> */}
+
                   <Pagination
                     totalPage={filterTotalPage}
                     page={currentPage}
@@ -199,18 +195,13 @@ export default function List() {
                     siblings={1}
                     onPageChange={handlePageChange}
                   ></Pagination>
-                  {/* <Paginate
-                    dataPerPage={productPerPage}
-                    totalData={products.length}
-                    paginate={paginate}
-                  ></Paginate> */}
                 </>
               )}
             </Row>
 
             {/* 
 -----------------------------------------------------------------postlist------------------------------------------------------------------------ */}
-            <PostList />
+            <PostList blogs={blogs} />
             {/* ----------------------------------------------------------------FOrm------------------------------------------------------ */}
             <Container fluid="md p-4  my-3 bg-home-menu">
               <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>

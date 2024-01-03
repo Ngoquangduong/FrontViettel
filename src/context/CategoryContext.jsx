@@ -15,7 +15,7 @@ export const CategoryProvider = ({ children }) => {
   const navigate = useNavigate();
   const getCategory = async () => {
     try {
-      await csrf(); // Xác thực trước
+      // await csrf(); // Xác thực trước
       const result = await axios.get("/category");
       setCategory(result.data.categories);
     } catch (error) {

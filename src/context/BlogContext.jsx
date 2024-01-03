@@ -15,7 +15,8 @@ export const BlogProvider = ({ children }) => {
   const navigate = useNavigate();
   const getBlogs = async () => {
     try {
-      await csrf(); // Xác thực trước
+      // await csrf(); // Xác thực trước
+      
       const result = await axios.get("/blogs");
       setBlogs(result.data.blogs);
     } catch (error) {

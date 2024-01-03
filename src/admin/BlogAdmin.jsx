@@ -92,7 +92,6 @@ const BlogAdmin = () => {
               <Row>
                 <h1 className="my-3 title-table">Bài đăng</h1>
                 <Col>
-                  
                   <input
                     type="text"
                     className="w-100"
@@ -224,11 +223,11 @@ const BlogAdmin = () => {
                           <td
                             className="table-custom-rose"
                             dangerouslySetInnerHTML={{
-                              __html: item.BlogContent,
+                              __html: `${item.BlogContent.split(" ")
+                                .slice(0, 50)
+                                .join(" ")} ...`,
                             }}
-                          >
-                            {/* {item.BlogContent} */}
-                          </td>
+                          ></td>
                           <td className="table-custom-rose d-flex ">
                             <BlogUpdate Blog={item}></BlogUpdate>
                             <DeletePopUp
