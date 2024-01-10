@@ -17,6 +17,7 @@ import AuthAdminLayout from "./layouts/AuthAdminLayout";
 import GuestAdminLayout from "./layouts/GuestAdminLayout";
 import Notfound from "./component/Notfound";
 import Category from "./admin/Category";
+import DetailPost from "./PostDetail";
 import { useNavigate, useLocation } from "react-router-dom";
 import BlogAdmin from "./admin/BlogAdmin";
 import { ToastContainer, toast } from "react-toastify";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/product/:id" element={<Detail />} />
         <Route path="/productList" element={<List />} />
         <Route path="/Posts" element={<Posts/>} />
+        <Route path="/DetailPost" element={<DetailPost/>}/>
         <Route element={<GuestAdminLayout />}>
           <Route path="/admin/login" element={<Login />} />
         </Route>
