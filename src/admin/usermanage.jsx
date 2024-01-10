@@ -8,7 +8,8 @@ import useAdminAuthContext from "../context/AdminAuthContext";
 import DeletePopUp from "../component/DeletePopUp";
 import { useEffect, useState } from "react";
 import RegisterAdmin from "./RegisterAdmin";
-import Paginate from "../component/Pagination";
+// import Paginate from "../component/Pagination";
+import Pagination from "../component/Pagination2";
 
 function Usermanagement() {
   const { admins, getAdmins, deleteAdmin } = useAdminAuthContext();
@@ -18,8 +19,26 @@ function Usermanagement() {
   const [adminPerPage, setAdminPerPage] = useState(12);
   // const [totalPages, setTotalPages] = useState(0);
 
-  const paginate = (pageNumber) => {
-    setCurrentAdminPage(pageNumber);
+  let totalPage = Math.ceil(admins.length / adminPerPage);
+  // const paginate = (pageNumber) => {
+  //   setCurrentCategoryPage(pageNumber);
+  // };
+  const handlePageChange = (value) => {
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentAdminPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentAdminPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentAdminPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentAdminPage(totalPage);
+    } else {
+      setCurrentAdminPage(value);
+    }
   };
 
   useEffect(() => {
@@ -43,12 +62,10 @@ function Usermanagement() {
       <Sidebar />
       <div className="container-fluid">
         <Container>
-          <RegisterAdmin/>
+          <RegisterAdmin />
           <Row className="py-3">
             <Col md={12}>
-              <h1 className="my-3 title-table">
-                Danh sách tài khoản admin
-              </h1>
+              <h1 className="my-3 title-table">Danh sách tài khoản admin</h1>
               <div className="table-responsive br-6">
                 <Table
                   striped
@@ -80,7 +97,7 @@ function Usermanagement() {
                         </td>
                         <td className="table-custom">{item.Address}</td>
                         <td className="table-custom d-flex">
-                          <DeletePopUp 
+                          <DeletePopUp
                             name={item.id}
                             handle={handleDelete}
                           ></DeletePopUp>
@@ -94,11 +111,14 @@ function Usermanagement() {
                     {/* Thêm dữ liệu cho các dòng khác nếu cần */}
                   </tbody>
                 </Table>
-                <Paginate
-                  dataPerPage={adminPerPage}
-                  totalData={admins.length}
-                  paginate={paginate}
-                ></Paginate>
+
+                <Pagination
+                  totalPage={totalPage}
+                  page={currentAdminPage}
+                  limit={adminPerPage}
+                  siblings={1}
+                  onPageChange={handlePageChange}
+                ></Pagination>
               </div>
               {/* <button className="button-62">Xuất dữ liệu</button> */}
             </Col>

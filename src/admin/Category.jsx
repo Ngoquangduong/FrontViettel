@@ -6,9 +6,10 @@ import Sidebar from "./adminheader";
 import useCategoryContext from "../context/CategoryContext";
 import DeletePopUp from "../component/DeletePopUp";
 import Paginate from "../component/Pagination";
-
 import { CSVLink, CSVDownload } from "react-csv";
 import CategoryUpdate from "../component/CategoryUpdate";
+import Pagination from "../component/Pagination2";
+import { values } from "lodash";
 
 const Category = () => {
   const {
@@ -53,14 +54,31 @@ const Category = () => {
   };
 
   const [currentCategory, setCurrentCategory] = useState([]);
-  // const [totalOrder, setTotalOrder] = useState(0);
   const [currentCategoryPage, setCurrentCategoryPage] = useState(1);
   const [categoryPerPage, setCategoryPerPage] = useState(12);
-  // const [totalPages, setTotalPages] = useState(0);
 
-  const paginate = (pageNumber) => {
-    setCurrentCategoryPage(pageNumber);
+  let totalPage = Math.ceil(categories.length / categoryPerPage);
+  // const paginate = (pageNumber) => {
+  //   setCurrentCategoryPage(pageNumber);
+  // };
+  const handlePageChange = (value) => {
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentCategoryPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentCategoryPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentCategoryPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentCategoryPage(totalPage);
+    } else {
+      setCurrentCategoryPage(value);
+    }
   };
+
   useEffect(() => {
     let newIndexOfLastCategory = currentCategoryPage * categoryPerPage;
     let newIndexOfFirstCategory = newIndexOfLastCategory - categoryPerPage;
@@ -118,11 +136,18 @@ const Category = () => {
                     ))}
                   </tbody>
                 </Table>
-                <Paginate
+                {/* <Paginate
                   dataPerPage={categoryPerPage}
                   totalData={categories.length}
                   paginate={paginate}
-                ></Paginate>
+                ></Paginate> */}
+                <Pagination
+                  totalPage={totalPage}
+                  page={currentCategoryPage}
+                  limit={categoryPerPage}
+                  siblings={1}
+                  onPageChange={handlePageChange}
+                ></Pagination>
               </div>
               <CSVLink
                 data={exportCategory}

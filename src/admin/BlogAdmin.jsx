@@ -10,6 +10,7 @@ import { Editor } from "@tinymce/tinymce-react";
 
 import { CSVLink, CSVDownload } from "react-csv";
 import BlogUpdate from "../component/BlogUpdate";
+import Pagination from "../component/Pagination2";
 
 const BlogAdmin = () => {
   const {
@@ -31,9 +32,29 @@ const BlogAdmin = () => {
   const [currentBlogPage, setCurrentBlogPage] = useState(1);
   const [BlogPerPage, setBlogPerPage] = useState(12);
 
-  const paginate = (pageNumber) => {
-    setCurrentBlogPage(pageNumber);
+  const handlePageChange = (value) => {
+    if (value === "&laquo;" || value === "... ") {
+      setCurrentBlogPage(1);
+    } else if (value === "&lsaquo;") {
+      if (page !== 1) {
+        setCurrentBlogPage(page - 1);
+      }
+    } else if (value === "&rsaquo;") {
+      if (page !== totalPage) {
+        setCurrentBlogPage(page + 1);
+      }
+    } else if (value === "&raquo;" || value === " ...") {
+      setCurrentBlogPage(totalPage);
+    } else {
+      setCurrentBlogPage(value);
+    }
   };
+
+  let totalPage = Math.ceil(blogs.length / BlogPerPage);
+  // const paginate = (pageNumber) => {
+  //   setCurrentCategoryPage(pageNumber);
+  // };
+
   const handleInsertBlog = async (event) => {
     event.preventDefault();
     try {
@@ -71,7 +92,6 @@ const BlogAdmin = () => {
               <Row>
                 <h1 className="my-3 title-table">Bài đăng</h1>
                 <Col>
-                  
                   <input
                     type="text"
                     className="w-100"
@@ -203,11 +223,11 @@ const BlogAdmin = () => {
                           <td
                             className="table-custom-rose"
                             dangerouslySetInnerHTML={{
-                              __html: item.BlogContent,
+                              __html: `${item.BlogContent.split(" ")
+                                .slice(0, 50)
+                                .join(" ")} ...`,
                             }}
-                          >
-                            {/* {item.BlogContent} */}
-                          </td>
+                          ></td>
                           <td className="table-custom-rose d-flex ">
                             <BlogUpdate Blog={item}></BlogUpdate>
                             <DeletePopUp
@@ -220,11 +240,13 @@ const BlogAdmin = () => {
                     ))}
                   </tbody>
                 </Table>
-                <Paginate
-                  dataPerPage={BlogPerPage}
-                  totalData={blogs.length}
-                  paginate={paginate}
-                ></Paginate>
+                <Pagination
+                  totalPage={totalPage}
+                  page={currentBlogPage}
+                  limit={BlogPerPage}
+                  siblings={1}
+                  onPageChange={handlePageChange}
+                ></Pagination>
               </div>
             </Col>
           </Row>
