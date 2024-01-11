@@ -1,0 +1,11 @@
+.header-list-text {
+    color: rgb(250, 70, 70);
+    font-size: 1.7rem;
+    
+}
+
+.Postdetail-container{
+    border: 1px black solid;
+    border-top: transparent;
+    border-bottom: transparent;
+}
