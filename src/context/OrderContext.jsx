@@ -38,7 +38,7 @@ export const OrderProvider = ({ children }) => {
     await csrf();
     try {
       await axios.post("/order/insert", data);
-      await getOrders();
+      // await getOrders();
       toast.success("Đăng Ký Thành Công!");
     } catch (e) {
       if (e.response.status === 422) {

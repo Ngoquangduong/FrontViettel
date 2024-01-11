@@ -29,7 +29,7 @@ export const BlogProvider = ({ children }) => {
 
   const getBlogDetail = async (id) => {
     try {
-      await csrf(); // Xác thực trước
+      // await csrf(); // Xác thực trước
       const result = await axios.get("/blog/detail/" + id);
       setBlog(result.data.Blog);
     } catch (error) {

@@ -29,7 +29,7 @@ export const ProductProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
-      await csrf();
+      // await csrf();
       const result = await axios.get(`/product`);
       setProducts(result.data.products);
     } catch (error) {
@@ -39,7 +39,7 @@ export const ProductProvider = ({ children }) => {
   // getProductDetail-------------------------
   const getProductDetail = async (id) => {
     try {
-      console.log(id);
+      // console.log(id);
       // await csrf();
       const result = await axios.get("/product/detail/" + id);
       // setProduct(result.data.product[0]);

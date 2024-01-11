@@ -70,7 +70,7 @@ function Detail() {
             </Row>
           </Container>
         </div>
-        <PostList />
+        {/* <PostList /> */}
       </Container>
       <Footer />
     </div>

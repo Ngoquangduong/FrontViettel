@@ -16,7 +16,6 @@ export const UserProvider = ({ children }) => {
 
   const getUsers = async () => {
     try {
-      
       const result = await axios.get("/api/hello");
       setUsers(result.data.users);
     } catch (error) {
