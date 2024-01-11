@@ -19,7 +19,7 @@ export default function PostList({ blogs }) {
               ))}
             </Col>
           </Row>
-          <a href="" className=" float-end link-text">
+          <a href="#" className=" float-end link-text">
             Xem nhiều hơn
           </a>
         </Container>

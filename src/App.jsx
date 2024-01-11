@@ -1,3 +1,4 @@
+import "tinymce/skins/content/default/content.css";
 import "./assets/CSS/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Outlet } from "react-router-dom";
@@ -30,8 +31,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<Detail />} />
         <Route path="/productList" element={<List />} />
-        <Route path="/Posts" element={<Posts/>} />
-        <Route path="/DetailPost" element={<DetailPost/>}/>
+        <Route path="/Posts" element={<Posts />} />
+        <Route path="/detail/post/:id" element={<DetailPost />} />
         <Route element={<GuestAdminLayout />}>
           <Route path="/admin/login" element={<Login />} />
         </Route>

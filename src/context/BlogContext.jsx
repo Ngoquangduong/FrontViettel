@@ -16,7 +16,7 @@ export const BlogProvider = ({ children }) => {
   const getBlogs = async () => {
     try {
       // await csrf(); // Xác thực trước
-      
+
       const result = await axios.get("/blogs");
       setBlogs(result.data.blogs);
     } catch (error) {
@@ -31,7 +31,7 @@ export const BlogProvider = ({ children }) => {
     try {
       // await csrf(); // Xác thực trước
       const result = await axios.get("/blog/detail/" + id);
-      setBlog(result.data.Blog);
+      setBlog(result.data.blog);
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 401) {

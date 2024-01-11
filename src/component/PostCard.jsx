@@ -2,6 +2,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import "../assets/CSS/font.css";
 import "../assets/CSS/main.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function PortCard(props) {
   // const [blogs, setBlog] = useState(props.item);
@@ -38,17 +39,20 @@ export default function PortCard(props) {
             </a>
           </Col>
           <Col>
-            <p
+            <div
               className="normal-text"
               dangerouslySetInnerHTML={{
                 __html: `${props.item.BlogContent.split(" ")
                   .slice(0, 100)
                   .join(" ")}...`,
               }}
-            ></p>
-            <a href="/" className=" float-end link-text">
+            ></div>
+            <Link
+              to={`/detail/post/${props.item.BlogID}`}
+              className=" float-end link-text"
+            >
               Xem chi tiết
-            </a>
+            </Link>
           </Col>
         </Row>
       </div>
