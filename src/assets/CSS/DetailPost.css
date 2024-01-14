@@ -68,3 +68,23 @@ h6 {
   border-top: transparent;
   border-bottom: transparent;
 }
+.post-image {
+  width: 240px !important;
+  height: 240px;
+}
+.ava-post {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.post-title {color: rgb(0, 36, 145);
+             font-weight: 600;
+             font-size: 1.9rem;}
+body{margin: 0 !important;}
+
+.post-container {
+border: 2px rgb(103, 1, 1) solid;
+border-bottom: transparent;
+border-top: transparent;
+}

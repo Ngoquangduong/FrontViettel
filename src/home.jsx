@@ -164,8 +164,13 @@ function Home() {
           </div>
           <div className="divider my-4"></div>
         </div>
+        <Container>
+        <div className=" my-3">
+<PostList blogs={blogs} />
+</div>
+        </Container>
 
-        <PostList blogs={blogs} />
+        
 
         <Footer />
       </div>
