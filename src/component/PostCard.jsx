@@ -43,7 +43,7 @@ export default function PortCard(props) {
               className="normal-text"
               dangerouslySetInnerHTML={{
                 __html: `${props.item.BlogContent.split(" ")
-                  .slice(0, 100)
+                  .slice(0, 50)
                   .join(" ")}...`,
               }}
             ></div>

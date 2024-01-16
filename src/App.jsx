@@ -1,4 +1,3 @@
-import "tinymce/skins/content/default/content.css";
 import "./assets/CSS/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Outlet } from "react-router-dom";
@@ -23,6 +22,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import BlogAdmin from "./admin/BlogAdmin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "tinymce/skins/content/default/content.css";
 
 function App() {
   return (
