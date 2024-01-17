@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Header from "./component/Header"
+import Header from "./component/Header";
 import Footer from "./component/Footer";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -25,16 +25,17 @@ const DetailPost = () => {
           <p className="text-center header-list-text">Các bài viết khác</p>
         </div>
         <div className="Postdetail-container col-6 p-3 my-4">
-        <div className="d-flex 
-        ">
-        <img
-            src={`http://localhost:8000/storage/${blog.TitleImage}`}
-            className="my-2 post-image "
-          />
+          <div
+            className="d-flex 
+        "
+          >
+            <img
+              src={`http://localhost:8000/storage/${blog.TitleImage}`}
+              className="my-2 post-image "
+            />
             <h1 className="px-3">{blog.BlogTitle}</h1>
-           </div>
-         
-        
+          </div>
+
           <p
             className="normal-text"
             dangerouslySetInnerHTML={{

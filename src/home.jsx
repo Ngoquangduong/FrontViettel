@@ -165,12 +165,10 @@ function Home() {
           <div className="divider my-4"></div>
         </div>
         <Container>
-        <div className=" my-3">
-<PostList blogs={blogs} />
-</div>
+          <div className=" my-3">
+            <PostList blogs={blogs.slice(0, 8)} />
+          </div>
         </Container>
-
-        
 
         <Footer />
       </div>
