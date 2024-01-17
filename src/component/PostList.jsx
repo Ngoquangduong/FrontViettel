@@ -10,14 +10,15 @@ export default function PostList({ blogs }) {
 
   return (
     <>
-      <div className=" pb-5 ">
+    <h1 className="text-center">Các bài viết nổi bật</h1>
+      <div className=" pb-5 post-container">
         <Container className="pt-3">
-          <Row>
-            <Col xs={12} sm={6} md={4} lg={4}>
+          <Row  >
+            
               {blogs.map((item) => (
                 <PostCard key={item.BlogID} item={item} />
               ))}
-            </Col>
+            
           </Row>
           <a href="#" className=" float-end link-text">
             Xem nhiều hơn

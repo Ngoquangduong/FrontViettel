@@ -23,6 +23,7 @@ import BlogAdmin from "./admin/BlogAdmin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "tinymce/skins/content/default/content.css";
+import "../src/assets/CSS/DetailPost.css";
 
 function App() {
   return (

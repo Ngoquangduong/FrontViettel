@@ -45,11 +45,9 @@ const Posts = () => {
     <div>
       <Header></Header>
       <Container fluid>
-        <h1 className="text-title text-center my-3 text-danger">
-          Các bài viết và tin tức về dịch vụ lắp đặt mạng Viettel
-        </h1>
+        
         <Container>
-          <Row>
+          <Row >
             <PostList blogs={currentBlog}></PostList>
             <Pagination
               totalPage={totalPage}
