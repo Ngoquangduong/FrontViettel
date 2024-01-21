@@ -164,7 +164,7 @@ function Home() {
           </div>
           <div className="divider my-4"></div>
         </div>
-        <Container>
+        <Container className="my-4" >
           <div className=" my-3">
             <PostList blogs={blogs.slice(0, 4)} />
             <Link to="/Posts" className=" float-end link-text">

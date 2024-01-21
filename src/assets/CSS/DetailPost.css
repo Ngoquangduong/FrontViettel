@@ -64,7 +64,7 @@ h6 {
   font-weight: bold;
 }
 .Postdetail-container {
-  border: 1px black solid;
+  border: 1px rgba(0, 0, 0, 0.377) solid;
   border-top: transparent;
   border-bottom: transparent;
 }
