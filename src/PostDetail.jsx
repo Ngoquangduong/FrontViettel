@@ -42,14 +42,14 @@ const DetailPost = () => {
         </div>
 
         <div className="Postdetail-container main-post-responsive  p-3 my-4">
-          <div className="d-flex flex-wrap">
+          
+           
+            <h1 className="px-3">{blog.BlogTitle}</h1>
+         
             <img
               src={`http://localhost:8000/storage/${blog.TitleImage}`}
-              className="my-2 post-image "
+              className="my-2 post-image mx-auto"
             />
-            <h1 className="px-3">{blog.BlogTitle}</h1>
-          </div>
-
           <p
             className="normal-text"
             dangerouslySetInnerHTML={{
