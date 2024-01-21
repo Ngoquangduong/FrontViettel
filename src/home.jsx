@@ -19,7 +19,7 @@ import { FormProvider } from "./context/FormContext";
 import useProductContext from "./context/ProductContext";
 import useCategoryContext from "./context/CategoryContext";
 import useBlogContext from "./context/BlogContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 function Home() {
   // const [currentProduct, setCurrentProduct] = useState([]);
   // const { products } = useProductContext();
@@ -166,7 +166,10 @@ function Home() {
         </div>
         <Container>
           <div className=" my-3">
-            <PostList blogs={blogs.slice(0, 8)} />
+            <PostList blogs={blogs.slice(0, 4)} />
+            <Link to="/Posts" className=" float-end link-text">
+              Xem nhiều hơn
+            </Link>
           </div>
         </Container>
 
