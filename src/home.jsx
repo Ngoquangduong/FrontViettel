@@ -112,7 +112,7 @@ function Home() {
           </div>
           <div className="divider my-4"></div>
         </div>
-        <div className="category-block ">
+        <div className="category-block my-4 ">
           <div className="divider mt-5"></div>
           <h1 className="text-center mt-3 text-bigtitle uppercase">
             Gói cước hộ gia đình
@@ -139,7 +139,7 @@ function Home() {
           </div>
           <div className="divider my-4"></div>
         </div>
-        <div className="category-block">
+        <div className="category-block my-4">
           <div className="divider mt-5"></div>
           <h1 className="text-center mt-3 text-bigtitle uppercase">
             Gói cước doanh nghiệp

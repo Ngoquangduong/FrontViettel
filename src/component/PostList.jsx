@@ -13,7 +13,7 @@ export default function PostList({ blogs }) {
     <h1 className="text-center">Các bài viết nổi bật</h1>
       <div className=" pb-5 post-container">
         <Container className="pt-3">
-          <Row  >
+          <Row  className="d-flex flex-wrap">
             
               {blogs.map((item) => (
                 <PostCard key={item.BlogID} item={item} />

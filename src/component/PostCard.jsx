@@ -9,7 +9,8 @@ export default function PortCard(props) {
   // const [blogs, setBlog] = useState(props.item);
   return (
     <>
-      <Col xs={12} sm={12} md={3} lg={3}>
+    
+    <Col xs={12} sm={12} md={3} lg={3}>
         <Card style={{ height: "600px" }} className="my-2">
           <Link to={`/detail/post/${props.item.BlogID}`}>
             <img
@@ -17,7 +18,7 @@ export default function PortCard(props) {
               src={`http://localhost:8000/storage/${props.item.TitleImage}`}
             />
           </Link>
-          <Card.Body className="">
+          <Card.Body className="cardpost-body">
             <Card.Title>
               <h1 className="post-title">
                 <Link to={`/detail/post/${props.item.BlogID}`}>
@@ -31,21 +32,24 @@ export default function PortCard(props) {
                 className="normal-text"
                 dangerouslySetInnerHTML={{
                   __html: `${props.item.BlogContent.split(" ")
-                    .slice(0, 50)
+                    .slice(0, 20)
                     .join(" ")}...`,
                 }}
               ></p>
             </div>
 
-            <Link
-              to={`/detail/post/${props.item.BlogID}`}
-              className=" float-end link-text"
-            >
-              Xem chi tiết
-            </Link>
+           
           </Card.Body>
+          <Link
+              to={`/detail/post/${props.item.BlogID}`}
+              className=" float-end link-text "
+            >
+              <p className="float-left">Xem chi tiết</p>
+            </Link>
         </Card>
       </Col>
+    
+      
     </>
   );
 }

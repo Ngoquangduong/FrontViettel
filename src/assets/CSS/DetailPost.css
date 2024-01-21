@@ -81,7 +81,7 @@ h6 {
 .post-title {
   color: rgb(0, 36, 145);
   font-weight: 600;
-  font-size: 1.9rem;
+  font-size: 1.3rem;
 }
 body {
   margin: 0 !important;
@@ -91,4 +91,42 @@ body {
   border: 2px rgb(103, 1, 1) solid;
   border-bottom: transparent;
   border-top: transparent;
+}
+.cardpost-body {height: 300px;}
+
+.second-list-responsive {
+  border: transparent;
+  width: 33%;
+}
+
+.main-post-responsive{
+  width: 60%;
+}
+
+.post-detail-productlist{
+  
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+.responsive-list {display: none;}
+
+@media only screen and (max-width: 600px) {
+  /* For tablets: */
+
+  .second-list-responsive{
+    width: 0 !important;
+    display: none !important;
+  }
+  .main-post-responsive{
+    width: 120vw !important;
+  }
+  .Postdetail-container {
+    border: 0;
+    padding: 0;
+    margin: auto;
+  }
+.responsive-list {
+  display: inherit;
+}
 }
