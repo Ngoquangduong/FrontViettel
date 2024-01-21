@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import { Container, Col,Row, ListGroup } from "react-bootstrap";
+import { Container, Col,Row, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useProductContext from "./context/ProductContext";
 import "../src/assets/CSS/DetailPost.css";
 import Product from "./component/Product";
 import useBlogContext from "./context/BlogContext";
+import ProductInPost from "./component/ProductInPost";
+import PostCardInList from "./component/PostCardInList";
 
 import PostList from "./component/PostList";
 
@@ -31,15 +33,15 @@ const DetailPost = () => {
       <Container fluid className="d-flex mx-auto">
 
         <div className=" p-2 second-list-responsive">
-          <p className="text-center header-list-text">Các bài viết khác</p>
-          <ListGroup>
+          <p className="text-center header-list-text">Các sản phẩm nổi bật </p>
+          
+          {products.slice(0, 3).map((item) => (   
+            <ListGroup className="border-list">      
+           <ListGroup.Item className="border-list"><ProductInPost  key={item.ProductID} item={item}/> </ListGroup.Item>  
+           </ListGroup>      
+        ))} 
             
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-          </ListGroup>
+          
         </div>
 
 
@@ -64,12 +66,14 @@ const DetailPost = () => {
 
         <div className="p-2 second-list-responsive" >
           <p className="text-center header-list-text">Các sản phẩm nổi bật</p>
-          <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+
+          
+          <ListGroup className="border-list">
+            {blogs.slice(0, 4).map((item) => (
+              <ListGroup.Item className="border-list"><PostCardInList className="border-list" key={blog.item} item={item}/></ListGroup.Item>
+            ))}
+            
+           
           </ListGroup>
         </div>
 
@@ -94,12 +98,7 @@ const DetailPost = () => {
       </Container>
  
      </Container>
-     
     
-   
-  
-      
-
       
       <Footer />
     </div>

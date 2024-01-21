@@ -69,8 +69,9 @@ h6 {
   border-bottom: transparent;
 }
 .post-image {
-  width: 240px !important;
-  height: 240px;
+  width: 360px !important;
+  height: 360px;
+  object-fit: cover;
 }
 .ava-post {
   width: 100%;
@@ -130,3 +131,7 @@ body {
   display: inherit;
 }
 }
+
+.border-list {border: transparent;
+padding: 0.5rem;
+              background: transparent;}
