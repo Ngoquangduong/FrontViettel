@@ -11,7 +11,7 @@ export default function PortCard(props) {
     <>
     
     <Col xs={12} sm={12} md={3} lg={3}>
-        <Card style={{ height: "560px" }} className="my-2">
+        <Card style={{ height: "620px" }} className="my-2">
           <Link to={`/detail/post/${props.item.BlogID}`}>
             <img
               className="ava-post "
@@ -27,7 +27,7 @@ export default function PortCard(props) {
               </h1>
             </Card.Title>
 
-            <div>
+            <div className="w-100">
               <p
                 className="normal-text overflow-hidden"
                 dangerouslySetInnerHTML={{
