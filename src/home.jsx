@@ -49,7 +49,8 @@ function Home() {
   };
   return (
     <>
-      <div className="fixed-noti mx-auto d-flex justify-content-center align-items-center">
+    <div className="responsive-noti">
+    <div className="fixed-noti mx-auto d-flex justify-content-center align-items-center">
         <p>
           Hỗ trợ đăng ký{" "}
           <span className="text-danger phone-number">0962.88.9696 </span>{" "}
@@ -60,6 +61,8 @@ function Home() {
           alt=""
         />
       </div>
+    </div>
+    
 
       <div className="fixed-noti-2 mx-auto">
         <img src="../public/gift3.png" alt="" className="gift" />
@@ -79,6 +82,27 @@ function Home() {
      })} */}
 
         <CarouselVietTel className="z-1 position-static" />
+        <Container>
+          <Row className="d-flex flex-wrap">
+            <div className="noti-home-responsive mx-auto">
+            
+              <img src="../public/gift3.png" alt="" className="gift" />
+              <div className="d-flex mx-auto my-auto text-center">
+                <p className="fixed-noti-2-text">Đặt trước 6 tháng tặng 1 tháng</p>
+                <p className="fixed-noti-2-text mx-2">Đặt trước 12 tháng tặng 2 tháng </p>
+              </div>
+          
+            </div>
+          
+
+            <div className="noti-home-responsive text-center  mx-auto">
+              <Col  className="d-flex align-item-center  mx-auto  justify-center">
+                <span className="text-center mx-auto"> <p className="text-light"> Hỗ trợ đăng ký{" "} :</p><span className="text-danger phone-number"> 0962.88.9696 </span></span>
+              </Col>
+            </div>
+
+          </Row>
+        </Container>
 
         {/* <Container fluid="md p-4  my-3 bg-home-menu">
        <h2 className=" text-title">Đăng ký sản phẩm</h2>

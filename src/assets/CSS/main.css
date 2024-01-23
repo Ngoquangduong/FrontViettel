@@ -299,3 +299,24 @@
         
 .post-image {
              object-fit: cover}
+
+
+.noti-home-responsive {background-color: #000000da;
+                       border: 1px solid lightcyan;
+                       padding: 1rem;
+                      display: none;}
+
+  @media only screen and (max-width: 600px) {
+  /* For tablets: */
+  .noti-home-responsive{
+    display: inherit;
+  }
+.fixed-noti {
+  display: none;
+}
+.fixed-noti-2{
+  display: none;
+}
+.responsive-noti {visibility: hidden;}
+}
+.responsive-noti {display: inherit;}
