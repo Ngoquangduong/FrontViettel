@@ -21,6 +21,7 @@ const DetailPost = () => {
       await getBlogDetail(id);
     };
     fetchData();
+    window.scrollTo(0, 0);
   }, [id, blog == {}]);
   // console.log(blog);
 
@@ -42,14 +43,12 @@ const DetailPost = () => {
         </div>
 
         <div className="Postdetail-container main-post-responsive  p-3 my-4">
-          
-           
-            <h1 className="px-3">{blog.BlogTitle}</h1>
-         
-            <img
-              src={`http://localhost:8000/storage/${blog.TitleImage}`}
-              className="my-2 post-image mx-auto"
-            />
+          <h1 className="px-3">{blog.BlogTitle}</h1>
+
+          <img
+            src={`http://localhost:8000/storage/${blog.TitleImage}`}
+            className="my-2 post-image mx-auto"
+          />
           <p
             className="normal-text"
             dangerouslySetInnerHTML={{

@@ -25,7 +25,7 @@ const BlogAdmin = () => {
 
   const [blogTitle, setBlogTitle] = useState("");
   const [titleImage, setTitleImage] = useState("");
-  const [blogContent, setBlogContent] = useState("<p>Tùng đinh</p>");
+  const [blogContent, setBlogContent] = useState("");
   const [text, setText] = useState("");
 
   const [currentBlog, setCurrentBlog] = useState([]);
