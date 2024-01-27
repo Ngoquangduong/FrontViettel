@@ -24,11 +24,13 @@ function Home() {
   // const [currentProduct, setCurrentProduct] = useState([]);
   // const { products } = useProductContext();
 
-  const { blogs } = useBlogContext();
+  const { blogs, getBlogs } = useBlogContext();
   const { categories, getCategory } = useCategoryContext();
+
   const navigate = useNavigate();
 
   const [categorySort, setCategorySort] = useState([]);
+  const [blogSort, setBlogSort] = useState([]);
   // console.log(categories);
 
   useEffect(() => {
@@ -37,32 +39,43 @@ function Home() {
     }
   }, [categories]);
   useEffect(() => {
-    if (categorySort == undefined || categorySort.length == []) {
+    if (blogs.length === 0) {
+      getBlogs();
+    }
+  }, [blogs]);
+  useEffect(() => {
+    if (categorySort == undefined || categorySort.length === 0) {
       let temp = categories;
       temp.sort((a, b) => a.sort - b.sort);
       setCategorySort(temp);
     }
   });
+  useEffect(() => {
+    if (blogSort == undefined || blogSort.length === 0) {
+      let temp = blogs;
+      temp.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      setBlogSort(temp);
+    }
+  }, [blogSort.length === 0, blogSort, blogs]);
   const handleShowMore = () => {
     navigate("/productList");
     window.scrollTo(0, 0);
   };
   return (
     <>
-    <div className="responsive-noti">
-    <div className="fixed-noti mx-auto d-flex justify-content-center align-items-center">
-        <p>
-          Hỗ trợ đăng ký{" "}
-          <span className="text-danger phone-number">0962.88.9696 </span>{" "}
-        </p>
-        <img
-          src="/public//phone-icon.png"
-          className="phone ms-2 me-auto"
-          alt=""
-        />
+      <div className="responsive-noti">
+        <div className="fixed-noti mx-auto d-flex justify-content-center align-items-center">
+          <p>
+            Hỗ trợ đăng ký{" "}
+            <span className="text-danger phone-number">0962.88.9696 </span>{" "}
+          </p>
+          <img
+            src="/public//phone-icon.png"
+            className="phone ms-2 me-auto"
+            alt=""
+          />
+        </div>
       </div>
-    </div>
-    
 
       <div className="fixed-noti-2 mx-auto">
         <img src="../public/gift3.png" alt="" className="gift" />
@@ -85,22 +98,29 @@ function Home() {
         <Container>
           <Row className="d-flex flex-wrap">
             <div className="noti-home-responsive mx-auto">
-            
               <img src="../public/gift3.png" alt="" className="gift" />
               <div className="d-flex mx-auto my-auto text-center">
-                <p className="fixed-noti-2-text">Đặt trước 6 tháng tặng 1 tháng</p>
-                <p className="fixed-noti-2-text mx-2">Đặt trước 12 tháng tặng 2 tháng </p>
+                <p className="fixed-noti-2-text">
+                  Đặt trước 6 tháng tặng 1 tháng
+                </p>
+                <p className="fixed-noti-2-text mx-2">
+                  Đặt trước 12 tháng tặng 2 tháng{" "}
+                </p>
               </div>
-          
             </div>
-          
 
             <div className="noti-home-responsive text-center  mx-auto">
-              <Col  className="d-flex align-item-center  mx-auto  justify-center">
-                <span className="text-center mx-auto"> <p className="text-light"> Hỗ trợ đăng ký{" "} :</p><span className="text-danger phone-number"> 0962.88.9696 </span></span>
+              <Col className="d-flex align-item-center  mx-auto  justify-center">
+                <span className="text-center mx-auto">
+                  {" "}
+                  <p className="text-light"> Hỗ trợ đăng ký :</p>
+                  <span className="text-danger phone-number">
+                    {" "}
+                    0962.88.9696{" "}
+                  </span>
+                </span>
               </Col>
             </div>
-
           </Row>
         </Container>
 
@@ -188,9 +208,9 @@ function Home() {
           </div>
           <div className="divider my-4"></div>
         </div>
-        <Container className="my-4" >
+        <Container className="my-4">
           <div className=" my-3">
-            <PostList blogs={blogs.slice(0, 4)} />
+            <PostList blogs={blogSort.slice(0, 4)} />
             <Link to="/Posts" className=" float-end link-text">
               Xem nhiều hơn
             </Link>
