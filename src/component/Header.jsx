@@ -10,7 +10,7 @@ function Header() {
       <Navbar expand="lg" className="bg-nav">
         <Container>
           <Navbar.Brand href="#home">
-            <img src="/viettel-logo.png" height="60px" width="60px" alt="" />
+            <img src="/newlogomain.png" height="80px" width="180px" alt="" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
