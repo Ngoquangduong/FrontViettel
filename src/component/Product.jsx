@@ -25,22 +25,14 @@ export default function Product(props) {
       className="p-3 my-3 row-cols-4 overflow-hidden"
     >
       <a className="">
-        <Card className="product-card-img position-relative ">
+        <Card className="product-card-img position-relative d-flex flex-column ">
           {/* Card content */}
-          <Card.Title className="text-light text-center uppercase position-absolute product-name w-100 py-1">
+          <Card.Title className="text-center uppercase position-absolute product-name w-100 ">
             {product.ProductName}
           </Card.Title>
           <Card.Body className="justify-content-center align-items-center d-flex flex-column">
             <div className="d-flex flex-column price-tag">
-              <Card.Title className=" text-center  w-100 product-description">
-                <b className="product-bandwidth">{product.Bandwidth}</b>
-              </Card.Title>
-              <Card.Title className=" text-center  w-100 product-description">
-                <p className="product-category">
-                  {product.category.CategoryName}
-                </p>
-              </Card.Title>
-              <Card.Title className="text-center w-100 d-flex flex-column ">
+              <Card.Title className="text-center w-100 d-flex flex-column mt-4">
                 <span className="price-hint">Nội thành : </span>{" "}
                 {/* {product.Price.toLocaleString("en-US")}VND */}
                 <span className="price-hint nt-price">

@@ -56,7 +56,7 @@ transition-duration:  0.3s !important;}
 }
 .bg-pink {background-color: #FAFAFA;}
 
-.footer-text {color: #F2E2C4!important;
+.footer-text {color: #ffffff!important;
     font-size: 1rem;
     padding: 12px 0px;
 	margin: 0px 12px;
@@ -70,8 +70,20 @@ transition-duration:  0.3s !important;}
 }
 .footer-text:hover {
 	
-	color: #F27272!important;
+	color: #ff2828!important;
 	
+}
+.footer-text-info {color: #ffffff!important;
+    font-size: 1rem;
+    padding: 12px 0px;
+	margin: 0px 12px;
+	display: block;
+	text-decoration: none;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	transition-duration: 0.3s !important;
 }
 .footer-background {
 	background-color: #00060D;
