@@ -108,6 +108,7 @@ export const BlogProvider = ({ children }) => {
         blogs,
         blog,
         errors,
+        getBlogs,
         getBlogDetail,
         insertBlog,
         updateBlog,

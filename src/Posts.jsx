@@ -12,10 +12,19 @@ import Pagination from "./component/Pagination2";
 const Posts = () => {
   const { blogs, getBlogs } = useBlogContext();
   const [currentBlog, setCurrentBlog] = useState([]);
-
+  const [blogSort, setBlogSort] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [blogPerPage, setBlogPerPage] = useState(12);
   let totalPage = Math.ceil(blogs.length / blogPerPage);
+
+  useEffect(() => {
+    if (blogSort == undefined || blogSort.length === 0) {
+      let temp = blogs;
+      temp.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      setBlogSort(temp);
+    }
+  }, [blogSort.length === 0, blogSort, blogs]);
+
   const handlePageChange = (value) => {
     window.scrollTo(0, 0);
     if (value === "&laquo;" || value === "... ") {
@@ -34,20 +43,20 @@ const Posts = () => {
       setCurrentPage(value);
     }
   };
-
   useEffect(() => {
     let newIndexOfLastProduct = currentPage * blogPerPage;
     let newIndexOfFirstProduct = newIndexOfLastProduct - blogPerPage;
     // console.log(newIndexOfFirstProduct);
-    setCurrentBlog(blogs.slice(newIndexOfFirstProduct, newIndexOfLastProduct));
-  }, [blogs.length === 0]);
+    setCurrentBlog(
+      blogSort.slice(newIndexOfFirstProduct, newIndexOfLastProduct)
+    );
+  }, [blogSort.length === 0]);
   return (
     <div>
       <Header></Header>
       <Container fluid>
-        
         <Container>
-          <Row >
+          <Row>
             <PostList blogs={currentBlog}></PostList>
             <Pagination
               totalPage={totalPage}

@@ -24,11 +24,13 @@ function Home() {
   // const [currentProduct, setCurrentProduct] = useState([]);
   // const { products } = useProductContext();
 
-  const { blogs } = useBlogContext();
+  const { blogs, getBlogs } = useBlogContext();
   const { categories, getCategory } = useCategoryContext();
+
   const navigate = useNavigate();
 
   const [categorySort, setCategorySort] = useState([]);
+  const [blogSort, setBlogSort] = useState([]);
   // console.log(categories);
 
   useEffect(() => {
@@ -37,12 +39,24 @@ function Home() {
     }
   }, [categories]);
   useEffect(() => {
-    if (categorySort == undefined || categorySort.length == []) {
+    if (blogs.length === 0) {
+      getBlogs();
+    }
+  }, [blogs]);
+  useEffect(() => {
+    if (categorySort == undefined || categorySort.length === 0) {
       let temp = categories;
       temp.sort((a, b) => a.sort - b.sort);
       setCategorySort(temp);
     }
   });
+  useEffect(() => {
+    if (blogSort == undefined || blogSort.length === 0) {
+      let temp = blogs;
+      temp.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      setBlogSort(temp);
+    }
+  }, [blogSort.length === 0, blogSort, blogs]);
   const handleShowMore = () => {
     navigate("/productList");
     window.scrollTo(0, 0);
@@ -53,9 +67,11 @@ function Home() {
         <div className="fixed-noti mx-auto d-flex justify-content-center align-items-center">
           <p>
             Hỗ trợ đăng ký{" "}
+
             <span className=" phone-number">
               0962.88.9696 0989.9779.68{" "}
             </span>{" "}
+
           </p>
           <img
             src="/public//phone-icon.png"
@@ -99,6 +115,7 @@ function Home() {
 
             <div className="noti-home-responsive text-center  mx-auto">
               <Col className="d-flex align-item-center  mx-auto  justify-center">
+
                 <span className="text-center mx-auto text-light">
                   {" "}
                   <p className="text-light"> Hỗ trợ đăng ký :</p>
@@ -109,6 +126,7 @@ function Home() {
                   <span className="  text-danger phone-number">
                     {" "}
                     0962.88.9696
+
                   </span>
                 </span>
               </Col>
@@ -176,7 +194,7 @@ function Home() {
         </div>
         <Container className="my-4">
           <div className=" my-3">
-            <PostList blogs={blogs.slice(0, 4)} />
+            <PostList blogs={blogSort.slice(0, 4)} />
             <Link to="/Posts" className=" float-end link-text">
               Xem nhiều hơn
             </Link>
