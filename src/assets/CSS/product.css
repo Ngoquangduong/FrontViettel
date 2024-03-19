@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  height: 24rem;
+  height: 28rem;
   transition-duration: 0.4s;
 }
 
@@ -33,7 +33,7 @@ height: 100vh;
 .product-name {
   top: 5%;
   color: rgb(255, 170, 159) !important;
-  font-size: 2rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
   font-weight: 800;
   border-top: transparent;
