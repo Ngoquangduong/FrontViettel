@@ -204,7 +204,7 @@ export default function List() {
             <PostList blogs={blogs} />
             {/* ----------------------------------------------------------------FOrm------------------------------------------------------ */}
             <Container fluid="md p-4  my-3 bg-home-menu">
-              <h2 className=" text-title">Sản phẩm nổi bật/ hot</h2>
+              
               <Row>
                 {/* Mobile-first design: Full width on small screens */}
               </Row>

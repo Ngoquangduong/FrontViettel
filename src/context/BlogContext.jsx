@@ -97,9 +97,17 @@ export const BlogProvider = ({ children }) => {
   //     console.log(e);
   //   }
   // };
+  
   useEffect(() => {
     if (blogs.length === 0) {
       getBlogs();
+    }
+  }, []);
+  useEffect(() => {
+    if (blogs.length === 0) {
+      const timer = setTimeout(() => {
+        getBlogs();
+      }, 10000);
     }
   }, [blogs]);
   return (

@@ -4,42 +4,40 @@ export default function CarouselVietTel(){
     return(
         <>
         <Carousel  >
-        <Carousel.Item className="responsive-carousel">
+        <Carousel.Item className="responsive-carousel cover">
           <img
-            className="d-block w-100 Carousel-home cover"
-            src="/carousel1.jpg"
+            className="d-block w-100 Carousel-home  cover"
+            src="/viettelcarousel1.png"
             
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h1 className="text-black uppercase"><a href="/Productlist">Đặt hàng ngay</a></h1>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item className="responsive-carousel">
+        <Carousel.Item className="responsive-carousel cover">
           <img
-            className="d-block w-100 Carousel-home"
-            src="/carousel2.jpg"
+            className="d-block w-100 Carousel-home  cover"
+            src="/internet-Viettel-truong-tho.jpg"
             alt="Second slide"
             
           />
       
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h1 className="text-black uppercase"><a href="/Productlist">Đặt hàng ngay</a></h1>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item className="responsive-carousel">
+        <Carousel.Item className="responsive-carousel  cover">
           <img
-            className="d-block w-100 Carousel-home"
-            src="/carousel3.jpg"
+            className="d-block w-100 Carousel-home  cover"
+            src="/Lap-Mang-Viettel.jpg"
             
             alt="Third slide"
           />
       
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <h1 className="text-black uppercase"><a href="/Productlist">Đặt hàng ngay</a></h1>
+           
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

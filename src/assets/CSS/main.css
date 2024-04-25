@@ -4,6 +4,7 @@
   height: 60px;
 
   width: 60px !important;
+
 }
 
 .icon-animation {
@@ -208,7 +209,8 @@
 
 
 .responsive-carousel {
-  height: 820px;
+  height: 720px;
+  object-fit: contain
 }
 
 @media only screen and (max-width: 600px) {
@@ -293,13 +295,13 @@
 
 
 .phone-number {font-weight: 600 !important;
-               color: #ff2c68 !important;
+               color: #02e071 !important;
                font-size: 1.3rem !important;}
          /* -------------------------------------------------------------------------------------------------------- */
         
 .post-image {
              object-fit: cover}
-
+.cover {object-fit: contain;}
 
 .noti-home-responsive {background-color: #000000da;
                        border: 1px solid lightcyan;

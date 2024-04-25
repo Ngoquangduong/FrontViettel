@@ -18,7 +18,8 @@ export const AdminAuthProvider = ({ children }) => {
 
   const getAdmin = async () => {
     try {
-      const { data } = await axios.get("/api/admin"); 
+      const { data } = await axios.get("/api/admin");
+
       // Only update the admin state if the data is different
       if (JSON.stringify(data) !== JSON.stringify(admin)) {
         setAdmin(data);
@@ -29,6 +30,7 @@ export const AdminAuthProvider = ({ children }) => {
   };
 
   const login = async ({ ...data }) => {
+    console.log(data);
     await csrf();
     setErrors([]);
     try {
@@ -91,6 +93,7 @@ export const AdminAuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (!admin) {
+      console.log(admin);
       getAdmin();
     }
   }, [admin, getAdmin]);

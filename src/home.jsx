@@ -84,8 +84,8 @@ function Home() {
       <div className="fixed-noti-2 mx-auto">
         <img src="../public/gift3.png" alt="" className="gift" />
         <div className="d-flex flex-column relative justify-content-center align-items-center my-auto">
-          <p className="fixed-noti-2-text">Đặt trước 6 tháng tặng 1 tháng</p>
-          <p className="fixed-noti-2-text">Đặt trước 12 tháng tặng 2 tháng </p>
+          <p className="fixed-noti-2-text my-3">Đặt trước 12 tháng tặng 1 tháng</p>
+          {/* <p className="fixed-noti-2-text">Đặt trước 12 tháng tặng 2 tháng </p> */}
         </div>
       </div>
       <div className="bg-all ">
