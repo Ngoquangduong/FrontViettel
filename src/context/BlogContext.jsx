@@ -101,6 +101,13 @@ export const BlogProvider = ({ children }) => {
     if (blogs.length === 0) {
       getBlogs();
     }
+  }, []);
+  useEffect(() => {
+    if (blogs.length === 0) {
+      const timer = setTimeout(() => {
+        getBlogs();
+      }, 20000);
+    }
   }, [blogs]);
   return (
     <BlogContext.Provider
